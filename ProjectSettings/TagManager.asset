@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 1Space
+    uniqueID: 1801204143
+    locked: 0
+  - name: 2SmallStars
+    uniqueID: 3891683721
+    locked: 0
+  - name: 3BigStars
+    uniqueID: 2177430993
+    locked: 0
+  - name: 4Player
+    uniqueID: 4283871921
     locked: 0
