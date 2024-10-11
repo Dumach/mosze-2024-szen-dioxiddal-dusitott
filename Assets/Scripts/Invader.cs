@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -15,7 +17,10 @@ public class Invader : MonoBehaviour
     private int animationFrame;
 
     [Header("RotateAndShoot")]
-    public GameObject target;
+    public GameObject player;
+    public bool autoRotate { get; set; } = false;
+    public bool autoShoot { get; set; } = false;
+
 
     [Header("Missiles")]
     public float timeBetweenShoots = 2f;
@@ -34,32 +39,33 @@ public class Invader : MonoBehaviour
     private void Start()
     {
         InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
+        player = GameObject.Find("Player");
     }
 
     private void Update()
     {
         // Return if there is no player/target to shoot
-        if (target == null)
+        if (player == null)
         {
             return;
         }
         
         // Rotate and shoot
-        Rotate();
-        Shoot();
+        if(autoRotate) RotateTo(player.transform);
+        if(autoShoot) ShootTo(player.transform);
     }
 
-    private void Rotate()
+    public void RotateTo(Transform target)
     {
         // Rotating towards player
         float offset = 90f;
-        Vector2 direction = target.transform.position - transform.position;
+        Vector2 direction = target.position - transform.position;
         direction.Normalize();
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 
-    private void Shoot()
+    private void ShootTo(Transform target)
     {
         // Shooting lasers generate heat aka. slows down the firing rate
         if (gunHeat > 0)
