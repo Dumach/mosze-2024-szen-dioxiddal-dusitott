@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     public float speed = 5f;
     public Projectile laserPrefab;
+
+    private float gunHeat = 0f;
+    public float timeBetweenShoots = 0.5f;
     private Projectile laser;
 
     private void Update()
@@ -25,8 +28,6 @@ public class Player : MonoBehaviour
             position.y -= speed * Time.deltaTime;
         }
 
-
-
         // Clamp the position of the character so they do not go out of bounds
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
@@ -35,11 +36,23 @@ public class Player : MonoBehaviour
         // Set the new position
         transform.position = position;
 
-        // Only one laser can be active at a given time so first check that
-        // there is not already an active laser
-        if (laser == null && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))) {
+
+
+        // Shooting lasers generate heat aka. slows down the firing rate
+        if (gunHeat > 0)
+        {
+            gunHeat -= Time.deltaTime;
+        }
+        if (gunHeat <= 0 && Input.GetKey(KeyCode.Space))
+        {
+            gunHeat += timeBetweenShoots;
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
         }
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

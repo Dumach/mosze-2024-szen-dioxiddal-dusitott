@@ -3,14 +3,27 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
+
 public class Invader : MonoBehaviour
 {
+    [Header("Animation")]
     public Sprite[] animationSprites = new Sprite[0];
     public float animationTime = 1f;
     public int score = 10;
 
     private SpriteRenderer spriteRenderer;
     private int animationFrame;
+
+    [Header("RotateAndShoot")]
+    public GameObject target;
+
+    [Header("Missiles")]
+    public float timeBetweenShoots = 2f;
+    public float missileSpeed = 10f;
+    private float gunHeat = 0f;
+    public Projectile MissilePrefab;
+    private Projectile missile;
+
 
     private void Awake()
     {
@@ -23,12 +36,52 @@ public class Invader : MonoBehaviour
         InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
     }
 
+    private void Update()
+    {
+        // Return if there is no player/target to shoot
+        if (target == null)
+        {
+            return;
+        }
+        
+        // Rotate and shoot
+        Rotate();
+        Shoot();
+    }
+
+    private void Rotate()
+    {
+        // Rotating towards player
+        float offset = 90f;
+        Vector2 direction = target.transform.position - transform.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
+    }
+
+    private void Shoot()
+    {
+        // Shooting lasers generate heat aka. slows down the firing rate
+        if (gunHeat > 0)
+        {
+            gunHeat -= Time.deltaTime;
+        }
+        if (gunHeat <= 0)
+        {
+            gunHeat += timeBetweenShoots;
+            missile = Instantiate(MissilePrefab, transform.position, transform.rotation);
+            missile.SetDirection(target.transform);
+            missile.setSpeed(missileSpeed);
+        }
+    }
+
     private void AnimateSprite()
     {
         animationFrame++;
 
         // Loop back to the start if the animation frame exceeds the length
-        if (animationFrame >= animationSprites.Length) {
+        if (animationFrame >= animationSprites.Length)
+        {
             animationFrame = 0;
         }
 
@@ -37,9 +90,12 @@ public class Invader : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Laser")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        {
             GameManager.Instance.OnInvaderKilled(this);
-        } else if (other.gameObject.layer == LayerMask.NameToLayer("Boundary")) {
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Boundary"))
+        {
             GameManager.Instance.OnBoundaryReached();
         }
     }
