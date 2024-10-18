@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyPatrol : MonoBehaviour
 {
     [Header("Locations")]
-    //public GameObject[] moveSpots;
     public Vector3[] moveSpots;
     public float waitTime;
     private int nthPoint = 0;
@@ -13,7 +12,6 @@ public class EnemyPatrol : MonoBehaviour
     public float speed;
 
     private Rigidbody2D RB;
-    //private Transform currentPoint;
     private Vector3 currentPoint;
     private Invader invader;
 

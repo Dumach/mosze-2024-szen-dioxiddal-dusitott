@@ -1,0 +1,13 @@
+<SpawnPointsCollection>
+  <SpawnPoint name="InvaderSpawnPoint">
+    <InvaderPrefab>Invader_01</InvaderPrefab>
+    <NumberOf>7</NumberOf>
+    <Speed>5</Speed>
+    <MoveSpots>(-6.95, 2.68, 0.00); (4.47, 7.39, 0.00); (12.51, 16.83, 0.00)</MoveSpots>
+    <StartSpawningTime>5</StartSpawningTime>
+    <WaitTime>1</WaitTime>
+    <MissilePrefab>Missile</MissilePrefab>
+    <TimeBetweenShoots>1</TimeBetweenShoots>
+    <MissileSpeed>10</MissileSpeed>
+  </SpawnPoint>
+</SpawnPointsCollection>

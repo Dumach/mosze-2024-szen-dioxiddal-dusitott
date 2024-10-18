@@ -9,7 +9,6 @@ public class Invaders : MonoBehaviour
     public float speed;
 
     [Header("Locations")]
-    //public GameObject[] moveSpots;
     public Vector3[] moveSpots;
     public float startSpawningTime;
     public float waitTime;
@@ -66,7 +65,6 @@ public class Invaders : MonoBehaviour
     {
         foreach (var point in moveSpots)
         {
-            //Gizmos.DrawWireSphere(point.transform.position, 0.5f);
             Gizmos.DrawWireSphere(point, 0.5f);
         }
     }
