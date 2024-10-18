@@ -1,62 +1,19 @@
+#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Xml;
 using System.IO;
 using System.Globalization;
+using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
 
-[DefaultExecutionOrder(-1)]
-public class GameManager : MonoBehaviour
+[ExecuteInEditMode]
+public class SpawnPointLoader : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
 
-    //[SerializeField] private GameObject gameOverUI;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text livesText;
+    private string prefabsFolderPath = "Assets/Prefabs/";
 
-    private Player player;
-    private Invaders invaders;
-    private MysteryShip mysteryShip;
-
-    public int score { get; private set; } = 0;
-    public int lives { get; private set; } = 3;
-
-    private void Awake()
-    {
-        if (Instance != null) {
-            DestroyImmediate(gameObject);
-        } else {
-            Instance = this;
-        }
-
-
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance == this) {
-            Instance = null;
-        }
-    }
-
-    private void Start()
-    {
-        player = FindObjectOfType<Player>();
-        invaders = FindObjectOfType<Invaders>();
-        mysteryShip = FindObjectOfType<MysteryShip>();
-
-        //NewGame();
-    }
-
-    private void Update()
-    {
-        if (lives <= 0 || Input.GetKeyDown(KeyCode.Return))
-        {
-            RestartScene();
-        }
-    }
-
-    /*private void LoadSpawnPointsFromXML(string filepath)
+    public void LoadSpawnPointsFromXML(string filepath)
     {
         // XML dokumentum betöltése
         XmlDocument xmlDoc = new XmlDocument();
@@ -72,22 +29,43 @@ public class GameManager : MonoBehaviour
 
             // SpawnPoint létrehozása
             GameObject spawnPoint = new GameObject(spawnPointName);
-            DontDestroyOnLoad(spawnPoint);
             spawnPoint.tag = "SpawnPoints";
             spawnPoint.layer = LayerMask.NameToLayer("Invader");
             spawnPoint.AddComponent<Invaders>();
             Invaders settings = spawnPoint.GetComponent<Invaders>();
 
-            // Adatok visszatöltése 
+            // Adatok visszatöltése
+            //settings.invaderPrefab = FindPrefabByName<Invader>(node.SelectSingleNode("InvaderPrefab").InnerText);
             settings.numberOf = int.Parse(node.SelectSingleNode("NumberOf").InnerText);
             settings.speed = float.Parse(node.SelectSingleNode("Speed").InnerText);
             settings.transform.position = StringToVector3(node.SelectSingleNode("Position").InnerText);
             settings.moveSpots = ParseVector3Array(node.SelectSingleNode("MoveSpots").InnerText);
             settings.startSpawningTime = float.Parse(node.SelectSingleNode("StartSpawningTime").InnerText);
             settings.waitTime = float.Parse(node.SelectSingleNode("WaitTime").InnerText);
+            //settings.missilePrefab = FindPrefabByName<Projectile>(node.SelectSingleNode("MissilePrefab").InnerText);
             settings.timeBetweenShoots = float.Parse(node.SelectSingleNode("TimeBetweenShoots").InnerText);
             settings.missileSpeed = float.Parse(node.SelectSingleNode("MissileSpeed").InnerText);
+
         }
+    }
+
+    // Helper function: Prefab keresése név alapján az AssetDatabase-ben
+    private T FindPrefabByName<T>(string prefabName) where T : MonoBehaviour
+    {
+#if UNITY_EDITOR
+        string[] guids = AssetDatabase.FindAssets(prefabName, new[] { prefabsFolderPath });
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            T prefab = AssetDatabase.LoadAssetAtPath<T>(path);
+            if (prefab != null && prefab.name == prefabName)
+            {
+                return prefab;
+            }
+        }
+        Debug.LogError("Prefab not found: " + prefabName);
+#endif
+        return null;
     }
 
     // Helper function: Vector3 tömb parszolása a stringbõl
@@ -119,9 +97,8 @@ public class GameManager : MonoBehaviour
             float.Parse(sArray[0], CultureInfo.InvariantCulture),
             float.Parse(sArray[1], CultureInfo.InvariantCulture),
             float.Parse(sArray[2], CultureInfo.InvariantCulture));
-    }*/
-
-    /*private void SaveSpawnPointsToXML()
+    }
+    private void SaveSpawnPointsToXML()
     {
         // Új XML dokumentum létrehozása
         XmlDocument xmlDoc = new XmlDocument();
@@ -166,7 +143,7 @@ public class GameManager : MonoBehaviour
 
             // XML fájl mentése
             string sceneID = SceneManager.GetActiveScene().name;
-            string filePath = Path.Combine(Application.dataPath, "Scenes","missiondata");
+            string filePath = Path.Combine(Application.dataPath, "Scenes", "missiondata");
             filePath = Path.Combine(filePath, sceneID + ".xml");
             xmlDoc.Save(filePath);
 
@@ -191,54 +168,22 @@ public class GameManager : MonoBehaviour
             result += v.ToString() + "; ";
         }
         return result.TrimEnd(' ', ';');
-    }*/
-
-    private void RestartScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void GameOver()
+    private void Start()
     {
-        RestartScene();
-    }
+        string missionDataPath = Path.Combine(Application.dataPath, "Scenes", "missiondata", "Mission1.xml");
 
-    private void SetScore(int score)
-    {
-        this.score = score;
-        scoreText.text = score.ToString().PadLeft(4, '0');
-    }
-
-    private void SetLives(int lives)
-    {
-        this.lives = Mathf.Max(lives, 0);
-        livesText.text = this.lives.ToString();
-    }
-
-    public void OnPlayerKilled(Player player)
-    {
-        SetLives(lives - 1);
-
-        if (lives > 0)
+        if (!File.Exists(missionDataPath))
         {
-            player.beUnkillable(1);
+            SaveSpawnPointsToXML();
         }
-        else
+        else if (GameObject.FindGameObjectsWithTag("SpawnPoints").Length == 0)
         {
-            player.gameObject.SetActive(false);
-            GameOver();
+            LoadSpawnPointsFromXML(missionDataPath);
         }
-    }
-
-    public void OnInvaderKilled(Invader invader)
-    {
-        invader.gameObject.SetActive(false);
-        Destroy(invader.gameObject);
-        SetScore(score + invader.score);
-    }
-
-    public void OnMysteryShipKilled(MysteryShip mysteryShip)
-    {
-        SetScore(score + mysteryShip.score);
     }
 }
+
+
+#endif

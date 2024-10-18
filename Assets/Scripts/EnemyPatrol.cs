@@ -56,7 +56,8 @@ public class EnemyPatrol : MonoBehaviour
                 }
                 else
                 {
-                    invader.gameObject.SetActive(false);
+                    Destroy(gameObject);
+                    //invader.gameObject.SetActive(false);
                 }
 
                 // Stops shooting...

@@ -1,21 +1,21 @@
 <SpawnPointsCollection>
-  <SpawnPoint name="InvaderSpawnPointRight">
-    <InvaderPrefab>Invader_02</InvaderPrefab>
+  <SpawnPoint name="leftSpawn">
     <NumberOf>7</NumberOf>
     <Speed>5</Speed>
-    <MoveSpots>(6.23, 2.78, 0.00); (-6.90, 7.43, 0.00); (-16.83, 16.40, 0.00)</MoveSpots>
-    <StartSpawningTime>10</StartSpawningTime>
+    <Position>(-16.35, 8.96, 0.01)</Position>
+    <MoveSpots>(-6.95, 2.68, 0.00);(4.47, 7.39, 0.00);(12.51, 16.83, 0.00)</MoveSpots>
+    <StartSpawningTime>5</StartSpawningTime>
     <WaitTime>1</WaitTime>
     <MissilePrefab>Missile</MissilePrefab>
     <TimeBetweenShoots>1</TimeBetweenShoots>
     <MissileSpeed>10</MissileSpeed>
   </SpawnPoint>
-  <SpawnPoint name="InvaderSpawnPoint">
-    <InvaderPrefab>Invader_01</InvaderPrefab>
+  <SpawnPoint name="rightSpawn">
     <NumberOf>7</NumberOf>
     <Speed>5</Speed>
-    <MoveSpots>(-6.95, 2.68, 0.00); (4.47, 7.39, 0.00); (12.51, 16.83, 0.00)</MoveSpots>
-    <StartSpawningTime>5</StartSpawningTime>
+    <Position>(15.63, 10.14, 0.01)</Position>
+    <MoveSpots>(6.23, 2.78, 0.00);(-6.90, 7.43, 0.00);(-16.83, 16.40, 0.00)</MoveSpots>
+    <StartSpawningTime>10</StartSpawningTime>
     <WaitTime>1</WaitTime>
     <MissilePrefab>Missile</MissilePrefab>
     <TimeBetweenShoots>1</TimeBetweenShoots>
