@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Drawing;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
 
 public class EnemyPatrol : MonoBehaviour
 {
     [Header("Locations")]
     public GameObject[] moveSpots = new GameObject[4];
-    public float[] waitTimes = new float[4];
+    public float waitTime;
     private int nthPoint = 0;
 
     public float speed;
@@ -16,7 +15,6 @@ public class EnemyPatrol : MonoBehaviour
     private Transform currentPoint;
     private Invader invader;
 
-    // Timer to stop moving when shoots
     private float timer = 0;
 
     // Start is called before the first frame update
@@ -26,12 +24,12 @@ public class EnemyPatrol : MonoBehaviour
         invader = GetComponent<Invader>();
         // Starting from the outside of map
         currentPoint = moveSpots[nthPoint].transform;
+        timer = waitTime;
     }
 
     // Update is called once per frame
     private void Update()
     {
-
         transform.position = Vector2.MoveTowards(transform.position, currentPoint.position, speed * Time.deltaTime);
         if(!invader.autoRotate)
             invader.RotateTo(currentPoint);
@@ -42,8 +40,10 @@ public class EnemyPatrol : MonoBehaviour
             invader.autoRotate = true;
             invader.autoShoot = true;
 
-            if (waitTimes[nthPoint] <= 0)
+            if (timer <= 0.25)
             {
+                timer = waitTime;
+
                 // to next location
                 if (nthPoint < moveSpots.Length - 1)
                 {
@@ -61,17 +61,8 @@ public class EnemyPatrol : MonoBehaviour
             }
             else
             {
-                waitTimes[nthPoint] -= Time.deltaTime;
+                timer -= Time.deltaTime;
             }
-        }
-    }
-
-
-    private void OnDrawGizmos()
-    {
-        foreach (var point in moveSpots)
-        {
-            Gizmos.DrawWireSphere(point.transform.position, 0.5f);
         }
     }
 }

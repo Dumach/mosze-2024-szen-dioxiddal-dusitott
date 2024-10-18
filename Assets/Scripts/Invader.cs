@@ -25,8 +25,8 @@ public class Invader : MonoBehaviour
     [Header("Missiles")]
     public float timeBetweenShoots = 2f;
     public float missileSpeed = 10f;
-    private float gunHeat = 0f;
     public Projectile MissilePrefab;
+    private float gunHeat = 0f;
     private Projectile missile;
 
 
