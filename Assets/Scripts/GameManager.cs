@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         }
 
         string missionDataPath = Path.Combine(Application.dataPath, "Scenes", "missiondata", "Mission1.xml");
+        
         if (!File.Exists(missionDataPath))
         {
             SaveSpawnPointsToXML();
@@ -65,7 +66,84 @@ public class GameManager : MonoBehaviour
 
     private void LoadSpawnPointsFromXML(string filepath)
     {
+        // XML dokumentum betöltése
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(filepath);
 
+        // Összes "SpawnPoint" elem lekérése az XML fájlból
+        XmlNodeList spawnPointNodes = xmlDoc.SelectNodes("/SpawnPointsCollection/SpawnPoint");
+
+        foreach (XmlNode node in spawnPointNodes)
+        {
+            // SpawnPoint neve az XML-ben
+            string spawnPointName = node.Attributes["name"].Value;
+
+            // SpawnPoint létrehozása
+            GameObject spawnPoint = new GameObject(spawnPointName);
+            spawnPoint.AddComponent<Invaders>();
+            Invaders settings = spawnPoint.GetComponent<Invaders>();
+
+            // Adatok visszatöltése 
+            settings.invaderPrefab = FindPrefabByName<Invader>(node.SelectSingleNode("InvaderPrefab").InnerText);
+            settings.numberOf = int.Parse(node.SelectSingleNode("NumberOf").InnerText);
+            settings.speed = float.Parse(node.SelectSingleNode("Speed").InnerText);
+            settings.moveSpots = ParseVector3Array(node.SelectSingleNode("MoveSpots").InnerText);
+            settings.startSpawningTime = float.Parse(node.SelectSingleNode("StartSpawningTime").InnerText);
+            settings.waitTime = float.Parse(node.SelectSingleNode("WaitTime").InnerText);
+            settings.missilePrefab = FindPrefabByName<Projectile>(node.SelectSingleNode("MissilePrefab").InnerText);
+            settings.timeBetweenShoots = float.Parse(node.SelectSingleNode("TimeBetweenShoots").InnerText);
+            settings.missileSpeed = float.Parse(node.SelectSingleNode("MissileSpeed").InnerText);
+        }
+    }
+
+    // Helper function: Vector3 tömb parszolása a stringbõl
+    private Vector3[] ParseVector3Array(string data)
+    {
+        string[] vectorStrings = data.Split(';');
+        Vector3[] vectors = new Vector3[vectorStrings.Length];
+
+        for (int i = 0; i < vectorStrings.Length; i++)
+        {
+            if (!string.IsNullOrEmpty(vectorStrings[i].Trim()))
+            {
+                vectors[i] = StringToVector3(vectorStrings[i]);
+            }
+        }
+
+        return vectors;
+    }
+
+    // Helper function: Egy Vector3 sztringbõl való parszolása
+    private Vector3 StringToVector3(string sVector)
+    {
+        // Eltávolítjuk a zárójeleket és vesszõvel szétválasztjuk a számokat
+        sVector = sVector.Trim(new char[] { '(', ')' });
+        string[] sArray = sVector.Split(',');
+
+        // Visszaadunk egy új Vector3-at
+        return new Vector3(
+            float.Parse(sArray[0]),
+            float.Parse(sArray[1]),
+            float.Parse(sArray[2]));
+    }
+
+    // Helper function: Prefab keresése név alapján
+    private T FindPrefabByName<T>(string prefabName) where T : MonoBehaviour
+    {
+        if (string.IsNullOrEmpty(prefabName) || prefabName == "null")
+        {
+            return null;
+        }
+
+        // Feltételezve, hogy a Prefabek az "Resources" mappában találhatóak
+        T prefab = Resources.Load<T>(prefabName);
+
+        if (prefab == null)
+        {
+            Debug.LogError("Prefab not found: " + prefabName);
+        }
+
+        return prefab;
     }
 
     private void SaveSpawnPointsToXML()
