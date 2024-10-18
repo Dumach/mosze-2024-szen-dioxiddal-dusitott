@@ -9,7 +9,8 @@ public class Invaders : MonoBehaviour
     public float speed;
 
     [Header("Locations")]
-    public GameObject[] moveSpots = new GameObject[4];
+    //public GameObject[] moveSpots;
+    public Vector3[] moveSpots;
     public float startSpawningTime;
     public float waitTime;
     private Vector3 initialPosition;
@@ -40,14 +41,7 @@ public class Invaders : MonoBehaviour
         if (timer <= 0)
         {
             numberOf--;
-            Invader invader = Instantiate(invaderPrefab, transform.position, Quaternion.identity);   
-            EnemyPatrol patrol = invader.GetComponent<EnemyPatrol>();
-            patrol.moveSpots = moveSpots;
-            patrol.speed = speed;
-            patrol.waitTime = waitTime;
-            invader.MissilePrefab = missilePrefab;
-            invader.timeBetweenShoots = timeBetweenShoots;
-            invader.missileSpeed = missileSpeed;
+            createInvader();
             timer = waitTime;
         }
         else
@@ -56,35 +50,24 @@ public class Invaders : MonoBehaviour
         }
     }
 
-    public void ResetInvaders()
+    private void createInvader()
     {
-        transform.position = initialPosition;
-
-        foreach (Transform invader in transform)
-        {
-            invader.gameObject.SetActive(true);
-        }
-    }
-
-    public int GetAliveCount()
-    {
-        int count = 0;
-
-        foreach (Transform invader in transform)
-        {
-            if (invader.gameObject.activeSelf)
-            {
-                count++;
-            }
-        }
-        return count;
+        Invader invader = Instantiate(invaderPrefab, transform.position, Quaternion.identity);
+        EnemyPatrol patrol = invader.GetComponent<EnemyPatrol>();
+        patrol.moveSpots = moveSpots;
+        patrol.speed = speed;
+        patrol.waitTime = waitTime;
+        invader.MissilePrefab = missilePrefab;
+        invader.timeBetweenShoots = timeBetweenShoots;
+        invader.missileSpeed = missileSpeed;
     }
 
     private void OnDrawGizmos()
     {
         foreach (var point in moveSpots)
         {
-            Gizmos.DrawWireSphere(point.transform.position, 0.5f);
+            //Gizmos.DrawWireSphere(point.transform.position, 0.5f);
+            Gizmos.DrawWireSphere(point, 0.5f);
         }
     }
 

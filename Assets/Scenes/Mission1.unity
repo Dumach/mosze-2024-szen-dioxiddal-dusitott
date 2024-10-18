@@ -226,7 +226,7 @@ Transform:
   m_GameObject: {fileID: 169686393}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.95, y: 2.68, z: -0.056972865}
+  m_LocalPosition: {x: -6.95, y: 2.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -721,7 +721,7 @@ Transform:
   m_GameObject: {fileID: 536462016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.51, y: 16.83, z: -0.056972865}
+  m_LocalPosition: {x: 12.51, y: 16.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -946,7 +946,7 @@ Transform:
   m_GameObject: {fileID: 699102640}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.47, y: 7.39, z: -0.056972865}
+  m_LocalPosition: {x: 4.47, y: 7.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1213,7 +1213,7 @@ Transform:
   m_GameObject: {fileID: 1107086585}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.52, y: -13, z: 0}
+  m_LocalPosition: {x: 0, y: -13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1300,9 +1300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459f605e13eced949a32904be2fa0a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverUI: {fileID: 0}
-  mainMenuUI: {fileID: 0}
-  PauseUI: {fileID: 0}
   scoreText: {fileID: 27551487}
   livesText: {fileID: 633252275}
 --- !u!4 &1137055536
@@ -1893,10 +1890,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpots:
-  - {fileID: 585674288}
-  - {fileID: 169686393}
-  - {fileID: 699102640}
-  - {fileID: 536462016}
+  - {x: 36738656, y: 9.58e-43, z: 5.512342e-11}
+  - {x: 3.0135274e+29, y: 3.2764626, z: 9.56e-43}
+  - {x: 4.6e-44, y: 0, z: 36738656}
+  - {x: 9.58e-43, y: 36738784, z: 9.58e-43}
   waitTime: 0
   speed: 5
 --- !u!1 &2010209670
@@ -2046,6 +2043,78 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: invaderPrefab
+      value: 
+      objectReference: {fileID: 2151206084973411176, guid: 4a81c84ee7dea6d49a91f3fc916f3543, type: 3}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: missilePrefab
+      value: 
+      objectReference: {fileID: 6161936928069685931, guid: 3c328e673b90a7f418f1f1e66f83522b, type: 3}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: startSpawningTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: timeBetweenShoots
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[0]
+      value: 
+      objectReference: {fileID: 169686393}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[1]
+      value: 
+      objectReference: {fileID: 699102640}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[2]
+      value: 
+      objectReference: {fileID: 536462016}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[0].x
+      value: -6.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[0].y
+      value: 2.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[0].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[1].x
+      value: 4.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[1].y
+      value: 7.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[2].x
+      value: 12.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[2].y
+      value: 16.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783241888325965464, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
+      propertyPath: moveSpots.Array.data[2].z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7099133646459372364, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
       propertyPath: m_Name
       value: InvaderSpawnPoint
@@ -2054,42 +2123,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: numberOf
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: waitTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: missilePrefab
-      value: 
-      objectReference: {fileID: 6161936928069685931, guid: 3c328e673b90a7f418f1f1e66f83522b, type: 3}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: timeBetweenShoots
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: moveSpots.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: moveSpots.Array.data[0]
-      value: 
-      objectReference: {fileID: 169686393}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: moveSpots.Array.data[1]
-      value: 
-      objectReference: {fileID: 699102640}
-    - target: {fileID: 7874701553486321617, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
-      propertyPath: moveSpots.Array.data[2]
-      value: 
-      objectReference: {fileID: 536462016}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

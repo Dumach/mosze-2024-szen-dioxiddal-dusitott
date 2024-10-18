@@ -43,11 +43,14 @@ public class Projectile : MonoBehaviour
 
     private void CheckCollision(Collider2D other)
     {
-        Bunker bunker = other.gameObject.GetComponent<Bunker>();
+        /*Bunker bunker = other.gameObject.GetComponent<Bunker>();
 
         if (bunker == null || bunker.CheckCollision(boxCollider, transform.position)) {
             Destroy(gameObject);
+        }*/
+        if(other.gameObject.layer == LayerMask.NameToLayer("Boundary"))
+        {
+            Destroy(gameObject);
         }
     }
-
 }

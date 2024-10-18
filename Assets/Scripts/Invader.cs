@@ -51,15 +51,15 @@ public class Invader : MonoBehaviour
         }
         
         // Rotate and shoot
-        if(autoRotate) RotateTo(player.transform);
+        if(autoRotate) RotateTo(player.transform.position);
         if(autoShoot) ShootTo(player.transform);
     }
 
-    public void RotateTo(Transform target)
+    public void RotateTo(Vector3 target)
     {
         // Rotating towards player
         float offset = 90f;
-        Vector2 direction = target.position - transform.position;
+        Vector2 direction = target - transform.position;
         direction.Normalize();
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
@@ -102,7 +102,7 @@ public class Invader : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Boundary"))
         {
-            GameManager.Instance.OnBoundaryReached();
+            //GameManager.Instance.OnBoundaryReached();
         }
     }
 

@@ -7,9 +7,11 @@ public class Player : MonoBehaviour
     public float speed = 5f;
     public Projectile laserPrefab;
 
-    private float gunHeat = 0f;
     public float timeBetweenShoots = 0.5f;
+    private float gunHeat = 0f;
     private Projectile laser;
+
+    private float unkillableTimer = 0f;
 
     private void Update()
     {
@@ -36,8 +38,6 @@ public class Player : MonoBehaviour
         // Set the new position
         transform.position = position;
 
-
-
         // Shooting lasers generate heat aka. slows down the firing rate
         if (gunHeat > 0)
         {
@@ -48,15 +48,37 @@ public class Player : MonoBehaviour
             gunHeat += timeBetweenShoots;
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
         }
+
+        if (unkillableTimer > 0)
+        {
+            unkillableTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Color normalColor;
+            ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
+            this.GetComponent<SpriteRenderer>().color = normalColor;
+        }
+    }
+
+    public void beUnkillable(float toSeconds)
+    {
+        this.unkillableTimer = toSeconds;
+        this.GetComponent<SpriteRenderer>().color = Color.blue;
     }
 
     private void Start()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (unkillableTimer > 0)
+        {
+            return;
+        }
+        
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") ||
             other.gameObject.layer == LayerMask.NameToLayer("Invader")) {
             GameManager.Instance.OnPlayerKilled(this);

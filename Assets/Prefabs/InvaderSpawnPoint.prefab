@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 700470876990422343}
-  - component: {fileID: 7874701553486321617}
+  - component: {fileID: 1783241888325965464}
   m_Layer: 0
   m_Name: InvaderSpawnPoint
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7874701553486321617
+--- !u!114 &1783241888325965464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,10 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invaderPrefab: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
-  numberOf: 4
+  numberOf: 7
+  speed: 5
   moveSpots:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  waitTime: 5
+  startSpawningTime: 0
+  waitTime: 0
+  missilePrefab: {fileID: 0}
+  timeBetweenShoots: 2
+  missileSpeed: 10

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4447578080803963419}
   - component: {fileID: 8922502034929116585}
   - component: {fileID: 1551307908973724939}
-  - component: {fileID: 899757559490260562}
+  - component: {fileID: -1799759049050597213}
   m_Layer: 9
   m_Name: Invader_Base
   m_TagString: Untagged
@@ -179,7 +179,7 @@ MonoBehaviour:
   timeBetweenShoots: 2
   missileSpeed: 10
   MissilePrefab: {fileID: 0}
---- !u!114 &899757559490260562
+--- !u!114 &-1799759049050597213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,14 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f43ba309f220a48bb304bfec96c7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  waitTimes:
-  - 0
-  - 0
-  - 0
-  - 0
+  moveSpots: []
+  waitTime: 0
   speed: 0

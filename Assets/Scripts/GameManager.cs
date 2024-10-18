@@ -1,21 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject mainMenuUI;
-    [SerializeField] private GameObject PauseUI;
+    //[SerializeField] private GameObject gameOverUI;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text livesText;
 
     private Player player;
     private Invaders invaders;
     private MysteryShip mysteryShip;
-    private Bunker[] bunkers;
 
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 3;
@@ -41,82 +39,21 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         invaders = FindObjectOfType<Invaders>();
         mysteryShip = FindObjectOfType<MysteryShip>();
-        bunkers = FindObjectsOfType<Bunker>();
 
-        EnterMainMenu();
+        //NewGame();
     }
 
     private void Update()
     {
-        // Exit from existing game
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (lives <= 0 || Input.GetKeyDown(KeyCode.Return))
         {
-            // Exit to Menu
-            if (lives >= 0 && PauseUI.activeSelf)
-            {
-                GameOver();
-                SetLives(0);
-            }
-            // Pause game
-            if(lives > 0 && !PauseUI.activeSelf && !mainMenuUI.activeSelf)
-            {
-                PauseOrResume();
-            }
-        }
-
-        // Start new Game
-        if(Input.GetKeyUp(KeyCode.Return))
-        {
-            // Start new Game
-            if (lives <= 0 || mainMenuUI.activeSelf)
-            {
-                NewGame();
-            }
-            // Resume a game
-            if(PauseUI.activeSelf)
-            {
-                PauseOrResume();
-            }
+            RestartScene();
         }
     }
 
-    private void PauseOrResume()
+    private void RestartScene()
     {
-        PauseUI.SetActive(!PauseUI.activeSelf);
-        invaders.gameObject.SetActive(!invaders.isActiveAndEnabled);
-        mysteryShip.gameObject.SetActive(!mysteryShip.isActiveAndEnabled);
-        player.gameObject.SetActive(!player.isActiveAndEnabled);
-    }
-
-    private void EnterMainMenu()
-    {
-        mainMenuUI.SetActive(true);
-        gameOverUI.SetActive(false);
-        PauseUI.SetActive(false);
-        invaders.gameObject.SetActive(false);
-        mysteryShip.gameObject.SetActive(false);
-    }
-
-    private void NewGame()
-    {
-        mainMenuUI.SetActive(false);
-        gameOverUI.SetActive(false);
-
-        SetScore(0);
-        SetLives(3);
-        NewRound();
-    }
-
-    private void NewRound()
-    {
-        invaders.ResetInvaders();
-        invaders.gameObject.SetActive(true);
-
-        for (int i = 0; i < bunkers.Length; i++) {
-            bunkers[i].ResetBunker();
-        }
-
-        Respawn();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Respawn()
@@ -127,12 +64,10 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
     }
 
+
     private void GameOver()
     {
-        gameOverUI.SetActive(true);
-        PauseUI.SetActive(false);
-        invaders.gameObject.SetActive(false);
-        mysteryShip.gameObject.SetActive(false);
+        RestartScene();
     }
 
     private void SetScore(int score)
@@ -151,11 +86,13 @@ public class GameManager : MonoBehaviour
     {
         SetLives(lives - 1);
 
-        player.gameObject.SetActive(false);
-
-        if (lives > 0) {
-            Invoke(nameof(NewRound), 1f);
-        } else {
+        if (lives > 0)
+        {
+            player.beUnkillable(1);
+        }
+        else
+        {
+            player.gameObject.SetActive(false);
             GameOver();
         }
     }
@@ -165,24 +102,10 @@ public class GameManager : MonoBehaviour
         invader.gameObject.SetActive(false);
 
         SetScore(score + invader.score);
-
-        if (invaders.GetAliveCount() == 0) {
-            NewRound();
-        }
     }
 
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
     {
         SetScore(score + mysteryShip.score);
     }
-
-    public void OnBoundaryReached()
-    {
-        if (invaders.gameObject.activeSelf)
-        {
-            invaders.gameObject.SetActive(false);
-            OnPlayerKilled(player);
-        }
-    }
-
 }
