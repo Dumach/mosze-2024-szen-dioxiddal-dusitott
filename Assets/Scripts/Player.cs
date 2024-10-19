@@ -1,16 +1,19 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
+    [Header("Player")]
     public float speed = 5f;
-    public Projectile laserPrefab;
+    private Color normalColor;
+    private SpriteRenderer spriteRenderer;
 
-    public float timeBetweenShoots = 0.5f;
-    private float gunHeat = 0f;
-    private Projectile laser;
+    [Header("Guns")]
+    public List<Gun> guns = new List<Gun>();
 
+    // Shield or respawn protection
     private float unkillableTimer = 0f;
 
     private void Update()
@@ -38,15 +41,12 @@ public class Player : MonoBehaviour
         // Set the new position
         transform.position = position;
 
-        // Shooting lasers generate heat aka. slows down the firing rate
-        if (gunHeat > 0)
+        if (Input.GetKey(KeyCode.Space))
         {
-            gunHeat -= Time.deltaTime;
-        }
-        if (gunHeat <= 0 && Input.GetKey(KeyCode.Space))
-        {
-            gunHeat += timeBetweenShoots;
-            laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            foreach (Gun gun in guns)
+            {
+                gun.Shoot();
+            }
         }
 
         if (unkillableTimer > 0)
@@ -55,21 +55,20 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Color normalColor;
-            ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
-            this.GetComponent<SpriteRenderer>().color = normalColor;
+            spriteRenderer.color = normalColor;
         }
     }
 
     public void beUnkillable(float toSeconds)
     {
         this.unkillableTimer = toSeconds;
-        this.GetComponent<SpriteRenderer>().color = Color.blue;
+        spriteRenderer.color = Color.blue;
     }
 
     private void Start()
     {
-
+        ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

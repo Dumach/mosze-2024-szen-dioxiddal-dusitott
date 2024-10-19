@@ -234,6 +234,7 @@ public class GameManager : MonoBehaviour
     {
         invader.gameObject.SetActive(false);
         Destroy(invader.gameObject);
+        // TODO fegyver lassu mikor meghal
         SetScore(score + invader.score);
     }
 

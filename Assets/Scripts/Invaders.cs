@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -14,10 +15,13 @@ public class Invaders : MonoBehaviour
     public float waitTime;
     private Vector3 initialPosition;
 
-    [Header("Missiles")]
-    public Projectile missilePrefab;
-    public float timeBetweenShoots = 2f;
-    public float missileSpeed = 10f;
+    [Header("Guns")]
+    public List<Gun> guns = new List<Gun>();
+    public Vector3[] gunPosition;
+    public Quaternion[] gunRotation;
+    public Projectile[] projectilePrefabArr;
+    public float[] timeBetweenShootsArr;
+    public float[] missileSpeedArr;
 
     private float timer = 0;
 
@@ -56,9 +60,21 @@ public class Invaders : MonoBehaviour
         patrol.moveSpots = moveSpots;
         patrol.speed = speed;
         patrol.waitTime = waitTime;
-        invader.MissilePrefab = missilePrefab;
+        List<Gun> guns = new List<Gun>();
+        for(int i = 0; i <  projectilePrefabArr.Length; i++)
+        {
+            Gun newgun = new Gun();
+            newgun.transform.position = gunPosition[i];
+            newgun.transform.rotation = gunRotation[i];
+            newgun.projectilePrefab = projectilePrefabArr[i];
+            newgun.timeBetweenShoots = timeBetweenShootsArr[i];
+            newgun.missileSpeed = missileSpeedArr[i];
+            guns.Add(newgun);
+        }
+        
+        /*invader.MissilePrefab = missilePrefab;
         invader.timeBetweenShoots = timeBetweenShoots;
-        invader.missileSpeed = missileSpeed;
+        invader.missileSpeed = missileSpeed;*/
     }
 
     private void OnDrawGizmos()

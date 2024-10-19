@@ -5,7 +5,6 @@ using System.Xml;
 using System.IO;
 using System.Globalization;
 using UnityEngine.SceneManagement;
-using System.Runtime.CompilerServices;
 
 [ExecuteInEditMode]
 public class SpawnPointLoader : MonoBehaviour
@@ -43,8 +42,8 @@ public class SpawnPointLoader : MonoBehaviour
             settings.startSpawningTime = float.Parse(node.SelectSingleNode("StartSpawningTime").InnerText);
             settings.waitTime = float.Parse(node.SelectSingleNode("WaitTime").InnerText);
             //settings.missilePrefab = FindPrefabByName<Projectile>(node.SelectSingleNode("MissilePrefab").InnerText);
-            settings.timeBetweenShoots = float.Parse(node.SelectSingleNode("TimeBetweenShoots").InnerText);
-            settings.missileSpeed = float.Parse(node.SelectSingleNode("MissileSpeed").InnerText);
+            //settings.timeBetweenShoots = float.Parse(node.SelectSingleNode("TimeBetweenShoots").InnerText);
+            //settings.missileSpeed = float.Parse(node.SelectSingleNode("MissileSpeed").InnerText);
 
         }
     }
@@ -130,8 +129,10 @@ public class SpawnPointLoader : MonoBehaviour
                 spElement.AppendChild(CreateElement(xmlDoc, "StartSpawningTime", settings.startSpawningTime.ToString()));
                 spElement.AppendChild(CreateElement(xmlDoc, "WaitTime", settings.waitTime.ToString()));
                 //spElement.AppendChild(CreateElement(xmlDoc, "MissilePrefab", settings.missilePrefab != null ? settings.missilePrefab.name : "null"));
-                spElement.AppendChild(CreateElement(xmlDoc, "TimeBetweenShoots", settings.timeBetweenShoots.ToString()));
-                spElement.AppendChild(CreateElement(xmlDoc, "MissileSpeed", settings.missileSpeed.ToString()));
+                //spElement.AppendChild(CreateElement(xmlDoc, "gunPositions", Vec3ArrToStr(settings.gunPosition)));
+                //spElement.AppendChild(CreateElement(xmlDoc, "gunRotations", Vec3ArrToStr(settings.gunRotation)));
+                //spElement.AppendChild(CreateElement(xmlDoc, "TimeBetweenShoots", settings.timeBetweenShoots.ToString()));
+                //spElement.AppendChild(CreateElement(xmlDoc, "MissileSpeed", settings.missileSpeed.ToString()));
 
                 // Hozzáadjuk a spawnPoint elemet a gyökér elemhez
                 rootElement.AppendChild(spElement);

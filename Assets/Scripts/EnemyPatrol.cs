@@ -23,7 +23,10 @@ public class EnemyPatrol : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         invader = GetComponent<Invader>();
         // Starting from the outside of map
+        if (moveSpots.Length > 0)
+        {
         currentPoint = moveSpots[nthPoint];
+        }
         timer = waitTime;
     }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,17 +19,12 @@ public class Invader : MonoBehaviour
 
     [Header("RotateAndShoot")]
     public GameObject player;
-    public bool autoRotate { get; set; } = false;
-    public bool autoShoot { get; set; } = false;
+    public bool autoRotate;
+    public bool autoShoot;
 
 
-    [Header("Missiles")]
-    public float timeBetweenShoots = 2f;
-    public float missileSpeed = 10f;
-    public Projectile MissilePrefab;
-    private float gunHeat = 0f;
-    private Projectile missile;
-
+    [Header("Guns")]
+    public List<Gun> guns = new List<Gun>();
 
     private void Awake()
     {
@@ -47,7 +43,7 @@ public class Invader : MonoBehaviour
         // Return if there is no player/target to shoot
         if (player == null)
         {
-            return;
+            player = GameObject.FindGameObjectWithTag("Player");
         }
         
         // Rotate and shoot
@@ -68,17 +64,10 @@ public class Invader : MonoBehaviour
     private void ShootTo(Transform target)
     {
         // Shooting lasers generate heat aka. slows down the firing rate
-        if (gunHeat > 0)
+        foreach (Gun gun in guns)
         {
-            gunHeat -= Time.deltaTime;
-        }
-        if (gunHeat <= 0)
-        {
-            gunHeat += timeBetweenShoots;
-            missile = Instantiate(MissilePrefab, transform.position, transform.rotation);
-            missile.SetDirection(target.transform);
-            missile.setSpeed(missileSpeed);
-        }
+            gun.Shoot(target);
+        }        
     }
 
     private void AnimateSprite()
