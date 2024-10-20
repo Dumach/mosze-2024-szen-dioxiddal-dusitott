@@ -6,14 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-
 public class Invader : MonoBehaviour
 {
     [Header("Animation")]
     public Sprite[] animationSprites = new Sprite[0];
     public float animationTime = 1f;
-    public int score = 10;
 
+    [Header("InvaderStats")]
+    public int score = 10;
+    public int health = 1;
     private SpriteRenderer spriteRenderer;
     private int animationFrame;
 
@@ -29,7 +30,9 @@ public class Invader : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = animationSprites[0];
+
+        if(animationSprites.Length > 0)
+            spriteRenderer.sprite = animationSprites[0];
     }
 
     private void Start()
@@ -43,7 +46,7 @@ public class Invader : MonoBehaviour
         // Return if there is no player/target to shoot
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            return;
         }
         
         // Rotate and shoot
@@ -89,10 +92,10 @@ public class Invader : MonoBehaviour
         {
             GameManager.Instance.OnInvaderKilled(this);
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Boundary"))
+        /*else if (other.gameObject.layer == LayerMask.NameToLayer("Boundary"))
         {
-            //GameManager.Instance.OnBoundaryReached();
-        }
+            GameManager.Instance.OnBoundaryReached();
+        }*/
     }
 
 }

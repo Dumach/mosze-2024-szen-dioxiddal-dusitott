@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Projectile : MonoBehaviour
 {
     public Vector3 direction = Vector3.up;
@@ -17,6 +18,7 @@ public class Projectile : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingLayerName = "4Player";
 
+        // This updates position automatically
         rb.velocity = direction * speed;
     }
 
@@ -55,12 +57,9 @@ public class Projectile : MonoBehaviour
 
     private void CheckCollision(Collider2D other)
     {
-        /*Bunker bunker = other.gameObject.GetComponent<Bunker>();
-
-        if (bunker == null || bunker.CheckCollision(boxCollider, transform.position)) {
-            Destroy(gameObject);
-        }*/
-        if(other.gameObject.layer == LayerMask.NameToLayer("Boundary"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Boundary") ||
+           other.gameObject.layer == LayerMask.NameToLayer("Invader") ||
+           other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Destroy(gameObject);
         }

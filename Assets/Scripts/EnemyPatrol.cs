@@ -2,6 +2,8 @@ using System.Collections;
 using System.Drawing;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Invader))]
 public class EnemyPatrol : MonoBehaviour
 {
     [Header("Locations")]
@@ -22,10 +24,9 @@ public class EnemyPatrol : MonoBehaviour
     {
         RB = GetComponent<Rigidbody2D>();
         invader = GetComponent<Invader>();
-        // Starting from the outside of map
         if (moveSpots.Length > 0)
         {
-        currentPoint = moveSpots[nthPoint];
+        currentPoint = moveSpots[0];
         }
         timer = waitTime;
     }
@@ -33,7 +34,7 @@ public class EnemyPatrol : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(invader == null)
+        if(invader == null || currentPoint == null)
         {
             return;
         }
@@ -55,7 +56,7 @@ public class EnemyPatrol : MonoBehaviour
                 if (nthPoint < moveSpots.Length - 1)
                 {
                     nthPoint++;
-                    currentPoint = moveSpots[nthPoint];//.transform;
+                    currentPoint = moveSpots[nthPoint];
                 }
                 else
                 {

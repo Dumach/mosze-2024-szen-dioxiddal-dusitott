@@ -71,10 +71,6 @@ public class Invaders : MonoBehaviour
             newgun.missileSpeed = missileSpeedArr[i];
             guns.Add(newgun);
         }
-        
-        /*invader.MissilePrefab = missilePrefab;
-        invader.timeBetweenShoots = timeBetweenShoots;
-        invader.missileSpeed = missileSpeed;*/
     }
 
     private void OnDrawGizmos()

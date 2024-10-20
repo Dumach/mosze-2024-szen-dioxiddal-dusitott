@@ -80,6 +80,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invader_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1932842040453127021, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.088
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932842040453127021, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.499
+      objectReference: {fileID: 0}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: timeBetweenShoots
       value: 2
@@ -90,7 +98,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: score
-      value: 30
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: health
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: sprite1

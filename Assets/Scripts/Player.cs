@@ -1,45 +1,69 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
     [Header("Player")]
     public float speed = 5f;
+    public int health = 3;
     private Color normalColor;
     private SpriteRenderer spriteRenderer;
+    private Vector3 currentPos;
+
 
     [Header("Guns")]
     public List<Gun> guns = new List<Gun>();
 
     // Shield or respawn protection
-    private float unkillableTimer = 0f;
+    private float shieldDuration = 0f;
+    private float shieldTimer = 0f;
 
     private void Update()
     {
-        Vector3 position = transform.position;
-
         // Update the position of the player based on the input
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            position.x -= speed * Time.deltaTime;
+            currentPos.x -= speed * Time.deltaTime;
         } else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            position.x += speed * Time.deltaTime;
+            currentPos.x += speed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.W) ||Input.GetKey(KeyCode.UpArrow)) {
-            position.y += speed * Time.deltaTime;
+            currentPos.y += speed * Time.deltaTime;
         } else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)){
-            position.y -= speed * Time.deltaTime;
+            currentPos.y -= speed * Time.deltaTime;
+        }
+
+        // Pajzs visszatoltodesi ido
+        if (Input.GetKeyDown(KeyCode.E) && shieldTimer <= 0){
+            shieldDuration = 2f;
+            shieldTimer = 30f;
+        }
+        else
+        {
+            shieldTimer -= Time.deltaTime;
+        }
+
+        // pajzs letelik
+        if (shieldDuration > 0)
+        {
+            shieldDuration -= Time.deltaTime;
+            spriteRenderer.color = Color.blue;
+        }
+        else
+        {
+            spriteRenderer.color = normalColor;
         }
 
         // Clamp the position of the character so they do not go out of bounds
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-        position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
+        currentPos.x = Mathf.Clamp(currentPos.x, leftEdge.x, rightEdge.x);
 
         // Set the new position
-        transform.position = position;
+        transform.position = currentPos;
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -49,31 +73,24 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (unkillableTimer > 0)
-        {
-            unkillableTimer -= Time.deltaTime;
-        }
-        else
-        {
-            spriteRenderer.color = normalColor;
-        }
     }
-
-    public void beUnkillable(float toSeconds)
-    {
-        this.unkillableTimer = toSeconds;
-        spriteRenderer.color = Color.blue;
-    }
-
     private void Start()
     {
+        currentPos = transform.position;
         ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    public void beUnkillable(float toSeconds)
+    {
+        shieldDuration = toSeconds;
+        spriteRenderer.color = Color.blue;
+    }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (unkillableTimer > 0)
+        if (shieldDuration > 0)
         {
             return;
         }
