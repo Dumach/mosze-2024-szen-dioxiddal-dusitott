@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class MysteryShip : MonoBehaviour
+public class MainBoss : MonoBehaviour
 {
     public float speed = 5f;
     public float cycleTime = 30f;
@@ -86,7 +86,7 @@ public class MysteryShip : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
             Despawn();
-            GameManager.Instance.OnMysteryShipKilled(this);
+            GameManager.Instance.OnBossShipKilled(this);
         }
     }
 

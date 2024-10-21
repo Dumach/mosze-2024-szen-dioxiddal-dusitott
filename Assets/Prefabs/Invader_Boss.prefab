@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 639362722248215162}
   - component: {fileID: 3237937585113139316}
   - component: {fileID: 9145253584726559379}
-  - component: {fileID: 6196418858430920060}
+  - component: {fileID: -5506728482146202622}
   m_Layer: 9
   m_Name: Invader_Boss
   m_TagString: Untagged
@@ -178,14 +178,16 @@ MonoBehaviour:
   animationSprites: []
   animationTime: 0
   score: 200
+  health: 1
   player: {fileID: 0}
   autoRotate: 1
   autoShoot: 1
+  autoAim: 0
   guns:
   - {fileID: 2505832658941464649}
   - {fileID: 6723018856334165662}
   - {fileID: 2761378499530325810}
---- !u!114 &6196418858430920060
+--- !u!114 &-5506728482146202622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,12 +196,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6387722046304411096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49f43ba309f220a48bb304bfec96c7c9, type: 3}
+  m_Script: {fileID: 11500000, guid: cc4508da8755a834b85393bfa1b44963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpots: []
-  waitTime: 0
-  speed: 0
+  speed: 5
+  cycleTime: 30
+  score: 300
 --- !u!1001 &198459305647928189
 PrefabInstance:
   m_ObjectHideFlags: 0
