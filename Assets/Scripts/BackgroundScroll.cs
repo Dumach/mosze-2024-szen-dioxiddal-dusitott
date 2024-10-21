@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// \class BackgroundScroll
+/// \brief This class is responsible for the unlimited background effect.
+[RequireComponent(typeof(SpriteRenderer))]
 public class BackgroundScroll : MonoBehaviour
 {
-
+    /// \brief The speed at which the background scrolls vertically.
     public float scrollSpeed = 2f;
+
+    /// \brief The height of the background sprite.
     private float height;
+
+    /// \brief The vertical offset of the background, used for resetting the position.
     private float offset;
+
+    /// \brief The initial starting position of the background.
     private Vector3 startPosition;
 
-    // Start is called before the first frame update
+    /// \brief Initializes the background's position, offset, and calculates the height of the background sprite.
     void Start()
     {
         startPosition = transform.position;
@@ -19,15 +28,15 @@ public class BackgroundScroll : MonoBehaviour
         height = GetComponent<SpriteRenderer>().size.y;
     }
 
-    // Update is called once per frame
+    /// \brief Updates the background's position every frame to create a scrolling effect. 
+    /// Resets the position when the background scrolls off-screen.
     void Update()
     {
+        // Move the background downward based on the scroll speed and time.
         transform.Translate(Vector3.down * scrollSpeed * Time.deltaTime);
 
-        // Loop back the first background if it reaches the end
-        // the image is offset by 16 so that the bottom of the camera is aligned with the bottom of the image
-        // Math: background height = 62.5, offset = 16
-        // 16 - 62.5 = -46,5
+        // Check if the background has moved past its height and reset its position.
+        // Math: background height = 62.5, offset = 16, reset position when y < offset - height (16 - 62.5 = -46.5).
         if (transform.position.y < offset - height)
         {
             transform.position = startPosition;
