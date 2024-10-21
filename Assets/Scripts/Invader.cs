@@ -22,6 +22,7 @@ public class Invader : MonoBehaviour
     public GameObject player;
     public bool autoRotate;
     public bool autoShoot;
+    public bool autoAim;
 
 
     [Header("Guns")]
@@ -69,7 +70,10 @@ public class Invader : MonoBehaviour
         // Shooting lasers generate heat aka. slows down the firing rate
         foreach (Gun gun in guns)
         {
-            gun.Shoot(target);
+            if(autoAim)
+                gun.Shoot(target);
+            else
+                gun.Shoot();
         }        
     }
 

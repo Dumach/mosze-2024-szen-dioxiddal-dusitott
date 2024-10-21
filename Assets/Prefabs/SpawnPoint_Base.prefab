@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 700470876990422343}
-  - component: {fileID: 1783241888325965464}
+  - component: {fileID: 5328873808756706078}
   m_Layer: 0
   m_Name: SpawnPoint_Base
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_GameObject: {fileID: 7099133646459372364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.73, y: 10.1, z: 0.009942153}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1783241888325965464
+--- !u!114 &5328873808756706078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,15 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df26ec918b6dca34dbfb862f22570b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invaderPrefab: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
-  numberOf: 7
+  invaderPrefab: {fileID: 0}
+  numberOf: 5
   speed: 5
-  moveSpots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  moveSpots: []
   startSpawningTime: 0
-  waitTime: 0
-  missilePrefab: {fileID: 0}
-  timeBetweenShoots: 2
-  missileSpeed: 10
+  waitTime: 1
+  guns: []
+  gunPosition: []
+  gunRotation: []
+  projectilePrefabArr: []
+  timeBetweenShootsArr: []
+  missileSpeedArr: []

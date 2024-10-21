@@ -2,26 +2,23 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Invaders : MonoBehaviour
+public class SpawnPoint : MonoBehaviour
 {
     [Header("Invaders")]
     public Invader invaderPrefab;
     public int numberOf;
     public float speed;
 
+    [Header("RotateAndShoot")]
+    public bool autoRotate;
+    public bool autoShoot;
+    public bool autoAim;
+
     [Header("Locations")]
     public Vector3[] moveSpots;
     public float startSpawningTime;
     public float waitTime;
     private Vector3 initialPosition;
-
-    [Header("Guns")]
-    public List<Gun> guns = new List<Gun>();
-    public Vector3[] gunPosition;
-    public Quaternion[] gunRotation;
-    public Projectile[] projectilePrefabArr;
-    public float[] timeBetweenShootsArr;
-    public float[] missileSpeedArr;
 
     private float timer = 0;
 
@@ -34,11 +31,12 @@ public class Invaders : MonoBehaviour
     {
         if(startSpawningTime > 0)
         {
-            startSpawningTime--;
+            startSpawningTime -= Time.deltaTime;
             return;
         }
         if (numberOf <= 0)
         {
+            this.gameObject.SetActive(false);
             return;
         }
         if (timer <= 0)
@@ -56,21 +54,14 @@ public class Invaders : MonoBehaviour
     private void createInvader()
     {
         Invader invader = Instantiate(invaderPrefab, transform.position, Quaternion.identity);
+        invader.autoAim = autoAim;
+        invader.autoShoot = autoShoot;
+        invader.autoRotate = autoRotate;
+
         EnemyPatrol patrol = invader.GetComponent<EnemyPatrol>();
         patrol.moveSpots = moveSpots;
         patrol.speed = speed;
         patrol.waitTime = waitTime;
-        List<Gun> guns = new List<Gun>();
-        for(int i = 0; i <  projectilePrefabArr.Length; i++)
-        {
-            Gun newgun = new Gun();
-            newgun.transform.position = gunPosition[i];
-            newgun.transform.rotation = gunRotation[i];
-            newgun.projectilePrefab = projectilePrefabArr[i];
-            newgun.timeBetweenShoots = timeBetweenShootsArr[i];
-            newgun.missileSpeed = missileSpeedArr[i];
-            guns.Add(newgun);
-        }
     }
 
     private void OnDrawGizmos()
