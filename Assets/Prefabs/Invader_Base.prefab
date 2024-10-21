@@ -175,9 +175,11 @@ MonoBehaviour:
   animationSprites: []
   animationTime: 1
   score: 10
+  health: 1
   player: {fileID: 0}
-  autoRotate: 0
-  autoShoot: 0
+  autoRotate: 1
+  autoShoot: 1
+  autoAim: 1
   guns: []
 --- !u!114 &-1799759049050597213
 MonoBehaviour:

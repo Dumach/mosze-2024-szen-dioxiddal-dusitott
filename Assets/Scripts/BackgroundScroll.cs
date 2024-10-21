@@ -3,35 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-/// <summary>
-/// This class is responsible for the unlimited background effect
-/// </summary>
+/// \class BackgroundScroll
+/// \brief This class is responsible for the unlimited background effect.
 [RequireComponent(typeof(SpriteRenderer))]
 public class BackgroundScroll : MonoBehaviour
 {
-    /// <summary>
-    /// The speed at which the background scrolls vertically.
-    /// </summary>
+    /// \brief The speed at which the background scrolls vertically.
     public float scrollSpeed = 2f;
 
-    /// <summary>
-    /// The height of the background sprite.
-    /// </summary>
+    /// \brief The height of the background sprite.
     private float height;
 
-    /// <summary>
-    /// The vertical offset of the background, used for resetting the position.
-    /// </summary>
+    /// \brief The vertical offset of the background, used for resetting the position.
     private float offset;
 
-    /// <summary>
-    /// The initial starting position of the background.
-    /// </summary>
+    /// \brief The initial starting position of the background.
     private Vector3 startPosition;
 
-    /// <summary>
-    /// Initializes the background's position, offset, and calculates the height of the background sprite.
-    /// </summary>
+    /// \brief Initializes the background's position, offset, and calculates the height of the background sprite.
     void Start()
     {
         startPosition = transform.position;
@@ -39,10 +28,8 @@ public class BackgroundScroll : MonoBehaviour
         height = GetComponent<SpriteRenderer>().size.y;
     }
 
-    /// <summary>
-    /// Updates the background's position every frame to create a scrolling effect. 
+    /// \brief Updates the background's position every frame to create a scrolling effect. 
     /// Resets the position when the background scrolls off-screen.
-    /// </summary>
     void Update()
     {
         // Move the background downward based on the scroll speed and time.

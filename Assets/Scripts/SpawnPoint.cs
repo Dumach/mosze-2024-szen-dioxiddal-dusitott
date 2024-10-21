@@ -2,82 +2,53 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-/// <summary>
-/// This class is responsible for spawning invaders in a structured manner
-/// </summary>
+/// \class SpawnPoint
+/// \brief This class is responsible for spawning invaders in a structured manner.
 public class SpawnPoint : MonoBehaviour
 {
-    /// <summary>
-    /// The invader prefab to be spawned.
-    /// </summary>
+    /// \brief The invader prefab to be spawned.
     [Header("Invaders")]
     public Invader invaderPrefab;
 
-    /// <summary>
-    /// The number of invaders to spawn.
-    /// </summary>
+    /// \brief The number of invaders to spawn.
     public int numberOf;
 
-    /// <summary>
-    /// The speed at which the spawned invaders will move.
-    /// </summary>
+    /// \brief The speed at which the spawned invaders will move.
     public float speed;
 
-
-    /// <summary>
-    /// Whether the spawned invaders will automatically rotate.
-    /// </summary>
+    /// \brief Whether the spawned invaders will automatically rotate.
     [Header("RotateAndShoot")]
     public bool autoRotate;
 
-    /// <summary>
-    /// Whether the spawned invaders will automatically shoot.
-    /// </summary>
+    /// \brief Whether the spawned invaders will automatically shoot.
     public bool autoShoot;
 
-    /// <summary>
-    /// Whether the spawned invaders will automatically aim.
-    /// </summary>
+    /// \brief Whether the spawned invaders will automatically aim.
     public bool autoAim;
 
-
-    /// <summary>
-    /// Array of points where the invaders will patrol.
-    /// </summary>
+    /// \brief Array of points where the invaders will patrol.
     [Header("Locations")]
     public Vector3[] moveSpots;
 
-    /// <summary>
-    /// Time to wait before starting to spawn invaders.
-    /// </summary>
+    /// \brief Time to wait before starting to spawn invaders.
     public float startSpawningTime;
 
-    /// <summary>
-    /// Time to wait between spawning each invader.
-    /// </summary>
+    /// \brief Time to wait between spawning each invader.
     public float waitTime;
 
-    /// <summary>
-    /// Initial position of the spawn point.
-    /// </summary>
+    /// \brief Initial position of the spawn point.
     private Vector3 initialPosition;
 
-    /// <summary>
-    /// Timer used to control the interval between invader spawns.
-    /// </summary>
+    /// \brief Timer used to control the interval between invader spawns.
     private float timer = 0;
 
-    /// <summary>
-    /// Initializes the spawn point's initial position.
-    /// </summary>
+    /// \brief Initializes the spawn point's initial position.
     private void Start()
     {
         initialPosition = transform.position;
     }
 
-    /// <summary>
-    /// Handles the countdown to start spawning invaders and manages the spawning process.
-    /// </summary>
+    /// \brief Handles the countdown to start spawning invaders and manages the spawning process.
     private void Update()
     {
         // Countdown before starting to spawn invaders
@@ -98,7 +69,7 @@ public class SpawnPoint : MonoBehaviour
         if (timer <= 0)
         {
             numberOf--;
-            createInvader();
+            CreateInvader();
             timer = waitTime;
         }
         else
@@ -107,10 +78,8 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Creates an invader at the spawn point and configures its behavior.
-    /// </summary>
-    private void createInvader()
+    /// \brief Creates an invader at the spawn point and configures its behavior.
+    private void CreateInvader()
     {
         // Instantiate a new invader at the current position
         Invader invader = Instantiate(invaderPrefab, transform.position, Quaternion.identity);
@@ -125,9 +94,7 @@ public class SpawnPoint : MonoBehaviour
         patrol.waitTime = waitTime;
     }
 
-    /// <summary>
-    /// Draws gizmos in the Unity Editor to visualize the patrol points for the invaders.
-    /// </summary>
+    /// \brief Draws gizmos in the Unity Editor to visualize the patrol points for the invaders.
     private void OnDrawGizmos()
     {
         // Draw a wireframe sphere at each patrol point to show their locations
