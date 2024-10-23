@@ -1,188 +1,196 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using Codice.CM.Common.Checkin.Partial;
 
+/// \class GameManager
+/// \brief This class is responsible for controlling and managing activities in the game
+/// such as: updating UI elements, handling killing enemies.
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
+    /// \brief Singleton instance of the GameManager.
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject mainMenuUI;
-    [SerializeField] private GameObject PauseUI;
+    // UI elements for displaying the score and lives
+    //[SerializeField] private GameObject gameOverUI;
+    //[SerializeField] private GameObject mainMenuUI;
+    //[SerializeField] private GameObject PauseUI;
+
+    /// \brief UI text for displaying the player's score.
+    [SerializeField] private Text scoreIndicator;
     [SerializeField] private Text scoreText;
+
+    [SerializeField] private Text highScoreIndicator;
+    [SerializeField] private Text highScoreText;
+    /// \brief UI text for displaying the player's remaining lives.
     [SerializeField] private Text livesText;
 
+    /// \brief Reference to the Player object in the game.
     private Player player;
-    private Invaders invaders;
-    private MysteryShip mysteryShip;
-    private Bunker[] bunkers;
 
+    private int flashCount = 0;             // A villanások számolása
+    private bool isFlashing = false;        // Villogás folyamatban van-e
+
+    /// \brief The current score of the player.
     public int score { get; private set; } = 0;
-    public int lives { get; private set; } = 3;
+    private int highScore = 0;
 
-    private void Awake()
+    /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
+    public void Awake()
     {
-        if (Instance != null) {
+        if (Instance != null)
+        {
             DestroyImmediate(gameObject);
-        } else {
+        }
+        else
+        {
             Instance = this;
         }
     }
 
+    /// \brief Ensures the instance is null when this object is destroyed.
     private void OnDestroy()
     {
-        if (Instance == this) {
+        if (Instance == this)
+        {
             Instance = null;
         }
     }
 
+    /// \brief Finds the Player object at the start of the game.
     private void Start()
     {
         player = FindObjectOfType<Player>();
-        invaders = FindObjectOfType<Invaders>();
-        mysteryShip = FindObjectOfType<MysteryShip>();
-        bunkers = FindObjectsOfType<Bunker>();
-
-        EnterMainMenu();
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            highScore = PlayerPrefs.GetInt("HighScore");
+            highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
+        }
+        // NewGame();
     }
 
+    /// \brief Monitors the player's health and restarts the scene if necessary.
     private void Update()
     {
-        // Exit from existing game
-        if (Input.GetKeyUp(KeyCode.Escape))
+        // Restart the scene if the player has no health or if the Enter key is pressed
+        if (player.health <= 0 || Input.GetKeyDown(KeyCode.Return))
         {
-            // Exit to Menu
-            if (lives >= 0 && PauseUI.activeSelf)
-            {
-                GameOver();
-                SetLives(0);
-            }
-            // Pause game
-            if(lives > 0 && !PauseUI.activeSelf && !mainMenuUI.activeSelf)
-            {
-                PauseOrResume();
-            }
+            GameOver();
         }
-
-        // Start new Game
-        if(Input.GetKeyUp(KeyCode.Return))
+        // Reset highScore
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            // Start new Game
-            if (lives <= 0 || mainMenuUI.activeSelf)
-            {
-                NewGame();
-            }
-            // Resume a game
-            if(PauseUI.activeSelf)
-            {
-                PauseOrResume();
-            }
+            PlayerPrefs.SetInt("HighScore", 0); 
+            highScoreIndicator.text = "".PadLeft(4, '0');
+
         }
     }
 
-    private void PauseOrResume()
+    /// \brief Restarts the current active scene.
+    private void RestartScene()
     {
-        PauseUI.SetActive(!PauseUI.activeSelf);
-        invaders.gameObject.SetActive(!invaders.isActiveAndEnabled);
-        mysteryShip.gameObject.SetActive(!mysteryShip.isActiveAndEnabled);
-        player.gameObject.SetActive(!player.isActiveAndEnabled);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void EnterMainMenu()
-    {
-        mainMenuUI.SetActive(true);
-        gameOverUI.SetActive(false);
-        PauseUI.SetActive(false);
-        invaders.gameObject.SetActive(false);
-        mysteryShip.gameObject.SetActive(false);
-    }
-
-    private void NewGame()
-    {
-        mainMenuUI.SetActive(false);
-        gameOverUI.SetActive(false);
-
-        SetScore(0);
-        SetLives(3);
-        NewRound();
-    }
-
-    private void NewRound()
-    {
-        invaders.ResetInvaders();
-        invaders.gameObject.SetActive(true);
-
-        for (int i = 0; i < bunkers.Length; i++) {
-            bunkers[i].ResetBunker();
-        }
-
-        Respawn();
-    }
-
-    private void Respawn()
-    {
-        Vector3 position = player.transform.position;
-        position.x = 0f;
-        player.transform.position = position;
-        player.gameObject.SetActive(true);
-    }
-
+    /// \brief Triggers the game over state and restarts the scene.
     private void GameOver()
     {
-        gameOverUI.SetActive(true);
-        PauseUI.SetActive(false);
-        invaders.gameObject.SetActive(false);
-        mysteryShip.gameObject.SetActive(false);
+        RestartScene();
     }
 
+    /// \brief Sets the player's score and updates the score UI.
+    /// \param score The new score to be set.
     private void SetScore(int score)
     {
         this.score = score;
-        scoreText.text = score.ToString().PadLeft(4, '0');
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
+            NewRecord();
+        }
+        //if(scoreText != null)
+        scoreIndicator.text = score.ToString().PadLeft(4, '0');
     }
 
-    private void SetLives(int lives)
+    private void NewRecord()
     {
-        this.lives = Mathf.Max(lives, 0);
-        livesText.text = this.lives.ToString();
+        if (!isFlashing)
+        {
+            StartCoroutine(BlinkHighScoreText());
+        }
     }
 
+    private IEnumerator BlinkHighScoreText()
+    {
+        isFlashing = true;
+
+        while (flashCount < 3)
+        {
+            ColorUtility.TryParseHtmlString("#0A940F", out Color highlightColor);
+            highScoreText.color = highlightColor;
+            highScoreText.text = "New Record";
+
+            yield return new WaitForSeconds(1);
+
+            ColorUtility.TryParseHtmlString("#C57C04", out Color normalColor);
+            highScoreText.color = normalColor;
+            highScoreText.text = "High Score";
+
+            yield return new WaitForSeconds(1);
+
+            flashCount++;
+        }
+
+        flashCount = 0;
+        isFlashing = false;
+
+    }
+
+    /// \brief Called when the player is killed. Decreases health and handles game over if necessary.
+    /// \param player The player object that was killed.
     public void OnPlayerKilled(Player player)
     {
-        SetLives(lives - 1);
+        // Decrease player's health and update the lives UI
+        player.health = Mathf.Max(player.health - 1, 0);
+        if (livesText != null)
+            livesText.text = player.health.ToString();
 
-        player.gameObject.SetActive(false);
-
-        if (lives > 0) {
-            Invoke(nameof(NewRound), 1f);
-        } else {
+        if (player.health > 0)
+        {
+            // Make player temporarily unkillable
+            player.beUnkillable(1.5f);
+        }
+        else
+        {
+            // If the player has no health, trigger game over
+            player.gameObject.SetActive(false);
             GameOver();
         }
     }
 
+    /// \brief Called when an invader is killed. Increases the score and handles the invader's destruction.
+    /// \param invader The invader object that was killed.
     public void OnInvaderKilled(Invader invader)
     {
-        invader.gameObject.SetActive(false);
-
-        SetScore(score + invader.score);
-
-        if (invaders.GetAliveCount() == 0) {
-            NewRound();
-        }
-    }
-
-    public void OnMysteryShipKilled(MysteryShip mysteryShip)
-    {
-        SetScore(score + mysteryShip.score);
-    }
-
-    public void OnBoundaryReached()
-    {
-        if (invaders.gameObject.activeSelf)
+        // Reduce invader's health and check if it should be destroyed
+        invader.health = Mathf.Max(invader.health - 1, 0);
+        if (invader.health <= 0)
         {
-            invaders.gameObject.SetActive(false);
-            OnPlayerKilled(player);
+            // Destroy the invader and update the player's score
+            Destroy(invader.gameObject);
+            SetScore(score + invader.score);
         }
     }
 
+    /// \brief Called when a boss ship is killed. Increases the player's score based on the boss ship's score.
+    /// \param mainboss The main boss ship that was killed.
+    public void OnBossShipKilled(MainBoss mainboss)
+    {
+        // Increase the score when the boss ship is killed
+        SetScore(score + mainboss.score);
+    }
 }
