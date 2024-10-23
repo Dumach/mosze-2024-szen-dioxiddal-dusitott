@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using Codice.CM.Common.Checkin.Partial;
 
 /// \class GameManager
 /// \brief This class is responsible for controlling and managing activities in the game
@@ -17,19 +19,26 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private GameObject PauseUI;
 
     /// \brief UI text for displaying the player's score.
+    [SerializeField] private Text scoreIndicator;
     [SerializeField] private Text scoreText;
 
+    [SerializeField] private Text highScoreIndicator;
+    [SerializeField] private Text highScoreText;
     /// \brief UI text for displaying the player's remaining lives.
     [SerializeField] private Text livesText;
 
     /// \brief Reference to the Player object in the game.
     private Player player;
 
+    private int flashCount = 0;             // A villanások számolása
+    private bool isFlashing = false;        // Villogás folyamatban van-e
+
     /// \brief The current score of the player.
     public int score { get; private set; } = 0;
+    private int highScore = 0;
 
     /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
-    private void Awake()
+    public void Awake()
     {
         if (Instance != null)
         {
@@ -54,6 +63,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Player>();
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            highScore = PlayerPrefs.GetInt("HighScore");
+            highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
+        }
         // NewGame();
     }
 
@@ -63,7 +77,14 @@ public class GameManager : MonoBehaviour
         // Restart the scene if the player has no health or if the Enter key is pressed
         if (player.health <= 0 || Input.GetKeyDown(KeyCode.Return))
         {
-            RestartScene();
+            GameOver();
+        }
+        // Reset highScore
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerPrefs.SetInt("HighScore", 0); 
+            highScoreIndicator.text = "".PadLeft(4, '0');
+
         }
     }
 
@@ -84,7 +105,49 @@ public class GameManager : MonoBehaviour
     private void SetScore(int score)
     {
         this.score = score;
-        scoreText.text = score.ToString().PadLeft(4, '0');
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
+            NewRecord();
+        }
+        //if(scoreText != null)
+        scoreIndicator.text = score.ToString().PadLeft(4, '0');
+    }
+
+    private void NewRecord()
+    {
+        if (!isFlashing)
+        {
+            StartCoroutine(BlinkHighScoreText());
+        }
+    }
+
+    private IEnumerator BlinkHighScoreText()
+    {
+        isFlashing = true;
+
+        while (flashCount < 3)
+        {
+            ColorUtility.TryParseHtmlString("#0A940F", out Color highlightColor);
+            highScoreText.color = highlightColor;
+            highScoreText.text = "New Record";
+
+            yield return new WaitForSeconds(1);
+
+            ColorUtility.TryParseHtmlString("#C57C04", out Color normalColor);
+            highScoreText.color = normalColor;
+            highScoreText.text = "High Score";
+
+            yield return new WaitForSeconds(1);
+
+            flashCount++;
+        }
+
+        flashCount = 0;
+        isFlashing = false;
+
     }
 
     /// \brief Called when the player is killed. Decreases health and handles game over if necessary.
@@ -93,7 +156,8 @@ public class GameManager : MonoBehaviour
     {
         // Decrease player's health and update the lives UI
         player.health = Mathf.Max(player.health - 1, 0);
-        livesText.text = player.health.ToString();
+        if (livesText != null)
+            livesText.text = player.health.ToString();
 
         if (player.health > 0)
         {

@@ -100,6 +100,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void acquireSpriteRenderer()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     /// \brief Initializes the player's position, normal color, and sprite renderer.
     private void Start()
     {
