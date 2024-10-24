@@ -52,15 +52,20 @@ public class Invader : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (animationSprites.Length > 0)
-            spriteRenderer.sprite = animationSprites[0];
     }
 
     /// \brief Starts the invader animation and sets the player reference.
     private void Start()
     {
-        InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
+        if (animationSprites.Length > 0)
+        {
+            spriteRenderer.sprite = animationSprites[0];
+            InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
+        }
+        foreach (Gun gun in guns)
+        {
+            gun.layer = LayerMask.NameToLayer("InvaderMissile");
+        }
         player = GameObject.Find("Player");
     }
 
@@ -122,7 +127,7 @@ public class Invader : MonoBehaviour
     /// \param other The collider of the object that triggered the collision.
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerMissile"))
         {
             GameManager.Instance.OnInvaderKilled(this);
         }

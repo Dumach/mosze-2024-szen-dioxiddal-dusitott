@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         // Reset highScore
         if (Input.GetKeyDown(KeyCode.R))
         {
+            score = 0;
             PlayerPrefs.SetInt("HighScore", 0); 
             highScoreIndicator.text = "".PadLeft(4, '0');
 

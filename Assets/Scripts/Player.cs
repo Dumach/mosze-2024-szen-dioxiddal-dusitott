@@ -85,7 +85,10 @@ public class Player : MonoBehaviour
         // Clamp the position of the player within the screen bounds
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-        currentPos.x = Mathf.Clamp(currentPos.x, leftEdge.x, rightEdge.x);
+        currentPos.x = Mathf.Clamp(currentPos.x, leftEdge.x + 1, rightEdge.x - 1);
+        Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
+        Vector3 bottomEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+        currentPos.y = Mathf.Clamp(currentPos.y, bottomEdge.y + 1, upperEdge.y - 1);
 
         // Set the new position
         transform.position = currentPos;
@@ -111,6 +114,10 @@ public class Player : MonoBehaviour
         currentPos = transform.position;
         ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        foreach (Gun gun in guns)
+        {
+            gun.layer = LayerMask.NameToLayer("PlayerMissile");
+        }
     }
 
     /// \brief Makes the player temporarily invincible for a specified duration.
@@ -130,7 +137,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Missile") ||
+        if (other.gameObject.layer == LayerMask.NameToLayer("InvaderMissile") ||
             other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
             GameManager.Instance.OnPlayerKilled(this);
