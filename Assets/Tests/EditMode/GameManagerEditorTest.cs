@@ -40,7 +40,7 @@ public class GameManagerEditorTest
 
         var gameManager = new GameObject().AddComponent<GameManager>();
 
-        gameManager.OnPlayerKilled(player);
+        gameManager.OnPlayerKilled();
 
         Assert.AreEqual(2, player.health);
     }

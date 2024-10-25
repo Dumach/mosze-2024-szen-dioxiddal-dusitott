@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Codice.CM.Common.Checkin.Partial;
+using Codice.Client.Common;
 
 /// \class GameManager
 /// \brief This class is responsible for controlling and managing activities in the game
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     /// \brief Reference to the Player object in the game.
     private Player player;
+    private int maxHealth;
 
     private int flashCount = 0;             // A villanások számolása
     private bool isFlashing = false;        // Villogás folyamatban van-e
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Player>();
+        maxHealth = player.health;
         if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetInt("HighScore");
@@ -152,13 +155,11 @@ public class GameManager : MonoBehaviour
     }
 
     /// \brief Called when the player is killed. Decreases health and handles game over if necessary.
-    /// \param player The player object that was killed.
-    public void OnPlayerKilled(Player player)
+    public void OnPlayerKilled()
     {
         // Decrease player's health and update the lives UI
         player.health = Mathf.Max(player.health - 1, 0);
-        if (livesText != null)
-            livesText.text = player.health.ToString();
+        livesText.text = player.health.ToString();
 
         if (player.health > 0)
         {
@@ -172,6 +173,30 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
     }
+
+    /// \brief Called when player picked up a repair kit. It heals the player.
+    public void healPlayer()
+    {
+        // Increase player's health and update the lives UI
+        if (player.health < maxHealth)
+        {
+            player.health++;
+            livesText.text = player.health.ToString();
+        }
+    }
+
+    /// \brief Called when player picked up a weapon upgrade kit.
+    /// \brief It switches the players gun template to the next.
+    public void upgradeWeapon()
+    {
+        int current = player.currentTemplate;
+        if(current < player.upgradeTemplates.Count)
+        {
+            current++;
+            player.guns = player.upgradeTemplates[current].guns;
+        }
+    }
+
 
     /// \brief Called when an invader is killed. Increases the score and handles the invader's destruction.
     /// \param invader The invader object that was killed.

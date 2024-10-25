@@ -25,6 +25,13 @@ public class Player : MonoBehaviour
     /// \brief The current position of the player.
     private Vector3 currentPos;
 
+    [Header("Templates")]
+    /// \brief Current weapon template.
+    public int currentTemplate = 0;
+
+    /// \brief All weapon templates.
+    public List<Player> upgradeTemplates = new List<Player>();
+
     /// \brief List of guns the player can shoot with.
     [Header("Guns")]
     public List<Gun> guns = new List<Gun>();
@@ -114,6 +121,7 @@ public class Player : MonoBehaviour
         currentPos = transform.position;
         ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        this.guns = this.upgradeTemplates[currentTemplate].guns;
         foreach (Gun gun in guns)
         {
             gun.layer = LayerMask.NameToLayer("PlayerMissile");
@@ -140,7 +148,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("InvaderMissile") ||
             other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
-            GameManager.Instance.OnPlayerKilled(this);
+            GameManager.Instance.OnPlayerKilled();
         }
     }
 }
