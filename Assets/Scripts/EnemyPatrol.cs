@@ -68,6 +68,7 @@ public class EnemyPatrol : MonoBehaviour
             // Enable automatic shooting and rotation while waiting at the patrol point.
             invader.autoRotate = true;
             invader.autoShoot = true;
+            invader.autoAim = true;
 
             // Start countdown before moving to the next patrol point.
             if (timer <= 0.25f)
@@ -89,6 +90,7 @@ public class EnemyPatrol : MonoBehaviour
                 // Disable automatic shooting and rotation while moving to the next point.
                 invader.autoRotate = false;
                 invader.autoShoot = false;
+                invader.autoAim = false;
             }
             else
             {

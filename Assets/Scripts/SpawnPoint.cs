@@ -88,7 +88,7 @@ public class SpawnPoint : MonoBehaviour
         invader.autoRotate = autoRotate;
 
         // Set the patrol points and movement speed for the invader
-        EnemyPatrol patrol = invader.GetComponent<EnemyPatrol>();
+        EnemyPatrol patrol = invader.gameObject.AddComponent<EnemyPatrol>();
         patrol.moveSpots = moveSpots;
         patrol.speed = speed;
         patrol.waitTime = waitTime;

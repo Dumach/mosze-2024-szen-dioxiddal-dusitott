@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1788622360293551478, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 2.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788622360293551478, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: m_Size.y
+      value: 2.125
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551478, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -18,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551478, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 2.125
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551478, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
+      value: 2.125
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551480, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_RootOrder
@@ -75,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 1788622360293551481, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b5f20663b636d4b4eb010e7fb8012499, type: 3}
+      objectReference: {fileID: -456816039, guid: 8e2802c19a199804aa819b23e0b80633, type: 3}
     - target: {fileID: 1788622360293551481, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -126,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: animationSprites.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: animationSprites.Array.data[0]

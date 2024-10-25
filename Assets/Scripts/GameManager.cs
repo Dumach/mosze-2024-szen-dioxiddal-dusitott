@@ -27,8 +27,10 @@ public class GameManager : MonoBehaviour
     /// \brief UI text for displaying the player's remaining lives.
     [SerializeField] private Text livesText;
 
-    public Upgrade upgradePrefab;
-    public Repair repairkitPrefab;
+    [SerializeField] private Upgrade upgradePrefab;
+    [SerializeField] private int upgradeDropRate;
+    [SerializeField] private Repair repairkitPrefab;
+    [SerializeField] private int repairkitDropRate;
 
     /// \brief Reference to the Player object in the game.
     private Player player;
@@ -100,8 +102,8 @@ public class GameManager : MonoBehaviour
     private void SpawnRepairKit()
     {
         // Random chance to spawn
-        int spawnRepairkit = Random.Range(0, 60);
-        if (spawnRepairkit == 2)
+        int spawnRepairkit = Random.Range(0, repairkitDropRate);
+        if (spawnRepairkit == 1)
         {
             Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
             Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
@@ -209,9 +211,9 @@ public class GameManager : MonoBehaviour
     /// \brief It switches the players gun template to the next.
     public void upgradeWeapons()
     {
-        int currentWpnIndex = player.currentTemplate;
-        
-        if (currentWpnIndex - 1 < player.upgradeTemplates.Count)
+        int currentWpnIndex = player.currentTemplate + 1;
+
+        if (currentWpnIndex < player.upgradeTemplates.Count)
         {
             // Deactivate old weapons
             foreach (var gun in player.guns)
@@ -223,7 +225,6 @@ public class GameManager : MonoBehaviour
             player.guns.Clear();
 
             // Activate new weapons from template
-            currentWpnIndex += 1;
             player.currentTemplate = currentWpnIndex;
             foreach (var gun in player.upgradeTemplates[currentWpnIndex].guns)
             {
@@ -250,15 +251,17 @@ public class GameManager : MonoBehaviour
         if (invader.health <= 0)
         {
             // Upon invader die, there is a chance of dropping an upgraded weapon
-            int spawnUpgrade = Random.Range(0, 30);
+            int spawnUpgrade = Random.Range(0, upgradeDropRate);
             if(spawnUpgrade == 1)
             {
                 Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
             }
-            SetScore(score + invader.score);
 
             // Destroy the invader and update the player's score
             Destroy(invader.gameObject);
+            
+            // IDE animáció
+            SetScore(score + invader.score);
         }
     }
 
