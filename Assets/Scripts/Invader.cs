@@ -64,7 +64,7 @@ public class Invader : MonoBehaviour
         }
         foreach (Gun gun in guns)
         {
-            gun.layer = LayerMask.NameToLayer("InvaderMissile");
+            gun.layerIndex = LayerMask.NameToLayer("InvaderMissile");
         }
         player = GameObject.Find("Player");
     }

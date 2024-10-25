@@ -339,7 +339,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2151206084973411176, guid: 4a81c84ee7dea6d49a91f3fc916f3543, type: 3}
       propertyPath: autoShoot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8326835239296687044, guid: 4a81c84ee7dea6d49a91f3fc916f3543, type: 3}
       propertyPath: m_LocalPosition.x
@@ -387,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8326835239296687046, guid: 4a81c84ee7dea6d49a91f3fc916f3543, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1706,7 +1706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8460454430292978245, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.04
+      value: 5.71
       objectReference: {fileID: 0}
     - target: {fileID: 8460454430292978245, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1899,6 +1899,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invader_PirateCorvette (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1551106833269385595, guid: 76cdbc2fe2947e24da6066a2aa0bf3bd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8922441697518389717, guid: 76cdbc2fe2947e24da6066a2aa0bf3bd, type: 3}
       propertyPath: autoShoot
       value: 0
@@ -2078,6 +2082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invader_PirateCorvette
       objectReference: {fileID: 0}
+    - target: {fileID: 1551106833269385595, guid: 76cdbc2fe2947e24da6066a2aa0bf3bd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8922441697518389717, guid: 76cdbc2fe2947e24da6066a2aa0bf3bd, type: 3}
       propertyPath: autoShoot
       value: 0
@@ -2109,7 +2117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2191486796875677341, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: autoShoot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2191486796875677341, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: autoRotate
@@ -2161,7 +2169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087897171543711283, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2222,11 +2230,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551482, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: autoShoot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2282,8 +2290,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1953220885207301762, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
+      propertyPath: currentTemplate
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953220885207301762, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
       propertyPath: guns.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953220885207301762, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
+      propertyPath: guns.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1953220885207301762, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
       propertyPath: upgradeTemplates.Array.size
@@ -2310,7 +2326,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3823670010453880791, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}

@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     [Header("Templates")]
     /// \brief Current weapon template.
-    public int currentTemplate = 0;
+    public int currentTemplate = -1;
 
     /// \brief All weapon templates.
     public List<Player> upgradeTemplates = new List<Player>();
@@ -121,11 +121,7 @@ public class Player : MonoBehaviour
         currentPos = transform.position;
         ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        this.guns = this.upgradeTemplates[currentTemplate].guns;
-        foreach (Gun gun in guns)
-        {
-            gun.layer = LayerMask.NameToLayer("PlayerMissile");
-        }
+        GameManager.Instance.upgradeWeapons();
     }
 
     /// \brief Makes the player temporarily invincible for a specified duration.

@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     /// \brief The current heat level of the gun, which affects firing rate.
     private float gunHeat = 0f;
 
-    public LayerMask layer;
+    public int layerIndex;
 
     /// \brief Reference to the instantiated projectile.
     private Projectile projectile;
@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour
             projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
             projectile.setSpeed(missileSpeed);
             projectile.SetDirection(target);
-            projectile.layer = layer;
+            projectile.gameObject.layer = layerIndex;
         }
     }
 

@@ -14,8 +14,6 @@ public class Projectile : MonoBehaviour
     /// \brief The speed of the projectile.
     public float speed = 5f;
 
-    public LayerMask layer;
-
     /// \brief Reference to the Rigidbody2D component for physics-based movement.
     private Rigidbody2D rb; 
     /// \brief Reference to the BoxCollider2D component for collision detection.
@@ -30,7 +28,7 @@ public class Projectile : MonoBehaviour
         // Set the sorting layer of the projectile's sprite to ensure visibility.
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingLayerName = "4Player";
-        this.gameObject.layer = layer;
+        //this.gameObject.layer = layer;
 
         // Set the projectile's velocity to move in the assigned direction at the assigned speed.
         rb.velocity = direction * speed;

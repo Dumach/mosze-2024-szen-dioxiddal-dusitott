@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221928938999654363}
   - component: {fileID: 6885414115159766499}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87310282c7e9a547992db5579c704f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  timeBetweenShoots: 0.5
+  missileSpeed: 10
+  layerIndex: 0

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using Codice.CM.Common.Checkin.Partial;
 using Codice.Client.Common;
+using static PlasticGui.GetProcessName;
 
 /// \class GameManager
 /// \brief This class is responsible for controlling and managing activities in the game
@@ -187,13 +188,36 @@ public class GameManager : MonoBehaviour
 
     /// \brief Called when player picked up a weapon upgrade kit.
     /// \brief It switches the players gun template to the next.
-    public void upgradeWeapon()
+    public void upgradeWeapons()
     {
-        int current = player.currentTemplate;
-        if(current < player.upgradeTemplates.Count)
+        int currentWpnIndex = player.currentTemplate;
+        
+        if (currentWpnIndex < player.upgradeTemplates.Count)
         {
-            current++;
-            player.guns = player.upgradeTemplates[current].guns;
+            // Deactivate old weapons
+            foreach (var gun in player.guns)
+            {
+                gun.gameObject.SetActive(false);
+                //Destroy(gun);
+                
+            }
+            player.guns.Clear();
+
+            // Activate new weapons from template
+            currentWpnIndex += 1;
+            player.currentTemplate = currentWpnIndex;
+            foreach (var gun in player.upgradeTemplates[currentWpnIndex].guns)
+            {
+                Gun newGun = new GameObject(gun.name).AddComponent<Gun>();
+                newGun.timeBetweenShoots = gun.timeBetweenShoots;
+                newGun.projectilePrefab = gun.projectilePrefab;
+                newGun.missileSpeed = gun.missileSpeed;
+                newGun.layerIndex = LayerMask.NameToLayer("PlayerMissile");
+                newGun.transform.SetParent(player.transform, false);
+                newGun.transform.localPosition = gun.transform.localPosition;
+                newGun.transform.transform.localRotation = gun.transform.localRotation;
+                player.guns.Add(newGun);
+            }
         }
     }
 
