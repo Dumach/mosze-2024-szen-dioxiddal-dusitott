@@ -96,7 +96,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8922502034929116581, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: m_Name
-      value: Invader_PirateCorvette Variant
+      value: Invader_PirateCorvette
       objectReference: {fileID: 0}
     - target: {fileID: 8922502034929116582, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: m_Size.x
@@ -165,6 +165,10 @@ PrefabInstance:
     - target: {fileID: 8922502034929116585, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922502034929116585, guid: 984c31f2f1206774085587cae40258e2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
