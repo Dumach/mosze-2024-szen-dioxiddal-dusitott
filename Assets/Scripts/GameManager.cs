@@ -2,9 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Codice.CM.Common.Checkin.Partial;
-using Codice.Client.Common;
-using static PlasticGui.GetProcessName;
+using Random = UnityEngine.Random;
 
 /// \class GameManager
 /// \brief This class is responsible for controlling and managing activities in the game
@@ -28,6 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text highScoreText;
     /// \brief UI text for displaying the player's remaining lives.
     [SerializeField] private Text livesText;
+
+    public Upgrade upgradePrefab;
+    public Repair repairkitPrefab;
 
     /// \brief Reference to the Player object in the game.
     private Player player;
@@ -72,6 +73,9 @@ public class GameManager : MonoBehaviour
             highScore = PlayerPrefs.GetInt("HighScore");
             highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
         }
+
+        InvokeRepeating("SpawnRepairKit", 0f, 1f);
+
         // NewGame();
     }
 
@@ -89,7 +93,22 @@ public class GameManager : MonoBehaviour
             score = 0;
             PlayerPrefs.SetInt("HighScore", 0); 
             highScoreIndicator.text = "".PadLeft(4, '0');
+        }
+    }
 
+    /// \brief Spawns a repair kit from the upper edge of screen
+    private void SpawnRepairKit()
+    {
+        // Random chance to spawn
+        int spawnRepairkit = Random.Range(0, 60);
+        if (spawnRepairkit == 2)
+        {
+            Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+            Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+            Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
+            // Random location to spawn
+            Vector3 where = new Vector3(Random.Range(leftEdge.x + 1, rightEdge.x), upperEdge.y);
+            Instantiate(repairkitPrefab, where, Quaternion.identity);
         }
     }
 
@@ -165,7 +184,7 @@ public class GameManager : MonoBehaviour
         if (player.health > 0)
         {
             // Make player temporarily unkillable
-            player.beUnkillable(1.5f);
+            player.beUnkillable(1.0f);
         }
         else
         {
@@ -192,7 +211,7 @@ public class GameManager : MonoBehaviour
     {
         int currentWpnIndex = player.currentTemplate;
         
-        if (currentWpnIndex < player.upgradeTemplates.Count)
+        if (currentWpnIndex - 1 < player.upgradeTemplates.Count)
         {
             // Deactivate old weapons
             foreach (var gun in player.guns)
@@ -230,9 +249,16 @@ public class GameManager : MonoBehaviour
         invader.health = Mathf.Max(invader.health - 1, 0);
         if (invader.health <= 0)
         {
+            // Upon invader die, there is a chance of dropping an upgraded weapon
+            int spawnUpgrade = Random.Range(0, 30);
+            if(spawnUpgrade == 1)
+            {
+                Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
+            }
+            SetScore(score + invader.score);
+
             // Destroy the invader and update the player's score
             Destroy(invader.gameObject);
-            SetScore(score + invader.score);
         }
     }
 
@@ -242,5 +268,7 @@ public class GameManager : MonoBehaviour
     {
         // Increase the score when the boss ship is killed
         SetScore(score + mainboss.score);
+
+        // GAME END UI
     }
 }

@@ -185,6 +185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_RepairKit
       objectReference: {fileID: 0}
+    - target: {fileID: 2450472498735875136, guid: ab0f7198e9b06324480aa132e2d9274f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -387,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8326835239296687046, guid: 4a81c84ee7dea6d49a91f3fc916f3543, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1300,6 +1304,8 @@ MonoBehaviour:
   highScoreIndicator: {fileID: 97675217}
   highScoreText: {fileID: 1801782478}
   livesText: {fileID: 1446257001}
+  upgradePrefab: {fileID: 2193623743651769516, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
+  repairkitPrefab: {fileID: 9196887192766727644, guid: ab0f7198e9b06324480aa132e2d9274f, type: 3}
 --- !u!1 &1185552287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1709,10 @@ PrefabInstance:
     - target: {fileID: 6764458645554905094, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
       propertyPath: m_Name
       value: Item_Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764458645554905094, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8460454430292978245, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2169,7 +2179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087897171543711283, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2230,7 +2240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551482, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8540571529431895508, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: autoShoot
