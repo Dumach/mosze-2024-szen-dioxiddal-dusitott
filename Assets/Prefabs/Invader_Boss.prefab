@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 639362722248215162}
   - component: {fileID: 3237937585113139316}
   - component: {fileID: 9145253584726559379}
-  - component: {fileID: -5506728482146202622}
+  - component: {fileID: 7107333050130784340}
   m_Layer: 9
   m_Name: Invader_Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: -11095375
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 21986e41c9136b240934e8287636260f, type: 3}
-  m_Color: {r: 1, g: 0.088679194, b: 0.088679194, a: 1}
+  m_Sprite: {fileID: -1370014271, guid: 8e2802c19a199804aa819b23e0b80633, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,18 +150,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.07972956, y: 0.19135284}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1}
+    oldSize: {x: 9.25, y: 5.5}
     newSize: {x: 2, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 8.675942, y: 4.5432396}
   m_EdgeRadius: 0
 --- !u!114 &9145253584726559379
 MonoBehaviour:
@@ -177,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSprites: []
   animationTime: 0
-  score: 200
-  health: 10
+  score: 300
+  health: 15
   player: {fileID: 0}
   autoRotate: 0
   autoShoot: 1
@@ -187,7 +187,7 @@ MonoBehaviour:
   - {fileID: 2505832658941464649}
   - {fileID: 6723018856334165662}
   - {fileID: 2761378499530325810}
---- !u!114 &-5506728482146202622
+--- !u!114 &7107333050130784340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,9 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4508da8755a834b85393bfa1b44963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  cycleTime: 30
-  score: 300
+  speed: 2
+  cycleTime: 10
+  startSpawningTime: 40
+  BossWarning: {fileID: 0}
 --- !u!1001 &198459305647928189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,11 +213,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.022083879
+      value: 3.04
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.28140926
+      value: -2.19
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -251,12 +252,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: missileSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 6161936928069685931, guid: 3c328e673b90a7f418f1f1e66f83522b, type: 3}
+      objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -293,11 +298,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6753692
+      value: -0.11
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.26579475
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -332,12 +337,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: missileSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 6161936928069685931, guid: 3c328e673b90a7f418f1f1e66f83522b, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -374,11 +383,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.756
+      value: -3.41
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3800001
+      value: -1.69
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -413,12 +422,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: missileSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 6161936928069685931, guid: 3c328e673b90a7f418f1f1e66f83522b, type: 3}
+      objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name

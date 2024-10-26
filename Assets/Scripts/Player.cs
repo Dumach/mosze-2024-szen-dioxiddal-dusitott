@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     /// \brief The current position of the player.
     private Vector3 currentPos;
 
-    [Header("Templates")]
+    [Header("Weapon Templates")]
     /// \brief Current weapon template.
     public int currentTemplate = -1;
 

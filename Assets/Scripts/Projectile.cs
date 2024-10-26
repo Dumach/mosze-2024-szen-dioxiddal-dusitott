@@ -42,6 +42,11 @@ public class Projectile : MonoBehaviour
         if (target)
         {
             direction = (target.position - transform.position).normalized;
+            
+            // Calculate the angle for Z rotation
+            float offset = 90f;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
         }
         // If no target is specified, maintain the default upward direction.
         else
@@ -57,10 +62,9 @@ public class Projectile : MonoBehaviour
         this.speed = speed;
     }
 
-    /// \brief Called once per frame. Handles position updates (currently unused).
     private void Update()
     {
-        // The position update is handled by the Rigidbody2D's velocity, so no additional code is needed here.
+
     }
 
     /// \brief Called when the projectile collides with another object.

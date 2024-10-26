@@ -45,4 +45,39 @@ public class GameManagerEditorTest
         Assert.AreEqual(2, player.health);
     }
 
+    [Test]
+    public void WeaponUpgrade_Should_Not_Go_Over_Limit()
+    {
+        var gameManager = new GameObject().AddComponent<GameManager>();
+        
+        // Mock player létrehozása
+        var playerObject = new GameObject();
+        var player = playerObject.AddComponent<Player>();
+        
+        // Mock weapon template-k létrehozása
+        for (int i = 0; i < 3; i++)
+        {
+            player.upgradeTemplates.Add(new GameObject().AddComponent<Player>());
+        }
+        player.currentTemplate = -1;
+
+        gameManager.GetType()
+            .GetField("player", BindingFlags.NonPublic | BindingFlags.Instance)
+            .SetValue(gameManager, player);
+
+
+        gameManager.upgradeWeapons();
+        Assert.AreEqual(0, player.currentTemplate);
+        
+        gameManager.upgradeWeapons();
+        gameManager.upgradeWeapons();
+
+        Assert.AreEqual(2, player.currentTemplate);
+
+        // Túltöltés tesztelése
+        gameManager.upgradeWeapons();
+        Assert.AreEqual(2 ,player.currentTemplate);
+
+    }
+
 }

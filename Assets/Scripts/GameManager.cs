@@ -13,11 +13,6 @@ public class GameManager : MonoBehaviour
     /// \brief Singleton instance of the GameManager.
     public static GameManager Instance { get; private set; }
 
-    // UI elements for displaying the score and lives
-    //[SerializeField] private GameObject gameOverUI;
-    //[SerializeField] private GameObject mainMenuUI;
-    //[SerializeField] private GameObject PauseUI;
-
     /// \brief UI text for displaying the player's score.
     [SerializeField] private Text scoreIndicator;
     [SerializeField] private Text scoreText;
@@ -26,6 +21,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text highScoreText;
     /// \brief UI text for displaying the player's remaining lives.
     [SerializeField] private Text livesText;
+
+    [SerializeField] private GameObject infoUI;
+    [SerializeField] private GameObject pauseUI;
+    [SerializeField] private GameObject endUI;
+
+    [SerializeField] private bool hasEndBoss;
+    //[SerializeField] private UI UI;
+
+    /// \brief Mission time in seconds.
+    [SerializeField] private float missionTime;
 
     [SerializeField] private Upgrade upgradePrefab;
     [SerializeField] private int upgradeDropRate;
@@ -70,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         maxHealth = player.health;
+        livesText.text = maxHealth.ToString();
         if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetInt("HighScore");
@@ -78,7 +84,9 @@ public class GameManager : MonoBehaviour
 
         InvokeRepeating("SpawnRepairKit", 0f, 1f);
 
-        // NewGame();
+        // Starts mission countdown timer if no boss in the end
+        if (!hasEndBoss)
+            StartCoroutine(MissionTimeCountdown());
     }
 
     /// \brief Monitors the player's health and restarts the scene if necessary.
@@ -93,9 +101,16 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             score = 0;
-            PlayerPrefs.SetInt("HighScore", 0); 
+            PlayerPrefs.SetInt("HighScore", 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
         }
+    }
+
+    private IEnumerator MissionTimeCountdown()
+    {
+        yield return new WaitForSeconds(missionTime);
+
+        EndOfMission();
     }
 
     /// \brief Spawns a repair kit from the upper edge of screen
@@ -137,6 +152,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
             highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
             NewRecord();
+            //UI.startFlashing(highScoreText, 3, "#0A940F", "#C57C04");
         }
         //if(scoreText != null)
         scoreIndicator.text = score.ToString().PadLeft(4, '0');
@@ -173,7 +189,6 @@ public class GameManager : MonoBehaviour
 
         flashCount = 0;
         isFlashing = false;
-
     }
 
     /// \brief Called when the player is killed. Decreases health and handles game over if necessary.
@@ -211,16 +226,17 @@ public class GameManager : MonoBehaviour
     /// \brief It switches the players gun template to the next.
     public void upgradeWeapons()
     {
-        int currentWpnIndex = player.currentTemplate + 1;
+        int currentWpnIndex = player.currentTemplate;
 
-        if (currentWpnIndex < player.upgradeTemplates.Count)
+        if (currentWpnIndex < player.upgradeTemplates.Count - 1)
         {
+            currentWpnIndex++;
             // Deactivate old weapons
             foreach (var gun in player.guns)
             {
                 gun.gameObject.SetActive(false);
                 //Destroy(gun);
-                
+
             }
             player.guns.Clear();
 
@@ -252,26 +268,68 @@ public class GameManager : MonoBehaviour
         {
             // Upon invader die, there is a chance of dropping an upgraded weapon
             int spawnUpgrade = Random.Range(0, upgradeDropRate);
-            if(spawnUpgrade == 1)
+            if (spawnUpgrade == 1)
             {
                 Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
             }
 
             // Destroy the invader and update the player's score
             Destroy(invader.gameObject);
-            
+
             // IDE animáció
             SetScore(score + invader.score);
+
+            // ha boss tag-je van, akkor fõellenség és megjelenít victory panel
+            if(invader.gameObject.tag == "Boss")
+            {
+                // GAME END UI
+                EndOfMission();
+            }
+        }
+    }    
+
+    public void EndOfMission()
+    {
+        GameObject.Find("Background").SetActive(false);
+        CancelInvoke("SpawnRepairKit");
+        player.gameObject.SetActive(false);
+        infoUI.SetActive(false);
+        endUI.SetActive(true);
+
+        int SceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (SceneIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        {
+            // Ha utolso mission volt
+            GameObject.Find("NextButton").SetActive(false);
+            GameObject.Find("levelText").GetComponent<Text>().text = "You win the game!";
+            int totalScore = PlayerPrefs.GetInt("TotalScore");
+            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + totalScore;
+        }
+        else
+        {
+            GameObject.Find("levelText").GetComponent<Text>().text = "Level " + SceneIndex + " completed!";
+            GameObject.Find("scoresText").GetComponent<Text>().text = "Scores: " + score;
         }
     }
 
-    /// \brief Called when a boss ship is killed. Increases the player's score based on the boss ship's score.
-    /// \param mainboss The main boss ship that was killed.
-    public void OnBossShipKilled(MainBoss mainboss)
+    public void exitMission()
     {
-        // Increase the score when the boss ship is killed
-        SetScore(score + mainboss.score);
+        SceneManager.LoadScene(0);
+    }
 
-        // GAME END UI
+    public void nextMission()
+    {
+        int SceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (SceneIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        {
+            // Van még mission hátra
+            SceneIndex++;
+            SceneManager.LoadScene(SceneIndex);
+            int totalScore = 0;
+            if (PlayerPrefs.HasKey("TotalScore"))
+                totalScore = PlayerPrefs.GetInt("TotalScore");
+
+            PlayerPrefs.SetInt("TotalScore", totalScore + score);
+        }
     }
 }

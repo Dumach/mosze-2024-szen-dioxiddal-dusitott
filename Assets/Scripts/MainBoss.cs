@@ -1,93 +1,91 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class MainBoss : MonoBehaviour
 {
-    public float speed = 5f;
-    public float cycleTime = 30f;
-    public int score = 300;
+    [Header("Boss stats")]
+    public float speed = 2f;               // Speed of movement across the screen
+    public float cycleTime = 10f;          // Interval between direction changes
+    public float startSpawningTime = 5f;   // Countdown before initial entry from top
 
-    private Vector2 leftDestination;
-    private Vector2 rightDestination;
-    private int direction = -1;
-    private bool spawned;
+    [SerializeField] private Text BossWarning;
+
+    private Vector2 centerRightDestination;
+    private Vector2 centerLeftDestination;
+    private Vector2 centerScreen;          // Center point on the screen
+    private bool movingRight = true;       // Direction control
+
+    private Invader invaderComponent;
 
     private void Start()
     {
-        // Transform the viewport to world coordinates so we can set the mystery
-        // ship's destination points
+        invaderComponent = gameObject.GetComponent<Invader>();
+        invaderComponent.autoAim = false;
+        invaderComponent.autoShoot = false;
+
+        // Convert viewport edges to world coordinates to set destination points
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        //Vector3 topOutside = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.2f, 0)); // Start above screen
+        Vector3 centerScreenPoint = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0));
 
-        // Offset each destination by 1 unit so the ship is fully out of sight
-        leftDestination = new Vector2(leftEdge.x - 1f, transform.position.y);
-        rightDestination = new Vector2(rightEdge.x + 1f, transform.position.y);
+        // Set destinations to halfway points
+        centerScreen = new Vector2(centerScreenPoint.x, centerScreenPoint.y);
+        centerRightDestination = new Vector2((centerScreenPoint.x + rightEdge.x) / 2, centerScreenPoint.y);
+        centerLeftDestination = new Vector2((centerScreenPoint.x + leftEdge.x) / 2, centerScreenPoint.y);
 
-        Despawn();
+        // Start the countdown for the initial spawn
+        StartCoroutine(StartSpawnCountdown());
     }
 
-    private void Update()
+    private IEnumerator StartSpawnCountdown()
     {
-        if (!spawned) return;
+        // 120s - 10s = 110s
+        float firstphase = startSpawningTime - 10;
+        yield return new WaitForSeconds(firstphase);
 
-        if (direction == 1) {
-            MoveRight();
-        } else {
-            MoveLeft();
-        }
-    }
+        BossWarning.gameObject.SetActive(true);
 
-    private void MoveRight()
-    {
-        transform.position += speed * Time.deltaTime * Vector3.right;
+        // 120s - 110s = 10s
+        // Wait until startSpawningTime reaches 0
+        yield return new WaitForSeconds(startSpawningTime - firstphase);
 
-        if (transform.position.x >= rightDestination.x) {
-            Despawn();
-        }
-    }
-
-    private void MoveLeft()
-    {
-        transform.position += speed * Time.deltaTime * Vector3.left;
-
-        if (transform.position.x <= leftDestination.x) {
-            Despawn();
-        }
-    }
-
-    private void Spawn()
-    {
-        direction *= -1;
-
-        if (direction == 1) {
-            transform.position = leftDestination;
-        } else {
-            transform.position = rightDestination;
-        }
-
-        spawned = true;
-    }
-
-    private void Despawn()
-    {
-        spawned = false;
-
-        if (direction == 1) {
-            transform.position = rightDestination;
-        } else {
-            transform.position = leftDestination;
-        }
-
-        Invoke(nameof(Spawn), cycleTime);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        // Slowly move from top to the center of the screen
+        while (Vector2.Distance(transform.position, centerScreen) > 0.1f)
         {
-            Despawn();
-            GameManager.Instance.OnBossShipKilled(this);
+            transform.position = Vector2.MoveTowards(transform.position, centerScreen, speed * Time.deltaTime);
+            yield return null;
         }
+
+        BossWarning.gameObject.SetActive(false);
+
+        // Start alternating movement once in the center
+        StartCoroutine(AlternateMovement());
     }
 
+    private IEnumerator AlternateMovement()
+    {
+        invaderComponent.autoAim = true;
+        invaderComponent.autoShoot = true;
+
+        while (true)
+        {
+            // Set target based on direction
+            Vector2 target = movingRight ? centerRightDestination : centerLeftDestination;
+
+            // Move towards the target
+            while (Vector2.Distance(transform.position, target) > 0.1f)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                yield return null;
+            }
+
+            // Reverse direction when reaching the target
+            movingRight = !movingRight;
+
+            // Wait for cycleTime before moving again
+            yield return new WaitForSeconds(cycleTime);
+        }
+    }
 }
