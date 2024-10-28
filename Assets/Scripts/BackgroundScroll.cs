@@ -20,6 +20,8 @@ public class BackgroundScroll : MonoBehaviour
     /// \brief The initial starting position of the background.
     private Vector3 startPosition;
 
+    public bool beginScroll { get; set; } = true;
+
     /// \brief Initializes the background's position, offset, and calculates the height of the background sprite.
     void Start()
     {
@@ -32,6 +34,8 @@ public class BackgroundScroll : MonoBehaviour
     /// Resets the position when the background scrolls off-screen.
     void Update()
     {
+        if (!beginScroll) return;
+
         // Move the background downward based on the scroll speed and time.
         transform.Translate(Vector3.down * scrollSpeed * Time.deltaTime);
 

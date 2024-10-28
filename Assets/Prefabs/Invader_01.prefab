@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invader_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1788622360293551482, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1932842040453127021, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.088

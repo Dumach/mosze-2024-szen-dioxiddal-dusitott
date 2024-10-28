@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5328873808756706078}
   m_Layer: 0
   m_Name: SpawnPoint_Base
-  m_TagString: Untagged
+  m_TagString: SpawnPoints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,12 +47,9 @@ MonoBehaviour:
   invaderPrefab: {fileID: 0}
   numberOf: 5
   speed: 5
+  autoRotate: 0
+  autoShoot: 0
+  autoAim: 0
   moveSpots: []
   startSpawningTime: 0
   waitTime: 1
-  guns: []
-  gunPosition: []
-  gunRotation: []
-  projectilePrefabArr: []
-  timeBetweenShootsArr: []
-  missileSpeedArr: []

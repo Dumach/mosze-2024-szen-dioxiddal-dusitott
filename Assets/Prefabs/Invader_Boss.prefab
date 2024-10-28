@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4508da8755a834b85393bfa1b44963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  cycleTime: 10
+  speed: 4
+  cycleTime: 5
   startSpawningTime: 40
   BossWarning: {fileID: 0}
 --- !u!1001 &198459305647928189

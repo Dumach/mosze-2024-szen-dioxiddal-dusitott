@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['enemypatrol_0',['EnemyPatrol',['../class_enemy_patrol.html',1,'']]]
+  ['changescene_0',['ChangeScene',['../class_change_scene.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spawnpoint_0',['SpawnPoint',['../class_spawn_point.html',1,'']]]
+  ['mainboss_0',['MainBoss',['../class_main_boss.html',1,'']]]
 ];

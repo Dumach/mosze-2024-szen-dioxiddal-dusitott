@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SpawnPoints
   - Boss
+  - Background
+  - Invader
   layers:
   - Default
   - TransparentFX

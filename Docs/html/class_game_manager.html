@@ -5,14 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mosze 2024 Szén-dioxiddal dúsított: GameManager Class Reference</title>
+<title>Mosze-2024-Szén-Dioxiddal Dúsított: GameManager Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -27,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Mosze 2024 Szén-dioxiddal dúsított<span id="projectnumber">&#160;0.6.0</span>
+   <div id="projectname">Mosze-2024-Szén-Dioxiddal Dúsított<span id="projectnumber">&#160;0.7</span>
    </div>
   </td>
  </tr>
@@ -51,29 +49,17 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',true);
+  initMenu('',true,false,'search.php','Search',false);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('class_game_manager.html',''); initResizable(true); });
+$(function(){ initResizable(false); });
 /* @license-end */
 </script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -95,6 +81,8 @@ $(function(){initNavTree('class_game_manager.html',''); initResizable(true); });
 </div>
 </div>
 
+</div><!-- top -->
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -104,58 +92,53 @@ $(function(){initNavTree('class_game_manager.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>This class is responsible for controlling and managing activities in the game such as: updating UI elements, handling killing enemies.  
+<p>This class is responsible for controlling and managing activities in the game such as: updating <a class="el" href="class_u_i.html">UI</a> elements, handling killing enemies.  
  <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ade01489a58edb9434d6eb5c2b752faba" id="r_ade01489a58edb9434d6eb5c2b752faba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade01489a58edb9434d6eb5c2b752faba">OnPlayerKilled</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:ade01489a58edb9434d6eb5c2b752faba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the player is killed. Decreases health and handles game over if necessary.  <br /></td></tr>
-<tr class="separator:ade01489a58edb9434d6eb5c2b752faba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2959177ee51ac31badbf8b1bc8f7f637" id="r_a2959177ee51ac31badbf8b1bc8f7f637"><td class="memItemLeft" align="right" valign="top"><a id="a2959177ee51ac31badbf8b1bc8f7f637" name="a2959177ee51ac31badbf8b1bc8f7f637"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Awake</b> ()</td></tr>
+<tr class="memdesc:a2959177ee51ac31badbf8b1bc8f7f637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game such as: updating UI el...">GameManager</a> as a singleton and ensures only one instance exists. <br /></td></tr>
+<tr class="separator:a2959177ee51ac31badbf8b1bc8f7f637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ffd8e056277e2bf5f53cc774b3f7f57" id="r_a2ffd8e056277e2bf5f53cc774b3f7f57"><td class="memItemLeft" align="right" valign="top"><a id="a2ffd8e056277e2bf5f53cc774b3f7f57" name="a2ffd8e056277e2bf5f53cc774b3f7f57"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerKilled</b> ()</td></tr>
+<tr class="memdesc:a2ffd8e056277e2bf5f53cc774b3f7f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the player is killed. Decreases health and handles game over if necessary. <br /></td></tr>
+<tr class="separator:a2ffd8e056277e2bf5f53cc774b3f7f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00e5f7bb0cb8420245d067cb18df8ef9" id="r_a00e5f7bb0cb8420245d067cb18df8ef9"><td class="memItemLeft" align="right" valign="top"><a id="a00e5f7bb0cb8420245d067cb18df8ef9" name="a00e5f7bb0cb8420245d067cb18df8ef9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>healPlayer</b> ()</td></tr>
+<tr class="memdesc:a00e5f7bb0cb8420245d067cb18df8ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when player picked up a repair kit. It heals the player. <br /></td></tr>
+<tr class="separator:a00e5f7bb0cb8420245d067cb18df8ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaee49b6fcc10a5585a89c02a4f0ff5c3" id="r_aaee49b6fcc10a5585a89c02a4f0ff5c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaee49b6fcc10a5585a89c02a4f0ff5c3">upgradeWeapons</a> ()</td></tr>
+<tr class="memdesc:aaee49b6fcc10a5585a89c02a4f0ff5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when player picked up a weapon upgrade kit.  <br /></td></tr>
+<tr class="separator:aaee49b6fcc10a5585a89c02a4f0ff5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada207438f3bb567d248454420e85522e" id="r_ada207438f3bb567d248454420e85522e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada207438f3bb567d248454420e85522e">OnInvaderKilled</a> (<a class="el" href="class_invader.html">Invader</a> invader)</td></tr>
 <tr class="memdesc:ada207438f3bb567d248454420e85522e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when an invader is killed. Increases the score and handles the invader's destruction.  <br /></td></tr>
 <tr class="separator:ada207438f3bb567d248454420e85522e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaa61e880744c844bdb0b57c56b684cc" id="r_abaa61e880744c844bdb0b57c56b684cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abaa61e880744c844bdb0b57c56b684cc">OnBossShipKilled</a> (<a class="el" href="class_main_boss.html">MainBoss</a> mainboss)</td></tr>
-<tr class="memdesc:abaa61e880744c844bdb0b57c56b684cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a boss ship is killed. Increases the player's score based on the boss ship's score.  <br /></td></tr>
-<tr class="separator:abaa61e880744c844bdb0b57c56b684cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a699cbe7377ac221658fb390fb87888a1" id="r_a699cbe7377ac221658fb390fb87888a1"><td class="memItemLeft" align="right" valign="top"><a id="a699cbe7377ac221658fb390fb87888a1" name="a699cbe7377ac221658fb390fb87888a1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EndOfMission</b> ()</td></tr>
+<tr class="separator:a699cbe7377ac221658fb390fb87888a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a218873d2e9ad871b76d7d37c8ede381e" id="r_a218873d2e9ad871b76d7d37c8ede381e"><td class="memItemLeft" align="right" valign="top"><a id="a218873d2e9ad871b76d7d37c8ede381e" name="a218873d2e9ad871b76d7d37c8ede381e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exitMission</b> ()</td></tr>
+<tr class="separator:a218873d2e9ad871b76d7d37c8ede381e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a48d304c503a645d6239263ba6d38bc" id="r_a0a48d304c503a645d6239263ba6d38bc"><td class="memItemLeft" align="right" valign="top"><a id="a0a48d304c503a645d6239263ba6d38bc" name="a0a48d304c503a645d6239263ba6d38bc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>nextMission</b> ()</td></tr>
+<tr class="separator:a0a48d304c503a645d6239263ba6d38bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ad3e717f4fb0f378b969f4457de81f23e" id="r_ad3e717f4fb0f378b969f4457de81f23e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_game_manager.html">GameManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3e717f4fb0f378b969f4457de81f23e">Instance</a><code> [get]</code></td></tr>
-<tr class="memdesc:ad3e717f4fb0f378b969f4457de81f23e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton instance of the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game such as: updating UI el...">GameManager</a>.  <br /></td></tr>
+<tr class="memitem:ad3e717f4fb0f378b969f4457de81f23e" id="r_ad3e717f4fb0f378b969f4457de81f23e"><td class="memItemLeft" align="right" valign="top"><a id="ad3e717f4fb0f378b969f4457de81f23e" name="ad3e717f4fb0f378b969f4457de81f23e"></a>
+static <a class="el" href="class_game_manager.html">GameManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b><code> [get]</code></td></tr>
+<tr class="memdesc:ad3e717f4fb0f378b969f4457de81f23e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton instance of the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game such as: updating UI el...">GameManager</a>. <br /></td></tr>
 <tr class="separator:ad3e717f4fb0f378b969f4457de81f23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9711122c3e5251d8f9ff4e02283af09" id="r_ae9711122c3e5251d8f9ff4e02283af09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9711122c3e5251d8f9ff4e02283af09">score</a> = 0<code> [get]</code></td></tr>
-<tr class="memdesc:ae9711122c3e5251d8f9ff4e02283af09"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current score of the player.  <br /></td></tr>
+<tr class="memitem:ae9711122c3e5251d8f9ff4e02283af09" id="r_ae9711122c3e5251d8f9ff4e02283af09"><td class="memItemLeft" align="right" valign="top"><a id="ae9711122c3e5251d8f9ff4e02283af09" name="ae9711122c3e5251d8f9ff4e02283af09"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> = 0<code> [get]</code></td></tr>
+<tr class="memdesc:ae9711122c3e5251d8f9ff4e02283af09"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current score of the player. <br /></td></tr>
 <tr class="separator:ae9711122c3e5251d8f9ff4e02283af09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class is responsible for controlling and managing activities in the game such as: updating UI elements, handling killing enemies. </p>
+<div class="textblock"><p>This class is responsible for controlling and managing activities in the game such as: updating <a class="el" href="class_u_i.html">UI</a> elements, handling killing enemies. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="abaa61e880744c844bdb0b57c56b684cc" name="abaa61e880744c844bdb0b57c56b684cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abaa61e880744c844bdb0b57c56b684cc">&#9670;&#160;</a></span>OnBossShipKilled()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GameManager.OnBossShipKilled </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_main_boss.html">MainBoss</a></td>          <td class="paramname"><span class="paramname"><em>mainboss</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Called when a boss ship is killed. Increases the player's score based on the boss ship's score. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mainboss</td><td>The main boss ship that was killed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ada207438f3bb567d248454420e85522e" name="ada207438f3bb567d248454420e85522e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada207438f3bb567d248454420e85522e">&#9670;&#160;</a></span>OnInvaderKilled()</h2>
 
@@ -181,91 +164,34 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="ade01489a58edb9434d6eb5c2b752faba" name="ade01489a58edb9434d6eb5c2b752faba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade01489a58edb9434d6eb5c2b752faba">&#9670;&#160;</a></span>OnPlayerKilled()</h2>
+<a id="aaee49b6fcc10a5585a89c02a4f0ff5c3" name="aaee49b6fcc10a5585a89c02a4f0ff5c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaee49b6fcc10a5585a89c02a4f0ff5c3">&#9670;&#160;</a></span>upgradeWeapons()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GameManager.OnPlayerKilled </td>
+          <td class="memname">void GameManager.upgradeWeapons </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Called when the player is killed. Decreases health and handles game over if necessary. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">player</td><td>The player object that was killed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Property Documentation</h2>
-<a id="ad3e717f4fb0f378b969f4457de81f23e" name="ad3e717f4fb0f378b969f4457de81f23e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3e717f4fb0f378b969f4457de81f23e">&#9670;&#160;</a></span>Instance</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_game_manager.html">GameManager</a> GameManager.Instance</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Singleton instance of the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game such as: updating UI el...">GameManager</a>. </p>
-
-</div>
-</div>
-<a id="ae9711122c3e5251d8f9ff4e02283af09" name="ae9711122c3e5251d8f9ff4e02283af09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9711122c3e5251d8f9ff4e02283af09">&#9670;&#160;</a></span>score</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int GameManager.score = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The current score of the player. </p>
+<p>Called when player picked up a weapon upgrade kit. </p>
+<p>It switches the players gun template to the next. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Assets/Scripts/<a class="el" href="_game_manager_8cs.html">GameManager.cs</a></li>
+<li>Assets/Scripts/<b>GameManager.cs</b></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_game_manager.html">GameManager</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
 </body>
 </html>
