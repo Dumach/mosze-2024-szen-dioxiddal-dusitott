@@ -148,6 +148,14 @@ public class GameManager : MonoBehaviour
         {
             invader.gameObject.SetActive(false);
         }
+        foreach (var boss in GameObject.FindGameObjectsWithTag("Boss"))
+        {
+            boss.gameObject.SetActive(false);
+        }
+        foreach (var spawnp in GameObject.FindGameObjectsWithTag("SpawnPoints"))
+        {
+            spawnp.gameObject.SetActive(false);
+        }
         CancelInvoke("SpawnRepairKit");
         player.gameObject.SetActive(false);
         infoUI.SetActive(false);
@@ -178,7 +186,6 @@ public class GameManager : MonoBehaviour
             NewRecord();
             //UI.startFlashing(highScoreText, 3, "#0A940F", "#C57C04");
         }
-        //if(scoreText != null)
         scoreIndicator.text = score.ToString().PadLeft(4, '0');
     }
 
@@ -315,18 +322,23 @@ public class GameManager : MonoBehaviour
     {
         StopGame();
 
-        int SceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (SceneIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        PlayerPrefs.SetInt("Mission" + sceneIndex, score);
+
+        if (sceneIndex + 1 >= SceneManager.sceneCountInBuildSettings)
         {
             // Ha utolso mission volt
             GameObject.Find("NextButton").SetActive(false);
             GameObject.Find("levelText").GetComponent<Text>().text = "You win the game!";
-            int totalScore = PlayerPrefs.GetInt("TotalScore");
-            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + (totalScore + score);
+            int totalScore = 0;
+            for(int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+            {
+                totalScore += PlayerPrefs.GetInt("Mission" + i);
+            }
+            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + totalScore;
         }
         else
         {
-            GameObject.Find("levelText").GetComponent<Text>().text = "Level " + SceneIndex + " completed!";
+            GameObject.Find("levelText").GetComponent<Text>().text = "Level " + sceneIndex + " completed!";
             GameObject.Find("scoresText").GetComponent<Text>().text = "Scores: " + score;
         }
     }
@@ -338,17 +350,12 @@ public class GameManager : MonoBehaviour
 
     public void NextMission()
     {
-        int SceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (SceneIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        int tmp = SceneManager.GetActiveScene().buildIndex;
+        if (tmp + 1 < SceneManager.sceneCountInBuildSettings)
         {
             // Van még mission hátra
-            SceneIndex++;
-            SceneManager.LoadScene(SceneIndex);
-            int totalScore = 0;
-            if (PlayerPrefs.HasKey("TotalScore"))
-                totalScore = PlayerPrefs.GetInt("TotalScore");
-
-            PlayerPrefs.SetInt("TotalScore", totalScore + score);
+            tmp += 1;
+            SceneManager.LoadScene(tmp);
         }
     }
 }

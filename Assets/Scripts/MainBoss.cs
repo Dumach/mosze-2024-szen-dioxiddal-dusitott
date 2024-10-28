@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class MainBoss : MonoBehaviour
 {
     [Header("Boss stats")]
-    public float speed = 2f;               // Speed of movement across the screen
-    public float cycleTime = 10f;          // Interval between direction changes
+    public float speed = 4f;               // Speed of movement across the screen
+    public float cycleTime = 5f;          // Interval between direction changes
     public float startSpawningTime = 5f;   // Countdown before initial entry from top
 
     [SerializeField] private Text BossWarning;
@@ -17,12 +17,15 @@ public class MainBoss : MonoBehaviour
     private bool movingRight = true;       // Direction control
 
     private Invader invaderComponent;
+    private int healthStart;
 
     private void Start()
     {
         invaderComponent = gameObject.GetComponent<Invader>();
         invaderComponent.autoAim = false;
         invaderComponent.autoShoot = false;
+        invaderComponent.GetComponent<BoxCollider2D>().enabled = false;
+        //healthStart = invaderComponent.health;
 
         // Convert viewport edges to world coordinates to set destination points
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
@@ -59,6 +62,8 @@ public class MainBoss : MonoBehaviour
         }
 
         BossWarning.gameObject.SetActive(false);
+        //invaderComponent.health = healthStart;
+        invaderComponent.GetComponent<BoxCollider2D>().enabled = true;
 
         // Start alternating movement once in the center
         StartCoroutine(AlternateMovement());
