@@ -66,16 +66,16 @@ public class GameManagerEditorTest
             .SetValue(gameManager, player);
 
 
-        gameManager.upgradeWeapons();
+        gameManager.UpgradeWeapons();
         Assert.AreEqual(0, player.currentTemplate);
         
-        gameManager.upgradeWeapons();
-        gameManager.upgradeWeapons();
+        gameManager.UpgradeWeapons();
+        gameManager.UpgradeWeapons();
 
         Assert.AreEqual(2, player.currentTemplate);
 
         // Túltöltés tesztelése
-        gameManager.upgradeWeapons();
+        gameManager.UpgradeWeapons();
         Assert.AreEqual(2 ,player.currentTemplate);
 
     }

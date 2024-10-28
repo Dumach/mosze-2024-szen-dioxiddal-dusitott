@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['beunkillable_0',['beUnkillable',['../class_player.html#a6a6b6202a626d138ce68245f97fb6b3b',1,'Player']]]
+  ['awake_0',['Awake',['../class_game_manager.html#a2959177ee51ac31badbf8b1bc8f7f637',1,'GameManager']]]
 ];

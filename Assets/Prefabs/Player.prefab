@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  health: 5
+  health: 3
   currentTemplate: -1
   upgradeTemplates:
   - {fileID: 1953220885207301762, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}

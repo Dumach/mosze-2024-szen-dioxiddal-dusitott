@@ -16,7 +16,7 @@ public class Upgrade : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            GameManager.Instance.upgradeWeapons();
+            GameManager.Instance.UpgradeWeapons();
             Destroy(this.gameObject);
         }
         // If bottom boundry reached, destroy item

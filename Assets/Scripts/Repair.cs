@@ -16,7 +16,7 @@ public class Repair : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            GameManager.Instance.healPlayer();
+            GameManager.Instance.HealPlayer();
             Destroy(this.gameObject);
 
         }

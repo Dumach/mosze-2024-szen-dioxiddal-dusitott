@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['setdirection_0',['SetDirection',['../class_projectile.html#a3399f08b3d73e0a1600ce833f05bd57f',1,'Projectile']]],
-  ['setspeed_1',['setSpeed',['../class_projectile.html#aa74f62397026fc64bcf4d2d4a60afa5f',1,'Projectile']]],
-  ['shoot_2',['Shoot',['../class_gun.html#a30f01fb48b3e4804dae05ffafd244a87',1,'Gun']]]
+  ['oninvaderkilled_0',['OnInvaderKilled',['../class_game_manager.html#ada207438f3bb567d248454420e85522e',1,'GameManager']]],
+  ['onplayerkilled_1',['OnPlayerKilled',['../class_game_manager.html#a2ffd8e056277e2bf5f53cc774b3f7f57',1,'GameManager']]]
 ];

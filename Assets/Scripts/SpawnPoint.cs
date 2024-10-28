@@ -83,6 +83,7 @@ public class SpawnPoint : MonoBehaviour
     {
         // Instantiate a new invader at the current position
         Invader invader = Instantiate(invaderPrefab, transform.position, Quaternion.identity);
+        //invader.tag = "Invader";
         invader.autoAim = autoAim;
         invader.autoShoot = autoShoot;
         invader.autoRotate = autoRotate;

@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
         currentPos = transform.position;
         ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        GameManager.Instance.upgradeWeapons();
+        GameManager.Instance.UpgradeWeapons();
     }
 
     /// \brief Makes the player temporarily invincible for a specified duration.

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['cycletime_0',['cycleTime',['../class_main_boss.html#ae09939fd46f42b477033082e009b7eb6',1,'MainBoss']]]
+  ['changescene_0',['ChangeScene',['../class_change_scene.html',1,'']]],
+  ['currenttemplate_1',['currentTemplate',['../class_player.html#a169aea2476eed18944344fb84be1c8fa',1,'Player']]]
 ];

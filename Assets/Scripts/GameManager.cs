@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     /// \brief The current score of the player.
     public int score { get; private set; } = 0;
     private int highScore = 0;
+    private int sceneIndex;
 
     /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
     public void Awake()
@@ -73,12 +74,14 @@ public class GameManager : MonoBehaviour
     /// \brief Finds the Player object at the start of the game.
     private void Start()
     {
+
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
         player = FindObjectOfType<Player>();
         maxHealth = player.health;
         livesText.text = maxHealth.ToString();
-        if (PlayerPrefs.HasKey("HighScore"))
+        if (PlayerPrefs.HasKey("HighScore" + sceneIndex))
         {
-            highScore = PlayerPrefs.GetInt("HighScore");
+            highScore = PlayerPrefs.GetInt("HighScore" + sceneIndex);
             highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
         }
 
@@ -93,7 +96,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // Restart the scene if the player has no health or if the Enter key is pressed
-        if (player.health <= 0 || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             GameOver();
         }
@@ -101,7 +104,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             score = 0;
-            PlayerPrefs.SetInt("HighScore", 0);
+            PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
         }
     }
@@ -130,15 +133,36 @@ public class GameManager : MonoBehaviour
     }
 
     /// \brief Restarts the current active scene.
-    private void RestartScene()
+    public void RestartMission()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void StopGame()
+    {
+        foreach (var backg in GameObject.FindGameObjectsWithTag("Background"))
+        {
+            backg.gameObject.GetComponent<BackgroundScroll>().beginScroll = false;
+        }
+        foreach (var invader in GameObject.FindGameObjectsWithTag("Invader"))
+        {
+            invader.gameObject.SetActive(false);
+        }
+        CancelInvoke("SpawnRepairKit");
+        player.gameObject.SetActive(false);
+        infoUI.SetActive(false);
+        endUI.SetActive(true);
     }
 
     /// \brief Triggers the game over state and restarts the scene.
     private void GameOver()
     {
-        RestartScene();
+        StopGame();
+
+        GameObject.Find("levelText").GetComponent<Text>().text = "Level " + sceneIndex + " failed!";
+        GameObject.Find("scoresText").GetComponent<Text>().text = "Scores: " + score;
+        GameObject.Find("NextButton").SetActive(false);
+        //RestartMission();
     }
 
     /// \brief Sets the player's score and updates the score UI.
@@ -149,7 +173,7 @@ public class GameManager : MonoBehaviour
         if (score > highScore)
         {
             highScore = score;
-            PlayerPrefs.SetInt("HighScore", highScore);
+            PlayerPrefs.SetInt("HighScore" + sceneIndex, highScore);
             highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
             NewRecord();
             //UI.startFlashing(highScoreText, 3, "#0A940F", "#C57C04");
@@ -206,13 +230,12 @@ public class GameManager : MonoBehaviour
         else
         {
             // If the player has no health, trigger game over
-            player.gameObject.SetActive(false);
             GameOver();
         }
     }
 
     /// \brief Called when player picked up a repair kit. It heals the player.
-    public void healPlayer()
+    public void HealPlayer()
     {
         // Increase player's health and update the lives UI
         if (player.health < maxHealth)
@@ -224,7 +247,7 @@ public class GameManager : MonoBehaviour
 
     /// \brief Called when player picked up a weapon upgrade kit.
     /// \brief It switches the players gun template to the next.
-    public void upgradeWeapons()
+    public void UpgradeWeapons()
     {
         int currentWpnIndex = player.currentTemplate;
 
@@ -290,11 +313,7 @@ public class GameManager : MonoBehaviour
 
     public void EndOfMission()
     {
-        GameObject.Find("Background").SetActive(false);
-        CancelInvoke("SpawnRepairKit");
-        player.gameObject.SetActive(false);
-        infoUI.SetActive(false);
-        endUI.SetActive(true);
+        StopGame();
 
         int SceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (SceneIndex + 1 >= SceneManager.sceneCountInBuildSettings)
@@ -303,7 +322,7 @@ public class GameManager : MonoBehaviour
             GameObject.Find("NextButton").SetActive(false);
             GameObject.Find("levelText").GetComponent<Text>().text = "You win the game!";
             int totalScore = PlayerPrefs.GetInt("TotalScore");
-            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + totalScore;
+            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + (totalScore + score);
         }
         else
         {
@@ -312,12 +331,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void exitMission()
+    public void ExitMission()
     {
         SceneManager.LoadScene(0);
     }
 
-    public void nextMission()
+    public void NextMission()
     {
         int SceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (SceneIndex + 1 < SceneManager.sceneCountInBuildSettings)
