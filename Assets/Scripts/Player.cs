@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Codice.CM.Common.Merge;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -42,6 +43,14 @@ public class Player : MonoBehaviour
     /// \brief Timer to control the cooldown of the player's shield ability.
     private float shieldTimer = 0f;
 
+    /// \brief Shield prefab reference
+    public GameObject shieldBubblePrefab;
+
+    /// <summary>
+    ///  GameObject to store shield bubble instance
+    /// </summary>
+    private GameObject activeShieldBubble;
+
     /// \brief Updates the player's position, shooting behavior, and shield activation every frame.
     private void Update()
     {
@@ -71,7 +80,9 @@ public class Player : MonoBehaviour
             shieldDuration = 2f; 
             
             /// \brief Shield can be used again after 30 seconds.
-            shieldTimer = 30f; 
+            shieldTimer = 30f;
+
+            ActivateShieldBubble();
         }
         else
         {
@@ -87,6 +98,7 @@ public class Player : MonoBehaviour
         else
         {
             spriteRenderer.color = normalColor;
+            DectivateShieldBubble();
         }
 
         // Clamp the position of the player within the screen bounds
@@ -145,6 +157,25 @@ public class Player : MonoBehaviour
             other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
             GameManager.Instance.OnPlayerKilled();
+        }
+    }
+
+    private void ActivateShieldBubble()
+    {
+        if (activeShieldBubble == null)
+        {
+            activeShieldBubble = Instantiate(shieldBubblePrefab, transform.position, Quaternion.identity);
+            activeShieldBubble.transform.SetParent(transform);
+            activeShieldBubble.transform.localPosition = Vector3.zero;
+        }
+    }
+    
+    private void DectivateShieldBubble()
+    {
+        if (activeShieldBubble != null)
+        {
+            Destroy(activeShieldBubble);
+            activeShieldBubble = null;
         }
     }
 }
