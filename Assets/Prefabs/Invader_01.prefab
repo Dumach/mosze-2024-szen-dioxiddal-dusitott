@@ -17,6 +17,10 @@ PrefabInstance:
       value: 2.125
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551478, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788622360293551478, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 1
       objectReference: {fileID: 0}
@@ -34,11 +38,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551480, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.72995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551480, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4696476
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1788622360293551480, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -101,8 +105,16 @@ PrefabInstance:
       value: -0.499
       objectReference: {fileID: 0}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: missileSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
+    - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: timeBetweenShoots
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7504607567036450824, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_Name

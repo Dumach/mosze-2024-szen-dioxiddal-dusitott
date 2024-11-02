@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: guns.Array.data[1]
       value: 
       objectReference: {fileID: 4891217191459414049}
+    - target: {fileID: 1981194944997289610, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
+      propertyPath: missileSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3823670010453880791, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
       propertyPath: m_Name
       value: Basic_Laser_Middle_L
@@ -146,9 +150,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: missileSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: timeBetweenShoots
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
       value: Basic_Laser_Middle_R

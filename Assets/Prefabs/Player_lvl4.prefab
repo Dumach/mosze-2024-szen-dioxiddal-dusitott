@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: guns.Array.data[3]
       value: 
       objectReference: {fileID: 8061716487110337817}
+    - target: {fileID: 2233217220603611506, guid: 9140069168171234a85ec77b313903fd, type: 3}
+      propertyPath: missileSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2267716923959685657, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.425
@@ -127,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 4784071450374429514, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891217191459414049, guid: 9140069168171234a85ec77b313903fd, type: 3}
+      propertyPath: missileSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7238851104041066027, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: m_Name
@@ -223,9 +231,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: missileSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: timeBetweenShoots
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
       value: Basic_Laser_Middle_L
@@ -304,9 +320,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: missileSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: timeBetweenShoots
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
       value: Basic_Laser_Middle_R

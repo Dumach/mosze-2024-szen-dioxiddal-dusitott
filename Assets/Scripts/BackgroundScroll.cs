@@ -41,9 +41,9 @@ public class BackgroundScroll : MonoBehaviour
 
         // Check if the background has moved past its height and reset its position.
         // Math: background height = 62.5, offset = 16, reset position when y < offset - height (16 - 62.5 = -46.5).
-        if (transform.position.y < offset - height)
+        /*if (transform.position.y < offset - height)
         {
             transform.position = startPosition;
-        }
+        }*/
     }
 }
