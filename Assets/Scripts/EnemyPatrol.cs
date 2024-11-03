@@ -71,7 +71,7 @@ public class EnemyPatrol : MonoBehaviour
             invader.autoAim = true;
 
             // Start countdown before moving to the next patrol point.
-            if (timer <= 0.25f)
+            if (timer <= 0.4f)
             {
                 timer = waitTime;
 

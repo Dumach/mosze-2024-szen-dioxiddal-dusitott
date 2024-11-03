@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private UI UI;
 
     /// \brief Mission time in seconds.
-    [SerializeField] private float missionTime;
+    public float missionTime;
 
     [SerializeField] private Upgrade upgradePrefab;
     [SerializeField] private int upgradeDropRate;
@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
     /// \brief Finds the Player object at the start of the game.
     private void Start()
     {
-
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         player = FindObjectOfType<Player>();
         maxHealth = player.health;
@@ -103,7 +102,7 @@ public class GameManager : MonoBehaviour
         // Reset highScore
         if (Input.GetKeyDown(KeyCode.R))
         {
-            score = 0;
+            //score = 0;
             PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
         }
@@ -113,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(missionTime);
 
-        EndOfMission();
+        if(!this.hasEndBoss) EndOfMission();
     }
 
     /// \brief Spawns a repair kit from the upper edge of screen
@@ -121,13 +120,13 @@ public class GameManager : MonoBehaviour
     {
         // Random chance to spawn
         int spawnRepairkit = Random.Range(0, repairkitDropRate);
-        if (spawnRepairkit == 1)
+        if (spawnRepairkit == 1 && GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
         {
             Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
             Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
             Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
             // Random location to spawn
-            Vector3 where = new Vector3(Random.Range(leftEdge.x + 1, rightEdge.x), upperEdge.y);
+            Vector3 where = new Vector3(Random.Range(leftEdge.x + 2, rightEdge.x - 2), upperEdge.y);
             Instantiate(repairkitPrefab, where, Quaternion.identity);
         }
     }
@@ -298,7 +297,7 @@ public class GameManager : MonoBehaviour
         {
             // Upon invader die, there is a chance of dropping an upgraded weapon
             int spawnUpgrade = Random.Range(0, upgradeDropRate);
-            if (spawnUpgrade == 1)
+            if (spawnUpgrade == 1 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)
             {
                 Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
             }

@@ -57,8 +57,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: f71a1796fdbee8e49b6f314e661ba7e1, type: 3}
     - target: {fileID: 3361035722231216668, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
+      propertyPath: missileSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361035722231216668, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8087897171543711280, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_Sprite
@@ -74,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087897171543711281, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087897171543711281, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.63
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087897171543711281, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_LocalPosition.z
@@ -127,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 8087897171543711295, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_Size.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087897171543711295, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8087897171543711295, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x

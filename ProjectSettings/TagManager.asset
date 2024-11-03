@@ -8,6 +8,8 @@ TagManager:
   - Boss
   - Background
   - Invader
+  - RepairKit
+  - Upgrade
   layers:
   - Default
   - TransparentFX

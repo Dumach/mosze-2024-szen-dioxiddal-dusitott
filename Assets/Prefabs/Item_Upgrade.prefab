@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_Upgrade
       objectReference: {fileID: 0}
+    - target: {fileID: 6587722198814432605, guid: bbe5b6d12d9464e40af1c8a22ec1ed6d, type: 3}
+      propertyPath: m_TagString
+      value: Upgrade
+      objectReference: {fileID: 0}
     - target: {fileID: 8351353046502668062, guid: bbe5b6d12d9464e40af1c8a22ec1ed6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.75304
