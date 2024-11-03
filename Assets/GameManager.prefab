@@ -53,8 +53,8 @@ MonoBehaviour:
   pauseUI: {fileID: 0}
   endUI: {fileID: 0}
   hasEndBoss: 0
-  missionTime: 50
+  missionTime: 150
   upgradePrefab: {fileID: 2193623743651769516, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
-  upgradeDropRate: 120
+  upgradeDropRate: 30
   repairkitPrefab: {fileID: 9196887192766727644, guid: ab0f7198e9b06324480aa132e2d9274f, type: 3}
-  repairkitDropRate: 120
+  repairkitDropRate: 60

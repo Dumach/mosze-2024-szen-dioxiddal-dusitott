@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         // Reset highScore
         if (Input.GetKeyDown(KeyCode.R))
         {
-            score = 0;
+            //score = 0;
             PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
         }
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(missionTime);
 
-        EndOfMission();
+        if(!this.hasEndBoss) EndOfMission();
     }
 
     /// \brief Spawns a repair kit from the upper edge of screen
@@ -139,10 +139,10 @@ public class GameManager : MonoBehaviour
 
     private void StopGame()
     {
-        /*foreach (var backg in GameObject.FindGameObjectsWithTag("Background"))
+        foreach (var backg in GameObject.FindGameObjectsWithTag("Background"))
         {
             backg.gameObject.GetComponent<BackgroundScroll>().beginScroll = false;
-        }*/
+        }
         foreach (var invader in GameObject.FindGameObjectsWithTag("Invader"))
         {
             invader.gameObject.SetActive(false);

@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 470971258984526277}
   m_Layer: 0
   m_Name: Nebula
-  m_TagString: Background
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 7180389668459432801}
   m_Layer: 0
   m_Name: Small_Stars
-  m_TagString: Background
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 8987679892358280359}
   m_Layer: 0
   m_Name: Big_Stars
-  m_TagString: Background
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
