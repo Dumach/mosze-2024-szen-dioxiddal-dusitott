@@ -232,6 +232,7 @@ public class GameManager : MonoBehaviour
         {
             // Make player temporarily unkillable
             player.beUnkillable(1.0f);
+            player.ActivateShieldBubble();
         }
         else
         {

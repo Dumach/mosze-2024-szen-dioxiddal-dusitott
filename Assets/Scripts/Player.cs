@@ -46,9 +46,7 @@ public class Player : MonoBehaviour
     /// \brief Shield prefab reference
     public GameObject shieldBubblePrefab;
 
-    /// <summary>
-    ///  GameObject to store shield bubble instance
-    /// </summary>
+    /// \brief GameObject to store shield bubble instance
     private GameObject activeShieldBubble;
 
     /// \brief Updates the player's position, shooting behavior, and shield activation every frame.
@@ -160,7 +158,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ActivateShieldBubble()
+    public void ActivateShieldBubble()
     {
         if (activeShieldBubble == null)
         {
@@ -170,7 +168,7 @@ public class Player : MonoBehaviour
         }
     }
     
-    private void DectivateShieldBubble()
+    public void DectivateShieldBubble()
     {
         if (activeShieldBubble != null)
         {
