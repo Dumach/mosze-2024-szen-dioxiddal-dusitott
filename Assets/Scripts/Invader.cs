@@ -44,6 +44,9 @@ public class Invader : MonoBehaviour
     /// \brief Whether the invader will automatically aim at the player.
     public bool autoAim;
 
+    /// \brief Whether the invader's shooting is enabled or disabled.
+    public bool shootingEnabled = true;
+
     /// \brief List of Gun components attached to the invader for shooting.
     [Header("Guns")]
     public List<Gun> guns = new List<Gun>();
@@ -100,6 +103,11 @@ public class Invader : MonoBehaviour
     private void ShootTo(Transform target)
     {
         // Shooting lasers generate heat aka. slows down the firing rate
+        if (!shootingEnabled) 
+        {
+            return; 
+        }
+
         foreach (Gun gun in guns)
         {
             if (autoAim)

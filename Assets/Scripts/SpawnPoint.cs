@@ -27,6 +27,9 @@ public class SpawnPoint : MonoBehaviour
     /// \brief Whether the spawned invaders will automatically aim.
     public bool autoAim;
 
+    /// \brief To enable or disable enemy shooting.
+    public bool shootingEnabled = true;
+
     /// \brief Array of points where the invaders will patrol.
     [Header("Locations")]
     public Vector3[] moveSpots;
@@ -84,9 +87,9 @@ public class SpawnPoint : MonoBehaviour
     {
         // Instantiate a new invader at the current position
         Invader invader = Instantiate(invaderPrefab, transform.position, Quaternion.identity);
-        //invader.tag = "Invader";
         invader.autoAim = autoAim;
         invader.autoShoot = autoShoot;
+        invader.shootingEnabled = shootingEnabled;
         invader.autoRotate = autoRotate;
 
         // Set the patrol points and movement speed for the invader
