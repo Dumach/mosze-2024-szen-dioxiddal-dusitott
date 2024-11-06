@@ -260,6 +260,8 @@ public class GameManager : MonoBehaviour
 
         if (currentWpnIndex < player.upgradeTemplates.Count - 1)
         {
+            // Increase speed
+            player.speed += 1;
             currentWpnIndex++;
             // Deactivate old weapons
             foreach (var gun in player.guns)

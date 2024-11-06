@@ -49,6 +49,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1953220885207301762, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953220885207301762, guid: 197b9b893847a6544a914ca9c3424d97, type: 3}
       propertyPath: guns.Array.size
       value: 2
       objectReference: {fileID: 0}
