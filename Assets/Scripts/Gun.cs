@@ -19,6 +19,9 @@ public class Gun : MonoBehaviour
 
     public int layerIndex;
 
+    public AudioClip pewPewSFX;
+    private AudioSource audioSource;
+
     /// \brief Reference to the instantiated projectile.
     private Projectile projectile;
 
@@ -31,6 +34,13 @@ public class Gun : MonoBehaviour
         {
             gunHeat += timeBetweenShoots;
             projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+
+            // Play laser sound
+            if (pewPewSFX != null)
+            {
+                audioSource.PlayOneShot(pewPewSFX);
+            }
+
             projectile.setSpeed(missileSpeed);
             projectile.SetDirection(target);
             projectile.gameObject.layer = layerIndex;
@@ -44,5 +54,20 @@ public class Gun : MonoBehaviour
         {
             gunHeat -= Time.deltaTime;
         }
+    }
+
+    private void InitializeAudioSource()
+    {
+        // Get or add an AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
+    private void Start()
+    {
+        InitializeAudioSource();
     }
 }

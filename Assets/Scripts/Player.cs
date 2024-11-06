@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Codice.CM.Common.Merge;
+using System;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour
 
     /// \brief GameObject to store shield bubble instance
     private GameObject activeShieldBubble;
+
+    private AudioSource audioSource;
 
     /// \brief Updates the player's position, shooting behavior, and shield activation every frame.
     private void Update()
@@ -117,6 +120,10 @@ public class Player : MonoBehaviour
             {
                 gun.Shoot();
             }
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
     }
 
@@ -132,6 +139,7 @@ public class Player : MonoBehaviour
         ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
         GameManager.Instance.UpgradeWeapons();
+        audioSource = GetComponent<AudioSource>();
     }
 
     /// \brief Makes the player temporarily invincible for a specified duration.

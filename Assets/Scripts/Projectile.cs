@@ -19,6 +19,8 @@ public class Projectile : MonoBehaviour
     /// \brief Reference to the BoxCollider2D component for collision detection.
     private BoxCollider2D boxCollider;
 
+    
+
     /// \brief Called once when the projectile is instantiated. Initializes components and sets velocity.
     private void Start()
     {

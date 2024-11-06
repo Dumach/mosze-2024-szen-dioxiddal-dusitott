@@ -48,3 +48,4 @@ MonoBehaviour:
   timeBetweenShoots: 1.5
   missileSpeed: 6
   layerIndex: 0
+  pewPewSFX: {fileID: 8300000, guid: d0d95a8aa10197a4780945de53d26456, type: 3}
