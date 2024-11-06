@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     /// \brief Mission time in seconds.
     public float missionTime;
 
+    [SerializeField] private Image progressBarFill;
+    private float elapsedTime = 0f;
+
     [SerializeField] private Upgrade upgradePrefab;
     [SerializeField] private int upgradeDropRate;
     [SerializeField] private Repair repairkitPrefab;
@@ -106,9 +109,25 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
         }
+        UpdateProgressBar();
     }
 
-    private IEnumerator MissionTimeCountdown()
+    private void UpdateProgressBar()
+    {
+        if (progressBarFill == null) return;
+
+        elapsedTime += Time.deltaTime;
+        float progress = Mathf.Clamp01(elapsedTime / missionTime);
+
+        progressBarFill.fillAmount = progress;
+
+        if (elapsedTime >= missionTime && !hasEndBoss)
+        {
+            EndOfMission();
+        }
+    }
+
+        private IEnumerator MissionTimeCountdown()
     {
         yield return new WaitForSeconds(missionTime);
 

@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4e6a370dc283c42b959c585aea0e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 8
   health: 3
   currentTemplate: -1
   upgradeTemplates:
