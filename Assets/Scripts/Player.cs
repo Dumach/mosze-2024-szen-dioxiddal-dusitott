@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Codice.CM.Common.Merge;
-using System;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
