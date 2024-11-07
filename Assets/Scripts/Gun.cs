@@ -20,6 +20,7 @@ public class Gun : MonoBehaviour
     public int layerIndex;
 
     public AudioClip pewPewSFX;
+    public float pewpewVolume;
     private AudioSource audioSource;
 
     /// \brief Reference to the instantiated projectile.
@@ -38,7 +39,7 @@ public class Gun : MonoBehaviour
             // Play laser sound
             if (pewPewSFX != null)
             {
-                audioSource.PlayOneShot(pewPewSFX);
+                audioSource.PlayOneShot(pewPewSFX, pewpewVolume);
             }
 
             projectile.setSpeed(missileSpeed);
@@ -69,5 +70,6 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         InitializeAudioSource();
+        if(pewpewVolume == 0) pewpewVolume = 1;
     }
 }

@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: missileSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2233217220603611506, guid: 9140069168171234a85ec77b313903fd, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2267716923959685657, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.425
@@ -135,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 4891217191459414049, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: missileSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891217191459414049, guid: 9140069168171234a85ec77b313903fd, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7238851104041066027, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: m_Name
@@ -230,6 +238,10 @@ PrefabInstance:
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: missileSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab

@@ -299,6 +299,8 @@ public class GameManager : MonoBehaviour
                 newGun.timeBetweenShoots = gun.timeBetweenShoots;
                 newGun.projectilePrefab = gun.projectilePrefab;
                 newGun.missileSpeed = gun.missileSpeed;
+                newGun.pewPewSFX = gun.pewPewSFX;
+                newGun.pewpewVolume = gun.pewpewVolume;
                 newGun.layerIndex = LayerMask.NameToLayer("PlayerMissile");
                 newGun.transform.SetParent(player.transform, false);
                 newGun.transform.localPosition = gun.transform.localPosition;
