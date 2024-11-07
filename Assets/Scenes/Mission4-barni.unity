@@ -657,6 +657,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1183659033}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
+      propertyPath: upgradeDropRate
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: highScoreIndicator
       value: 
       objectReference: {fileID: 936413980}

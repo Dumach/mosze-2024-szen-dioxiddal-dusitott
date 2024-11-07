@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mission2-marci.unity
     guid: 475a527cc32faca459f8e8c715e0f47b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Mission3-marci.unity
     guid: fbd3b7563a9616741ae886b9b1cb570b
   - enabled: 1
