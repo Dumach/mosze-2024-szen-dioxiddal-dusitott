@@ -1630,9 +1630,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitMission
       objectReference: {fileID: 0}
+    - target: {fileID: 5070175342146629336, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dd610d7396e4be34a969ea8215578250, type: 3}
     - target: {fileID: 5153243081238534301, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054623922211488915, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054623922211488915, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6661080211394209573, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
       propertyPath: m_IsActive
