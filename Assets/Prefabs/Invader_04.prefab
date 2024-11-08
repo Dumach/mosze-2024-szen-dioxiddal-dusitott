@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1551307908973724939, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: score
-      value: 150
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 1551307908973724939, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: health
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 62bd310435a5d0c468ae8052f0a3e83c, type: 3}
     - target: {fileID: 8922502034929116581, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: m_Name
-      value: Invad_04
+      value: Invader_04
       objectReference: {fileID: 0}
     - target: {fileID: 8922502034929116581, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: m_IsActive
