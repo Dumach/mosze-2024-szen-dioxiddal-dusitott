@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Codice.CM.Common.Merge;
-using System;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -17,9 +15,6 @@ public class Player : MonoBehaviour
 
     /// \brief Player's health.
     public int health = 3;
-
-    /// \brief The normal color of the player's sprite.
-    private Color normalColor;
 
     /// \brief SpriteRenderer component used to change the player's color for visual feedback.
     private SpriteRenderer spriteRenderer;
@@ -94,11 +89,9 @@ public class Player : MonoBehaviour
         if (shieldDuration > 0)
         {
             shieldDuration -= Time.deltaTime;
-            spriteRenderer.color = Color.blue;
         }
         else
         {
-            spriteRenderer.color = normalColor;
             DectivateShieldBubble();
         }
 
@@ -120,10 +113,6 @@ public class Player : MonoBehaviour
             {
                 gun.Shoot();
             }
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
         }
     }
 
@@ -136,7 +125,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentPos = transform.position;
-        ColorUtility.TryParseHtmlString("#7EE62C", out normalColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
         GameManager.Instance.UpgradeWeapons();
         audioSource = GetComponent<AudioSource>();
@@ -147,7 +135,6 @@ public class Player : MonoBehaviour
     public void beUnkillable(float toSeconds)
     {
         shieldDuration = toSeconds;
-        spriteRenderer.color = Color.blue;
     }
 
     /// \brief Handles collision with missiles or invaders, triggering the player's death if they are not shielded.

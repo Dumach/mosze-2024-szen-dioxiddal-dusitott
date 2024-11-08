@@ -61,6 +61,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3361035722231216668, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361035722231216668, guid: 21f865cb325c39a42ae05fa853c24160, type: 3}
       propertyPath: timeBetweenShoots
       value: 2
       objectReference: {fileID: 0}
