@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1551307908973724939, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: score
-      value: 150
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 1551307908973724939, guid: 984c31f2f1206774085587cae40258e2, type: 3}
       propertyPath: health
