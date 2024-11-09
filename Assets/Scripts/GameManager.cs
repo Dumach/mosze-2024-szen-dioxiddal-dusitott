@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         }
 
         InvokeRepeating("SpawnRepairKit", 0f, 1f);
+        InvokeRepeating("UpdateProgressBar", 0f, 0.5f);
 
         // Starts mission countdown timer if no boss in the end
         if (!hasEndBoss)
@@ -109,14 +110,17 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
         }
-        UpdateProgressBar();
+        //UpdateProgressBar();
     }
+
+
 
     private void UpdateProgressBar()
     {
         if (progressBarFill == null) return;
 
-        elapsedTime += Time.deltaTime;
+        //elapsedTime += Time.deltaTime;
+        elapsedTime += 0.5f;
         float progress = Mathf.Clamp01(elapsedTime / missionTime);
 
         progressBarFill.fillAmount = progress;
@@ -127,11 +131,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-        private IEnumerator MissionTimeCountdown()
+    private IEnumerator MissionTimeCountdown()
     {
         yield return new WaitForSeconds(missionTime);
 
-        if(!this.hasEndBoss) EndOfMission();
+        if (!this.hasEndBoss) EndOfMission();
     }
 
     /// \brief Spawns a repair kit from the upper edge of screen
@@ -139,14 +143,17 @@ public class GameManager : MonoBehaviour
     {
         // Random chance to spawn
         int spawnRepairkit = Random.Range(0, repairkitDropRate);
-        if (spawnRepairkit == 1 && GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
+        if (spawnRepairkit == 1)
         {
+            if(GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
+            {
             Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
             Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
             Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
             // Random location to spawn
             Vector3 where = new Vector3(Random.Range(leftEdge.x + 2, rightEdge.x - 2), upperEdge.y);
             Instantiate(repairkitPrefab, where, Quaternion.identity);
+            }
         }
     }
 
@@ -172,8 +179,10 @@ public class GameManager : MonoBehaviour
         }
         foreach (var spawnp in GameObject.FindGameObjectsWithTag("SpawnPoints"))
         {
-            spawnp.gameObject.SetActive(false);
+            spawnp.GetComponent<SpawnPoint>().turnOff();
         }
+
+        CancelInvoke("UpdateProgressBar");
         CancelInvoke("SpawnRepairKit");
         player.gameObject.SetActive(false);
         infoUI.SetActive(false);
@@ -333,13 +342,13 @@ public class GameManager : MonoBehaviour
             SetScore(score + invader.score);
 
             // ha boss tag-je van, akkor fõellenség és megjelenít victory panel
-            if(invader.gameObject.tag == "Boss")
+            if (invader.gameObject.tag == "Boss")
             {
                 // GAME END UI
                 EndOfMission();
             }
         }
-    }    
+    }
 
     public void EndOfMission()
     {
@@ -353,7 +362,7 @@ public class GameManager : MonoBehaviour
             GameObject.Find("NextButton").SetActive(false);
             GameObject.Find("levelText").GetComponent<Text>().text = "You win the game!";
             int totalScore = 0;
-            for(int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+            for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
             {
                 totalScore += PlayerPrefs.GetInt("Mission" + i);
             }

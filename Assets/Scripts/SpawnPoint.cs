@@ -44,42 +44,32 @@ public class SpawnPoint : MonoBehaviour
     private Vector3 initialPosition;
 
     /// \brief Timer used to control the interval between invader spawns.
-    private float timer = 0;
+    //private float timer = 0;
 
     /// \brief Initializes the spawn point's initial position.
     private void Start()
     {
         initialPosition = transform.position;
+        InvokeRepeating("SpawnInvaders", startSpawningTime, waitTime);
     }
 
     /// \brief Handles the countdown to start spawning invaders and manages the spawning process.
-    private void Update()
+    private void SpawnInvaders()
     {
-        // Countdown before starting to spawn invaders
-        if (startSpawningTime > 0)
-        {
-            startSpawningTime -= Time.deltaTime;
-            return;
-        }
-
         // Deactivate the spawn point if no more invaders are left to spawn
         if (numberOf <= 0)
         {
-            this.gameObject.SetActive(false);
+            turnOff();
             return;
         }
+        numberOf--;
+        CreateInvader();
+    }
 
-        // Spawn invaders when the timer reaches zero
-        if (timer <= 0)
-        {
-            numberOf--;
-            CreateInvader();
-            timer = waitTime;
-        }
-        else
-        {
-            timer -= Time.deltaTime;
-        }
+    public void turnOff()
+    {
+        this.gameObject.SetActive(false);
+        CancelInvoke("SpawnInvaders");
     }
 
     /// \brief Creates an invader at the spawn point and configures its behavior.

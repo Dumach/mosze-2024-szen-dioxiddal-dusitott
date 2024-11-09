@@ -21,9 +21,15 @@ public class LevelProgress : MonoBehaviour
     {
         // A teljes távolság kiszámítása a pálya elejétől a végéig
         totalDistance = Vector3.Distance(startPoint.position, endPoint.position);
+        InvokeRepeating("Fill", 0f, 1f);
     }
 
     private void Update()
+    {
+
+    }
+
+    private void Fill()
     {
         // Játékos távolságának kiszámítása a pálya kezdőpontjától
         float playerDistance = Vector3.Distance(startPoint.position, player.position);
@@ -36,5 +42,10 @@ public class LevelProgress : MonoBehaviour
         {
             progressBarFill.fillAmount = progress;
         }
+    }
+
+    public void TurnOff()
+    {
+        CancelInvoke("Fill");
     }
 }
