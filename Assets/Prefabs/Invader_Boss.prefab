@@ -185,6 +185,7 @@ MonoBehaviour:
   autoRotate: 0
   autoShoot: 1
   autoAim: 1
+  shootingEnabled: 1
   guns:
   - {fileID: 2505832658941464649}
   - {fileID: 6723018856334165662}
@@ -258,6 +259,10 @@ PrefabInstance:
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: missileSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -345,6 +350,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
@@ -430,6 +439,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
@@ -511,8 +524,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewPewSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ca547ae060066054b8aa5601eaa6a037, type: 3}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: missileSpeed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -598,6 +619,10 @@ PrefabInstance:
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: missileSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewpewVolume
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
