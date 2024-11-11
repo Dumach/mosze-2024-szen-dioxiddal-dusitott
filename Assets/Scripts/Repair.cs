@@ -1,13 +1,16 @@
+using Codice.Client.BaseCommands.CheckIn.Progress;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Repair : MonoBehaviour
 {
+    [SerializeField] private float speedHeal = 1f;
+
     private void Start()
     {
         var rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.down * 1;
+        rb.velocity = Vector3.down * speedHeal;
     }
 
     /// \brief Detects collisions with player or boundry.

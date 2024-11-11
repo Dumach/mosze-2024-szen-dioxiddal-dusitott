@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
+    [SerializeField] private float speedUpgrade = 1f;
+
     private void Start()
     {
         var rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.down * 1;
+        rb.velocity = Vector3.down * speedUpgrade;
     }
 
     /// \brief Detects collisions with player or boundry.
