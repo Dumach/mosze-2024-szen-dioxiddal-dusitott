@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         maxHealth = player.health;
         livesText.text = maxHealth.ToString();
+        PlayerPrefs.SetInt("CurrentMission", sceneIndex);
         if (PlayerPrefs.HasKey("HighScore" + sceneIndex))
         {
             highScore = PlayerPrefs.GetInt("HighScore" + sceneIndex);

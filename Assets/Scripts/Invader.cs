@@ -33,7 +33,7 @@ public class Invader : MonoBehaviour
 
     /// \brief Reference to the player GameObject for targeting.
     [Header("RotateAndShoot")]
-    public GameObject player;
+    private GameObject player;
 
     /// \brief Whether the invader will automatically rotate towards the player.
     public bool autoRotate;
@@ -69,7 +69,7 @@ public class Invader : MonoBehaviour
         {
             gun.layerIndex = LayerMask.NameToLayer("InvaderMissile");
         }
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     /// \brief Updates the invader's behavior, such as rotating and shooting at the player.
