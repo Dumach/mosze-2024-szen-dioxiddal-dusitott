@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['waittime_0',['waitTime',['../class_enemy_patrol.html#ab931f12f9bd252bb1b08e7ee77afd39a',1,'EnemyPatrol.waitTime'],['../class_spawn_point.html#afb8226fdf1be7c8f00e10351326e9b23',1,'SpawnPoint.waitTime']]]
+  ['timebetweenshoots_0',['timeBetweenShoots',['../class_gun.html#a3e57da47194725ff95d4932ad64c887d',1,'Gun']]],
+  ['turnoff_1',['turnOff',['../class_spawn_point.html#ad5d0ff92ade644f6316ecc3d39b64123',1,'SpawnPoint']]]
 ];

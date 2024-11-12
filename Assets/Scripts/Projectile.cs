@@ -16,10 +16,9 @@ public class Projectile : MonoBehaviour
 
     /// \brief Reference to the Rigidbody2D component for physics-based movement.
     private Rigidbody2D rb; 
+
     /// \brief Reference to the BoxCollider2D component for collision detection.
     private BoxCollider2D boxCollider;
-
-    
 
     /// \brief Called once when the projectile is instantiated. Initializes components and sets velocity.
     private void Start()
@@ -62,11 +61,6 @@ public class Projectile : MonoBehaviour
     public void setSpeed(float speed)
     {
         this.speed = speed;
-    }
-
-    private void Update()
-    {
-
     }
 
     /// \brief Called when the projectile collides with another object.

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['healplayer_0',['healPlayer',['../class_game_manager.html#a00e5f7bb0cb8420245d067cb18df8ef9',1,'GameManager']]]
+  ['continuegame_0',['ContinueGame',['../class_change_scene.html#ae80208430d8e52ee3093a478bf0a7222',1,'ChangeScene']]]
 ];

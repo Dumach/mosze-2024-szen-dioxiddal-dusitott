@@ -17,10 +17,16 @@ public class Gun : MonoBehaviour
     /// \brief The current heat level of the gun, which affects firing rate.
     private float gunHeat = 0f;
 
+    /// \brief The layer that is inherited by player or invader class
     public int layerIndex;
 
+    /// \brief Initializes the sound of projectile 
     public AudioClip pewPewSFX;
+
+    /// \brief Initializes the volume of projectile sound
     public float pewpewVolume;
+
+    /// \brief Initializes the audio source of projectile
     private AudioSource audioSource;
 
     /// \brief Reference to the instantiated projectile.
@@ -33,6 +39,7 @@ public class Gun : MonoBehaviour
         // Shooting lasers generate heat, which slows down the firing rate
         if (gunHeat <= 0)
         {
+            // Projectile is being cloned from a prefab, then general settings applied
             gunHeat += timeBetweenShoots;
             projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
 
@@ -57,6 +64,7 @@ public class Gun : MonoBehaviour
         }
     }
 
+    /// \brief Initializes the audio source of projectile
     private void InitializeAudioSource()
     {
         // Get or add an AudioSource component
@@ -67,6 +75,7 @@ public class Gun : MonoBehaviour
         }
     }
 
+    /// \brief Initializes the volume of projectile sound
     private void Start()
     {
         InitializeAudioSource();

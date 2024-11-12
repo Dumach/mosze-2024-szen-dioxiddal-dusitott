@@ -153,6 +153,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// \brief Activates a shield bubble around the player
     public void ActivateShieldBubble()
     {
         if (activeShieldBubble == null)
@@ -162,7 +163,8 @@ public class Player : MonoBehaviour
             activeShieldBubble.transform.localPosition = Vector3.zero;
         }
     }
-    
+
+    /// \brief Deactivates a shield bubble around the player
     public void DectivateShieldBubble()
     {
         if (activeShieldBubble != null)

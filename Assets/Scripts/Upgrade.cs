@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// \class Upgrade
+/// \brief This class is responsible for interacting with the Upgrade-kit item
 public class Upgrade : MonoBehaviour
 {
+    /// \brief Initial speed that the Upgrade-kit is falling towards bottom of the screen
     [SerializeField] private float speedUpgrade = 1f;
 
     private void Start()

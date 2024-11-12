@@ -181,7 +181,6 @@ MonoBehaviour:
   animationTime: 0
   score: 300
   health: 30
-  player: {fileID: 0}
   autoRotate: 0
   autoShoot: 1
   autoAim: 1
@@ -347,7 +346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: missileSpeed
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
@@ -359,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -436,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: missileSpeed
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
@@ -448,7 +447,7 @@ PrefabInstance:
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name

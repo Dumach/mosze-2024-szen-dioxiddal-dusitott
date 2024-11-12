@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Mosze-2024-Szén-Dioxiddal Dúsított<span id="projectnumber">&#160;0.7</span>
+   <div id="projectname">Mosze-2024-Szén-Dioxiddal Dúsított<span id="projectnumber">&#160;1.2</span>
    </div>
   </td>
  </tr>
@@ -86,13 +86,14 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="class_game_manager-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">GameManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This class is responsible for controlling and managing activities in the game such as: updating <a class="el" href="class_u_i.html">UI</a> elements, handling killing enemies.  
+<p>This class is responsible for controlling and managing activities in the game such as: updating UI elements, handling killing enemies.  
  <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -101,29 +102,43 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Awake</b> ()</td></tr>
 <tr class="memdesc:a2959177ee51ac31badbf8b1bc8f7f637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game such as: updating UI el...">GameManager</a> as a singleton and ensures only one instance exists. <br /></td></tr>
 <tr class="separator:a2959177ee51ac31badbf8b1bc8f7f637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e43f6cee132b2730741c9bd7575cb01" id="r_a9e43f6cee132b2730741c9bd7575cb01"><td class="memItemLeft" align="right" valign="top"><a id="a9e43f6cee132b2730741c9bd7575cb01" name="a9e43f6cee132b2730741c9bd7575cb01"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RestartMission</b> ()</td></tr>
+<tr class="memdesc:a9e43f6cee132b2730741c9bd7575cb01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restarts the current active scene. <br /></td></tr>
+<tr class="separator:a9e43f6cee132b2730741c9bd7575cb01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ffd8e056277e2bf5f53cc774b3f7f57" id="r_a2ffd8e056277e2bf5f53cc774b3f7f57"><td class="memItemLeft" align="right" valign="top"><a id="a2ffd8e056277e2bf5f53cc774b3f7f57" name="a2ffd8e056277e2bf5f53cc774b3f7f57"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerKilled</b> ()</td></tr>
 <tr class="memdesc:a2ffd8e056277e2bf5f53cc774b3f7f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the player is killed. Decreases health and handles game over if necessary. <br /></td></tr>
 <tr class="separator:a2ffd8e056277e2bf5f53cc774b3f7f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00e5f7bb0cb8420245d067cb18df8ef9" id="r_a00e5f7bb0cb8420245d067cb18df8ef9"><td class="memItemLeft" align="right" valign="top"><a id="a00e5f7bb0cb8420245d067cb18df8ef9" name="a00e5f7bb0cb8420245d067cb18df8ef9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>healPlayer</b> ()</td></tr>
-<tr class="memdesc:a00e5f7bb0cb8420245d067cb18df8ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when player picked up a repair kit. It heals the player. <br /></td></tr>
-<tr class="separator:a00e5f7bb0cb8420245d067cb18df8ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaee49b6fcc10a5585a89c02a4f0ff5c3" id="r_aaee49b6fcc10a5585a89c02a4f0ff5c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaee49b6fcc10a5585a89c02a4f0ff5c3">upgradeWeapons</a> ()</td></tr>
-<tr class="memdesc:aaee49b6fcc10a5585a89c02a4f0ff5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when player picked up a weapon upgrade kit.  <br /></td></tr>
-<tr class="separator:aaee49b6fcc10a5585a89c02a4f0ff5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a2826779416c73fecb90184f70554d9" id="r_a3a2826779416c73fecb90184f70554d9"><td class="memItemLeft" align="right" valign="top"><a id="a3a2826779416c73fecb90184f70554d9" name="a3a2826779416c73fecb90184f70554d9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>HealPlayer</b> ()</td></tr>
+<tr class="memdesc:a3a2826779416c73fecb90184f70554d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when player picked up a repair kit. It heals the player. <br /></td></tr>
+<tr class="separator:a3a2826779416c73fecb90184f70554d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab949a41ef55e8e27fc9f61de55d6152f" id="r_ab949a41ef55e8e27fc9f61de55d6152f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab949a41ef55e8e27fc9f61de55d6152f">UpgradeWeapons</a> ()</td></tr>
+<tr class="memdesc:ab949a41ef55e8e27fc9f61de55d6152f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when player picked up a weapon upgrade kit.  <br /></td></tr>
+<tr class="separator:ab949a41ef55e8e27fc9f61de55d6152f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada207438f3bb567d248454420e85522e" id="r_ada207438f3bb567d248454420e85522e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada207438f3bb567d248454420e85522e">OnInvaderKilled</a> (<a class="el" href="class_invader.html">Invader</a> invader)</td></tr>
 <tr class="memdesc:ada207438f3bb567d248454420e85522e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when an invader is killed. Increases the score and handles the invader's destruction.  <br /></td></tr>
 <tr class="separator:ada207438f3bb567d248454420e85522e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a699cbe7377ac221658fb390fb87888a1" id="r_a699cbe7377ac221658fb390fb87888a1"><td class="memItemLeft" align="right" valign="top"><a id="a699cbe7377ac221658fb390fb87888a1" name="a699cbe7377ac221658fb390fb87888a1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>EndOfMission</b> ()</td></tr>
+<tr class="memdesc:a699cbe7377ac221658fb390fb87888a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle's the event when a mission end, such as: stopping spawnpoints, background scroll, etc. <br /></td></tr>
 <tr class="separator:a699cbe7377ac221658fb390fb87888a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a218873d2e9ad871b76d7d37c8ede381e" id="r_a218873d2e9ad871b76d7d37c8ede381e"><td class="memItemLeft" align="right" valign="top"><a id="a218873d2e9ad871b76d7d37c8ede381e" name="a218873d2e9ad871b76d7d37c8ede381e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>exitMission</b> ()</td></tr>
-<tr class="separator:a218873d2e9ad871b76d7d37c8ede381e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a48d304c503a645d6239263ba6d38bc" id="r_a0a48d304c503a645d6239263ba6d38bc"><td class="memItemLeft" align="right" valign="top"><a id="a0a48d304c503a645d6239263ba6d38bc" name="a0a48d304c503a645d6239263ba6d38bc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>nextMission</b> ()</td></tr>
-<tr class="separator:a0a48d304c503a645d6239263ba6d38bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6689f870631710539deb6f71ce286af1" id="r_a6689f870631710539deb6f71ce286af1"><td class="memItemLeft" align="right" valign="top"><a id="a6689f870631710539deb6f71ce286af1" name="a6689f870631710539deb6f71ce286af1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ExitMission</b> ()</td></tr>
+<tr class="memdesc:a6689f870631710539deb6f71ce286af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle's the Exit button event. <br /></td></tr>
+<tr class="separator:a6689f870631710539deb6f71ce286af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a393c2c983336ae3c49204decf09de3c8" id="r_a393c2c983336ae3c49204decf09de3c8"><td class="memItemLeft" align="right" valign="top"><a id="a393c2c983336ae3c49204decf09de3c8" name="a393c2c983336ae3c49204decf09de3c8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>NextMission</b> ()</td></tr>
+<tr class="memdesc:a393c2c983336ae3c49204decf09de3c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle's the Next mission button event. <br /></td></tr>
+<tr class="separator:a393c2c983336ae3c49204decf09de3c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a3222a347c0c8297b739de5c283bb5a21" id="r_a3222a347c0c8297b739de5c283bb5a21"><td class="memItemLeft" align="right" valign="top"><a id="a3222a347c0c8297b739de5c283bb5a21" name="a3222a347c0c8297b739de5c283bb5a21"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>missionTime</b></td></tr>
+<tr class="memdesc:a3222a347c0c8297b739de5c283bb5a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mission time in seconds. <br /></td></tr>
+<tr class="separator:a3222a347c0c8297b739de5c283bb5a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
@@ -137,7 +152,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> = 0<code> [g
 <tr class="separator:ae9711122c3e5251d8f9ff4e02283af09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class is responsible for controlling and managing activities in the game such as: updating <a class="el" href="class_u_i.html">UI</a> elements, handling killing enemies. </p>
+<div class="textblock"><p>This class is responsible for controlling and managing activities in the game such as: updating UI elements, handling killing enemies. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ada207438f3bb567d248454420e85522e" name="ada207438f3bb567d248454420e85522e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada207438f3bb567d248454420e85522e">&#9670;&#160;</a></span>OnInvaderKilled()</h2>
@@ -164,14 +179,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> = 0<code> [g
 
 </div>
 </div>
-<a id="aaee49b6fcc10a5585a89c02a4f0ff5c3" name="aaee49b6fcc10a5585a89c02a4f0ff5c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaee49b6fcc10a5585a89c02a4f0ff5c3">&#9670;&#160;</a></span>upgradeWeapons()</h2>
+<a id="ab949a41ef55e8e27fc9f61de55d6152f" name="ab949a41ef55e8e27fc9f61de55d6152f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab949a41ef55e8e27fc9f61de55d6152f">&#9670;&#160;</a></span>UpgradeWeapons()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GameManager.upgradeWeapons </td>
+          <td class="memname">void GameManager.UpgradeWeapons </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>

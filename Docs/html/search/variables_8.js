@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['player_0',['player',['../class_invader.html#a76461a68fe8e55fc4723cf8d5e1f71c1',1,'Invader']]],
-  ['projectileprefab_1',['projectilePrefab',['../class_gun.html#a98a18d85c48fe1f527fe291ee88fc79a',1,'Gun']]]
+  ['numberof_0',['numberOf',['../class_spawn_point.html#a6dbf7fb9c0d3fc1149c3697b77b6fe15',1,'SpawnPoint']]]
 ];
