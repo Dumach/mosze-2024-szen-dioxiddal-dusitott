@@ -116,6 +116,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float getShieldDuration()
+    {
+        return this.shieldDuration;
+    }
+
     public void acquireSpriteRenderer()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

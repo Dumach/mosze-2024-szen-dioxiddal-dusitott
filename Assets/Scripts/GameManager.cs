@@ -230,10 +230,10 @@ public class GameManager : MonoBehaviour
         {
             highScore = score;
             PlayerPrefs.SetInt("HighScore" + sceneIndex, highScore);
-            highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
+            if (highScoreIndicator != null) highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
             NewRecord();
         }
-        scoreIndicator.text = score.ToString().PadLeft(4, '0');
+        if(scoreIndicator != null) scoreIndicator.text = score.ToString().PadLeft(4, '0');
     }
 
     /// \brief Initiates a flashing effect on the high score text when a new high score is achieved.
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerKilled()
     {
         player.health = Mathf.Max(player.health - 1, 0);
-        livesText.text = player.health.ToString();
+        if(livesText != null) livesText.text = player.health.ToString();
 
         if (player.health > 0)
         {
@@ -296,7 +296,7 @@ public class GameManager : MonoBehaviour
         if (player.health < maxHealth)
         {
             player.health++;
-            livesText.text = player.health.ToString();
+            if(livesText != null) livesText.text = player.health.ToString();
         }
     }
 
@@ -361,8 +361,8 @@ public class GameManager : MonoBehaviour
             // IDE animáció
             SetScore(score + invader.score);
 
-            // ha az utolso palyanal tartunk
-            if (sceneIndex == SceneManager.sceneCountInBuildSettings - 1 && invader.gameObject.tag == "Boss")
+            // If a boss destroyed than end the mission
+            if (invader.gameObject.tag == "Boss")
             {
                 // GAME END UI
                 EndOfMission();
@@ -377,7 +377,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("Mission" + sceneIndex, score);
 
-        if (sceneIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        if (sceneIndex >= SceneManager.sceneCountInBuildSettings - 1)
         {
             // Ha utolso mission volt
             GameObject.Find("NextButton").SetActive(false);

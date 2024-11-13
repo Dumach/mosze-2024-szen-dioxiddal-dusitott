@@ -29,7 +29,6 @@ public class Projectile : MonoBehaviour
         // Set the sorting layer of the projectile's sprite to ensure visibility.
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingLayerName = "4Player";
-        //this.gameObject.layer = layer;
 
         // Set the projectile's velocity to move in the assigned direction at the assigned speed.
         rb.velocity = direction * speed;

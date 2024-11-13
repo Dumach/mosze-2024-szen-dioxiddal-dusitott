@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class MainBoss : MonoBehaviour
 {
     [Header("Boss stats")]
-    public float speed = 4f;               // Speed of movement across the screen
-    public float cycleTime = 5f;          // Interval between direction changes
-    public float startSpawningTime = 5f;  // Countdown before initial entry from top
+    public float speed = 4f;             
+    public float cycleTime = 5f;          
+    public float startSpawningTime = 5f;  
     public bool secondPhase = false;
     public BossHealthBar healthBar;
 
@@ -16,8 +16,8 @@ public class MainBoss : MonoBehaviour
 
     private Vector2 centerRightDestination;
     private Vector2 centerLeftDestination;
-    private Vector2 centerScreen;          // Center point on the screen
-    private bool movingRight = true;       // Direction control
+    private Vector2 centerScreen;          
+    private bool movingRight = true;      
 
     private Invader invaderComponent;
     private int healthStart;

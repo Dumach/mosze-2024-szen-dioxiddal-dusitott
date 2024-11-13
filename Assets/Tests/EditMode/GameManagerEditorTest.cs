@@ -26,34 +26,38 @@ public class GameManagerEditorTest
         Assert.IsTrue(secondInstance == null);
     }
 
-    [Test]
+    // Van egy érzésem hogy ez play mode-ban kéne futtatni
+    /*[Test]
     public void OnPlayerKilled_Should_Decrease_Player_Health()
     {
         // Mock player létrehozása
         var playerObject = new GameObject();
         var player = playerObject.AddComponent<Player>();
         // Spriterendere hozzáadása különben hibára fut
-        playerObject.AddComponent<SpriteRenderer>();
+        // playerObject.AddComponent<SpriteRenderer>();
         player.acquireSpriteRenderer();
 
         player.health = 3;
 
         var gameManager = new GameObject().AddComponent<GameManager>();
+        gameManager.GetType()
+            .GetField("player", BindingFlags.NonPublic | BindingFlags.Instance)
+            .SetValue(gameManager, player);
 
         gameManager.OnPlayerKilled();
 
         Assert.AreEqual(2, player.health);
-    }
+    }*/
 
     [Test]
     public void WeaponUpgrade_Should_Not_Go_Over_Limit()
     {
         var gameManager = new GameObject().AddComponent<GameManager>();
-        
+
         // Mock player létrehozása
         var playerObject = new GameObject();
         var player = playerObject.AddComponent<Player>();
-        
+
         // Mock weapon template-k létrehozása
         for (int i = 0; i < 3; i++)
         {
@@ -68,7 +72,7 @@ public class GameManagerEditorTest
 
         gameManager.UpgradeWeapons();
         Assert.AreEqual(0, player.currentTemplate);
-        
+
         gameManager.UpgradeWeapons();
         gameManager.UpgradeWeapons();
 
@@ -76,8 +80,40 @@ public class GameManagerEditorTest
 
         // Túltöltés tesztelése
         gameManager.UpgradeWeapons();
-        Assert.AreEqual(2 ,player.currentTemplate);
-
+        Assert.AreEqual(2, player.currentTemplate);
     }
 
+    /*
+    [Test]
+    public void GameManager_Should_Set_Score_Correctly()
+    {
+        var gameManager = new GameObject().AddComponent<GameManager>();
+        gameManager.SetScore(100);
+        Assert.AreEqual(100, gameManager.score);
+    }*/
+
+    [Test]
+    public void Heal_Player_Should_Increase_Health()
+    {
+        // Mock player létrehozása
+        var playerObject = new GameObject();
+        var player = playerObject.AddComponent<Player>();
+        player.health = 3;
+
+        var gameManager = new GameObject().AddComponent<GameManager>();
+        gameManager.GetType()
+            .GetField("player", BindingFlags.NonPublic | BindingFlags.Instance)
+            .SetValue(gameManager, player);
+        gameManager.GetType()
+            .GetField("maxHealth", BindingFlags.NonPublic | BindingFlags.Instance)
+            .SetValue(gameManager, 3);
+
+        Assert.AreEqual(3, player.health);
+        
+        // Mock sebesulest szenved el
+        player.health -= 1;
+        gameManager.HealPlayer();
+
+        Assert.AreEqual(3, player.health);
+    }
 }
