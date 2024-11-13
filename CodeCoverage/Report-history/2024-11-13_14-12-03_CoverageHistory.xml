@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2024-11-13_14-12-03" tag="">
+  <assembly name="Assembly-CSharp">
+    <class name="ChatController" coveredlines="0" coverablelines="19" totallines="51" coveredbranches="0" totalbranches="0" />
+    <class name="DropdownSample" coveredlines="0" coverablelines="6" totallines="19" coveredbranches="0" totalbranches="0" />
+    <class name="EnvMapAnimator" coveredlines="0" coverablelines="12" totallines="35" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.Benchmark01" coveredlines="0" coverablelines="44" totallines="128" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.Benchmark01_UGUI" coveredlines="0" coverablelines="39" totallines="135" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.Benchmark02" coveredlines="0" coverablelines="54" totallines="97" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.Benchmark03" coveredlines="0" coverablelines="46" totallines="92" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.Benchmark04" coveredlines="0" coverablelines="30" totallines="85" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.CameraController" coveredlines="0" coverablelines="168" totallines="292" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.ObjectSpin" coveredlines="0" coverablelines="30" totallines="69" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.ShaderPropAnimator" coveredlines="0" coverablelines="16" totallines="51" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.SimpleScript" coveredlines="0" coverablelines="11" totallines="58" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.SkewTextExample" coveredlines="0" coverablelines="78" totallines="158" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TeleType" coveredlines="0" coverablelines="28" totallines="83" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TextConsoleSimulator" coveredlines="0" coverablelines="60" totallines="121" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TextMeshProFloatingText" coveredlines="0" coverablelines="108" totallines="223" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TextMeshSpawner" coveredlines="0" coverablelines="33" totallines="79" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMP_ExampleScript_01" coveredlines="0" coverablelines="18" totallines="64" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMP_FrameRateCounter" coveredlines="0" coverablelines="65" totallines="134" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMP_TextEventCheck" coveredlines="0" coverablelines="40" totallines="73" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMP_TextInfoDebugTool" coveredlines="0" coverablelines="344" totallines="652" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMP_TextSelector_A" coveredlines="0" coverablelines="73" totallines="157" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMP_TextSelector_B" coveredlines="0" coverablelines="198" totallines="547" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMP_UiFrameRateCounter" coveredlines="0" coverablelines="71" totallines="125" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.TMPro_InstructionOverlay" coveredlines="0" coverablelines="33" totallines="84" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.VertexColorCycler" coveredlines="0" coverablelines="33" totallines="84" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.VertexJitter" coveredlines="0" coverablelines="80" totallines="175" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.VertexShakeA" coveredlines="0" coverablelines="80" totallines="161" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.VertexShakeB" coveredlines="0" coverablelines="93" totallines="185" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.VertexZoom" coveredlines="0" coverablelines="91" totallines="192" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.Examples.WarpTextExample" coveredlines="0" coverablelines="70" totallines="144" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.TMP_DigitValidator" coveredlines="0" coverablelines="8" totallines="27" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.TMP_PhoneNumberValidator" coveredlines="0" coverablelines="66" totallines="105" coveredbranches="0" totalbranches="0" />
+    <class name="TMPro.TMP_TextEventHandler" coveredlines="0" coverablelines="107" totallines="254" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="EditMode">
+    <class name="GameManagerEditorTest" coveredlines="39" coverablelines="39" totallines="119" coveredbranches="0" totalbranches="0" />
+    <class name="InvaderEditorTest" coveredlines="15" coverablelines="15" totallines="41" coveredbranches="0" totalbranches="0" />
+    <class name="PlayerEditorTest" coveredlines="14" coverablelines="14" totallines="40" coveredbranches="0" totalbranches="0" />
+    <class name="ProjectileEditorTest" coveredlines="25" coverablelines="25" totallines="57" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="PlayMode">
+    <class name="GameManagerPlay" coveredlines="0" coverablelines="24" totallines="52" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Scripts">
+    <class name="BackgroundScroll" coveredlines="2" coverablelines="11" totallines="40" coveredbranches="0" totalbranches="0" />
+    <class name="BossHealthBar" coveredlines="0" coverablelines="7" totallines="20" coveredbranches="0" totalbranches="0" />
+    <class name="ChangeScene" coveredlines="0" coverablelines="13" totallines="30" coveredbranches="0" totalbranches="0" />
+    <class name="EnemyPatrol" coveredlines="0" coverablelines="45" totallines="102" coveredbranches="0" totalbranches="0" />
+    <class name="GameManager" coveredlines="34" coverablelines="236" totallines="416" coveredbranches="0" totalbranches="0" />
+    <class name="Gun" coveredlines="3" coverablelines="34" totallines="84" coveredbranches="0" totalbranches="0" />
+    <class name="Invader" coveredlines="13" coverablelines="60" totallines="143" coveredbranches="0" totalbranches="0" />
+    <class name="LevelProgress" coveredlines="0" coverablelines="17" totallines="51" coveredbranches="0" totalbranches="0" />
+    <class name="MainBoss" coveredlines="6" coverablelines="64" totallines="131" coveredbranches="0" totalbranches="0" />
+    <class name="MenuLoadOn" coveredlines="0" coverablelines="17" totallines="33" coveredbranches="0" totalbranches="0" />
+    <class name="PauseMenu" coveredlines="0" coverablelines="40" totallines="70" coveredbranches="0" totalbranches="0" />
+    <class name="Player" coveredlines="13" coverablelines="94" totallines="181" coveredbranches="0" totalbranches="0" />
+    <class name="Projectile" coveredlines="14" coverablelines="36" totallines="93" coveredbranches="0" totalbranches="0" />
+    <class name="Repair" coveredlines="0" coverablelines="16" totallines="33" coveredbranches="0" totalbranches="0" />
+    <class name="SettingsMenu" coveredlines="0" coverablelines="25" totallines="49" coveredbranches="0" totalbranches="0" />
+    <class name="SpawnPoint" coveredlines="1" coverablelines="34" totallines="98" coveredbranches="0" totalbranches="0" />
+    <class name="Upgrade" coveredlines="0" coverablelines="16" totallines="32" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

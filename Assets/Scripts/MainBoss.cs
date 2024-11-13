@@ -10,7 +10,7 @@ public class MainBoss : MonoBehaviour
     public float cycleTime = 5f;          
     public float startSpawningTime = 5f;  
     public bool secondPhase = false;
-    public BossHealthBar healthBar;
+    public GameObject healthBar;
 
     [SerializeField] private Text BossWarning;
 
@@ -22,6 +22,7 @@ public class MainBoss : MonoBehaviour
     private Invader invaderComponent;
     private int healthStart;
     private bool isInSecondPhase = false;
+    private Slider healthSlider;
 
     private void Start()
     {
@@ -29,7 +30,9 @@ public class MainBoss : MonoBehaviour
         invaderComponent.autoAim = false;
         invaderComponent.autoShoot = false;
         invaderComponent.GetComponent<BoxCollider2D>().enabled = false;
-        //healthStart = invaderComponent.health;
+        healthSlider = healthBar.GetComponent<Slider>();
+        healthStart = invaderComponent.health;
+        healthSlider.maxValue = healthStart;
 
 
         // Convert viewport edges to world coordinates to set destination points
@@ -68,6 +71,8 @@ public class MainBoss : MonoBehaviour
         }
 
         BossWarning.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(true);
+
         //invaderComponent.health = healthStart;
         invaderComponent.GetComponent<BoxCollider2D>().enabled = true;
 
@@ -76,6 +81,12 @@ public class MainBoss : MonoBehaviour
 
         // Start alternating movement once in the center
         StartCoroutine(AlternateMovement());
+    }
+
+    private void Update()
+    {
+        healthSlider.value = invaderComponent.health;
+
     }
 
     private IEnumerator AlternateMovement()

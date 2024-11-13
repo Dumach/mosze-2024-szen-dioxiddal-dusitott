@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2024-11-13_14-14-16" tag="">
+  <assembly name="Scripts">
+    <class name="BackgroundScroll" coveredlines="2" coverablelines="11" totallines="40" coveredbranches="0" totalbranches="0" />
+    <class name="BossHealthBar" coveredlines="0" coverablelines="7" totallines="20" coveredbranches="0" totalbranches="0" />
+    <class name="ChangeScene" coveredlines="0" coverablelines="13" totallines="30" coveredbranches="0" totalbranches="0" />
+    <class name="EnemyPatrol" coveredlines="0" coverablelines="45" totallines="102" coveredbranches="0" totalbranches="0" />
+    <class name="GameManager" coveredlines="76" coverablelines="236" totallines="416" coveredbranches="0" totalbranches="0" />
+    <class name="Gun" coveredlines="3" coverablelines="34" totallines="84" coveredbranches="0" totalbranches="0" />
+    <class name="Invader" coveredlines="16" coverablelines="60" totallines="143" coveredbranches="0" totalbranches="0" />
+    <class name="LevelProgress" coveredlines="0" coverablelines="17" totallines="51" coveredbranches="0" totalbranches="0" />
+    <class name="MainBoss" coveredlines="6" coverablelines="64" totallines="131" coveredbranches="0" totalbranches="0" />
+    <class name="MenuLoadOn" coveredlines="0" coverablelines="17" totallines="33" coveredbranches="0" totalbranches="0" />
+    <class name="PauseMenu" coveredlines="0" coverablelines="40" totallines="70" coveredbranches="0" totalbranches="0" />
+    <class name="Player" coveredlines="13" coverablelines="94" totallines="181" coveredbranches="0" totalbranches="0" />
+    <class name="Projectile" coveredlines="14" coverablelines="36" totallines="93" coveredbranches="0" totalbranches="0" />
+    <class name="Repair" coveredlines="0" coverablelines="16" totallines="33" coveredbranches="0" totalbranches="0" />
+    <class name="SettingsMenu" coveredlines="0" coverablelines="25" totallines="49" coveredbranches="0" totalbranches="0" />
+    <class name="SpawnPoint" coveredlines="1" coverablelines="34" totallines="98" coveredbranches="0" totalbranches="0" />
+    <class name="Upgrade" coveredlines="0" coverablelines="16" totallines="32" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

@@ -28,7 +28,7 @@ public class PlayerEditorTest
     [Test]
     public void beUnkillable_Should_Set_ShieldDuration()
     {
-        float shielddur = 2f;
+        float shielddur = 5f;
 
         // Mock player letrehozasa
         var player = playerObject.GetComponent<Player>();

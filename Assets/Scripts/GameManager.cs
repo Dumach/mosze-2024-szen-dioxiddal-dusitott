@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
     private void SpawnRepairKit()
     {
         int spawnRepairkit = Random.Range(0, repairkitDropRate);
-        if (spawnRepairkit == 1)
+        if (spawnRepairkit == 0)
         {
             if (GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
             {
@@ -346,11 +346,12 @@ public class GameManager : MonoBehaviour
     {
         // Reduce invader's health and check if it should be destroyed
         invader.health = Mathf.Max(invader.health - 1, 0);
+
         if (invader.health <= 0)
         {
             // Upon invader die, there is a chance of dropping an upgraded weapon
             int spawnUpgrade = Random.Range(0, upgradeDropRate);
-            if (spawnUpgrade == 1 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)
+            if (spawnUpgrade == 0 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)
             {
                 Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
             }
