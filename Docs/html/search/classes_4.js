@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['highscore_0',['HighScore',['../class_high_score.html',1,'']]]
+  ['invader_0',['Invader',['../class_invader.html',1,'']]]
 ];

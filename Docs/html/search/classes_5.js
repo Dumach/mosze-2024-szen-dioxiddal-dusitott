@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['invader_0',['Invader',['../class_invader.html',1,'']]]
+  ['levelprogress_0',['LevelProgress',['../class_level_progress.html',1,'']]]
 ];

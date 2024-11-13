@@ -1,10 +1,10 @@
-using Codice.Client.BaseCommands.CheckIn.Progress;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// \class Repair
+/// \brief This class is responsible for interacting with the Repair-kit item
 public class Repair : MonoBehaviour
 {
+    /// \brief Initial speed that the Repair-kit is falling towards bottom of the screen
     [SerializeField] private float speedHeal = 1f;
 
     private void Start()

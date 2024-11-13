@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// \class BackgroundScroll
@@ -20,6 +17,7 @@ public class BackgroundScroll : MonoBehaviour
     /// \brief The initial starting position of the background.
     private Vector3 startPosition;
 
+    /// \brief Controls if the background can scroll down
     public bool beginScroll { get; set; } = true;
 
     /// \brief Initializes the background's position, offset, and calculates the height of the background sprite.

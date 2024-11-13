@@ -83,7 +83,7 @@ public class EnemyPatrol : MonoBehaviour
                 }
                 else
                 {
-                    /// \brief Destroy the invader after reaching the last patrol point.
+                    // Destroy the invader after reaching the last patrol point.
                     Destroy(gameObject); 
                 }
 

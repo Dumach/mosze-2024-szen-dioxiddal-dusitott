@@ -17,39 +17,65 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreIndicator;
     [SerializeField] private Text scoreText;
 
+    /// \brief UI text for displaying the high score.
     [SerializeField] private Text highScoreIndicator;
     [SerializeField] private Text highScoreText;
+
     /// \brief UI text for displaying the player's remaining lives.
     [SerializeField] private Text livesText;
 
+    /// \brief UI element for displaying information.
     [SerializeField] private GameObject infoUI;
+
+    /// \brief UI element for displaying the pause menu.
     [SerializeField] private GameObject pauseUI;
+
+    /// \brief UI element for displaying the end of mission menu.
     [SerializeField] private GameObject endUI;
 
+    /// \brief Flag to determine if there's an end boss in the mission.
     [SerializeField] private bool hasEndBoss;
-    //[SerializeField] private UI UI;
 
     /// \brief Mission time in seconds.
     public float missionTime;
 
+    /// \brief UI element for the progress bar fill.
     [SerializeField] private Image progressBarFill;
+
+    /// \brief Elapsed time for tracking mission progress.
     private float elapsedTime = 0f;
 
+    /// \brief Prefab for upgrade items dropped by enemies.
     [SerializeField] private Upgrade upgradePrefab;
+
+    /// \brief Frequency at which upgrade items are dropped.
     [SerializeField] private int upgradeDropRate;
+
+    /// \brief Prefab for repair kits dropped by enemies.
     [SerializeField] private Repair repairkitPrefab;
+
+    /// \brief Frequency at which repair kits are dropped.
     [SerializeField] private int repairkitDropRate;
 
     /// \brief Reference to the Player object in the game.
     private Player player;
+
+    /// \brief The maximum health of the player.
     private int maxHealth;
 
-    private int flashCount = 0;             // A villanások számolása
-    private bool isFlashing = false;        // Villogás folyamatban van-e
+    /// \brief Counter for tracking the number of times the high score text flashes.
+    private int flashCount = 0;
+
+    /// \brief Flag indicating if the high score text is flashing.
+    private bool isFlashing = false;
 
     /// \brief The current score of the player.
     public int score { get; private set; } = 0;
+
+    /// \brief The high score for the current mission.
     private int highScore = 0;
+
+    /// \brief The current scene index.
     private int sceneIndex;
 
     /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
@@ -74,7 +100,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// \brief Finds the Player object at the start of the game.
+    /// \brief Finds the Player object and initializes game variables at the start of the game.
     private void Start()
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -99,28 +125,23 @@ public class GameManager : MonoBehaviour
     /// \brief Monitors the player's health and restarts the scene if necessary.
     private void Update()
     {
-        // Restart the scene if the player has no health or if the Enter key is pressed
         if (Input.GetKeyDown(KeyCode.Return))
         {
             GameOver();
         }
-        // Reset highScore
+
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //score = 0;
             PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
         }
-        //UpdateProgressBar();
     }
 
-
-
+    /// \brief Updates the progress bar UI element based on elapsed time.
     private void UpdateProgressBar()
     {
         if (progressBarFill == null) return;
 
-        //elapsedTime += Time.deltaTime;
         elapsedTime += 0.5f;
         float progress = Mathf.Clamp01(elapsedTime / missionTime);
 
@@ -132,6 +153,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// \brief Coroutine to count down mission time and end the mission if time expires.
     private IEnumerator MissionTimeCountdown()
     {
         yield return new WaitForSeconds(missionTime);
@@ -139,21 +161,19 @@ public class GameManager : MonoBehaviour
         if (!this.hasEndBoss) EndOfMission();
     }
 
-    /// \brief Spawns a repair kit from the upper edge of screen
+    /// \brief Spawns a repair kit from the upper edge of the screen.
     private void SpawnRepairKit()
     {
-        // Random chance to spawn
         int spawnRepairkit = Random.Range(0, repairkitDropRate);
         if (spawnRepairkit == 1)
         {
-            if(GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
+            if (GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
             {
-            Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-            Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-            Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
-            // Random location to spawn
-            Vector3 where = new Vector3(Random.Range(leftEdge.x + 2, rightEdge.x - 2), upperEdge.y);
-            Instantiate(repairkitPrefab, where, Quaternion.identity);
+                Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+                Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+                Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
+                Vector3 where = new Vector3(Random.Range(leftEdge.x + 2, rightEdge.x - 2), upperEdge.y);
+                Instantiate(repairkitPrefab, where, Quaternion.identity);
             }
         }
     }
@@ -164,6 +184,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    /// \brief Stops all active game elements, such as background scrolling and enemy spawning.
     private void StopGame()
     {
         foreach (var backg in GameObject.FindGameObjectsWithTag("Background"))
@@ -198,7 +219,6 @@ public class GameManager : MonoBehaviour
         GameObject.Find("levelText").GetComponent<Text>().text = "Level " + sceneIndex + " failed!";
         GameObject.Find("scoresText").GetComponent<Text>().text = "Scores: " + score;
         GameObject.Find("NextButton").SetActive(false);
-        //RestartMission();
     }
 
     /// \brief Sets the player's score and updates the score UI.
@@ -212,11 +232,11 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore" + sceneIndex, highScore);
             highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
             NewRecord();
-            //UI.startFlashing(highScoreText, 3, "#0A940F", "#C57C04");
         }
         scoreIndicator.text = score.ToString().PadLeft(4, '0');
     }
 
+    /// \brief Initiates a flashing effect on the high score text when a new high score is achieved.
     private void NewRecord()
     {
         if (!isFlashing)
@@ -225,6 +245,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// \brief Coroutine to flash the high score text a few times.
     private IEnumerator BlinkHighScoreText()
     {
         isFlashing = true;
@@ -253,13 +274,11 @@ public class GameManager : MonoBehaviour
     /// \brief Called when the player is killed. Decreases health and handles game over if necessary.
     public void OnPlayerKilled()
     {
-        // Decrease player's health and update the lives UI
         player.health = Mathf.Max(player.health - 1, 0);
         livesText.text = player.health.ToString();
 
         if (player.health > 0)
         {
-            // Make player temporarily unkillable
             player.beUnkillable(1.0f);
             player.ActivateShieldBubble();
         }
@@ -342,8 +361,8 @@ public class GameManager : MonoBehaviour
             // IDE animáció
             SetScore(score + invader.score);
 
-            // ha boss tag-je van, akkor fõellenség és megjelenít victory panel
-            if (invader.gameObject.tag == "Boss")
+            // ha az utolso palyanal tartunk
+            if (sceneIndex == SceneManager.sceneCountInBuildSettings - 1 && invader.gameObject.tag == "Boss")
             {
                 // GAME END UI
                 EndOfMission();
@@ -351,6 +370,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// \brief Handle's the event when a mission end, such as: stopping spawnpoints, background scroll, etc.
     public void EndOfMission()
     {
         StopGame();
@@ -376,11 +396,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// \brief Handle's the Exit button event
     public void ExitMission()
     {
         SceneManager.LoadScene(0);
     }
 
+    /// \brief Handle's the Next mission button event
     public void NextMission()
     {
         int tmp = SceneManager.GetActiveScene().buildIndex;

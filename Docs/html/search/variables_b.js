@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['upgradetemplates_0',['upgradeTemplates',['../class_player.html#afbfb4e066a6f6b49b2cfcd91d24e2ca1',1,'Player']]]
+  ['timebetweenshoots_0',['timeBetweenShoots',['../class_gun.html#a3e57da47194725ff95d4932ad64c887d',1,'Gun']]]
 ];
