@@ -5425,6 +5425,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 936413982}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
+      propertyPath: playerExplosion
+      value: 
+      objectReference: {fileID: 8114913898548559900, guid: d28a1700f37e29349aa5455ea04b5f8b, type: 3}
+    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: progressBarFill
       value: 
       objectReference: {fileID: 1492839742}
@@ -5432,6 +5436,10 @@ PrefabInstance:
       propertyPath: upgradeDropRate
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
+      propertyPath: invaderExplosion
+      value: 
+      objectReference: {fileID: 6942465851498309563, guid: 7a1ad6f7a37867d47b9fc79b274ed886, type: 3}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: highScoreIndicator
       value: 

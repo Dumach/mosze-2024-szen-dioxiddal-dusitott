@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     /// \brief Mission time in seconds.
     public float missionTime;
+    public GameObject invaderExplosion;
+    public GameObject playerExplosion;
 
     /// \brief UI element for the progress bar fill.
     [SerializeField] private Image progressBarFill;
@@ -284,6 +286,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (playerExplosion != null)
+            {
+                Instantiate(playerExplosion, player.transform.position, Quaternion.identity);
+            }
             // If the player has no health, trigger game over
             GameOver();
         }
@@ -349,6 +355,11 @@ public class GameManager : MonoBehaviour
 
         if (invader.health <= 0)
         {
+            if (invaderExplosion != null)
+            {
+                Instantiate(invaderExplosion, invader.transform.position, Quaternion.identity);
+            }
+
             // Upon invader die, there is a chance of dropping an upgraded weapon
             int spawnUpgrade = Random.Range(0, upgradeDropRate);
             if (spawnUpgrade == 0 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)

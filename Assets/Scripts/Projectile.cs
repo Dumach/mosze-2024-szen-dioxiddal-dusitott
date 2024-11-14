@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
 
     /// \brief The speed of the projectile.
     public float speed = 5f;
+    public GameObject explosionPrefab;
 
     /// \brief Reference to the Rigidbody2D component for physics-based movement.
     private Rigidbody2D rb; 
@@ -87,7 +88,7 @@ public class Projectile : MonoBehaviour
         {
             /// \brief Destroy the projectile upon collision.
             /// \param gameObject It destroys the projectile gameobject
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 }
