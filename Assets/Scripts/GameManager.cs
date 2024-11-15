@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public float missionTime;
     public GameObject invaderExplosion;
     public GameObject playerExplosion;
+    public AudioClip gameOverSound;
+    public float gameOverVolume = 1.0f; 
 
     /// \brief UI element for the progress bar fill.
     [SerializeField] private Image progressBarFill;
@@ -289,6 +291,10 @@ public class GameManager : MonoBehaviour
             if (playerExplosion != null)
             {
                 Instantiate(playerExplosion, player.transform.position, Quaternion.identity);
+            }
+            if (gameOverSound != null)
+            {
+                AudioSource.PlayClipAtPoint(gameOverSound, player.transform.position, gameOverVolume);
             }
             // If the player has no health, trigger game over
             GameOver();

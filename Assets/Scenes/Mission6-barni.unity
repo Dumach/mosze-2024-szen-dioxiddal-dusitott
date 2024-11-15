@@ -702,7 +702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 99.99999, y: -49.99996}
+  m_AnchoredPosition: {x: 99.99999, y: -49.99997}
   m_SizeDelta: {x: 1155.16, y: 49.190002}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &210615843
@@ -2381,6 +2381,10 @@ PrefabInstance:
       propertyPath: hasEndBoss
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
+      propertyPath: gameOverSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fddc77d65752ae642935cca983be06d2, type: 3}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: highScoreText
       value: 
