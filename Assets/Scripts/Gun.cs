@@ -24,7 +24,7 @@ public class Gun : MonoBehaviour
     public AudioClip pewPewSFX;
 
     /// \brief Initializes the volume of projectile sound
-    public float pewpewVolume;
+    public float pewpewVolume = 1.0f;
 
     /// \brief Initializes the audio source of projectile
     private AudioSource audioSource;
@@ -64,6 +64,12 @@ public class Gun : MonoBehaviour
         }
     }
 
+    /// \brief Initializes the volume of projectile sound
+    private void Start()
+    {
+        InitializeAudioSource();
+    }
+
     /// \brief Initializes the audio source of projectile
     private void InitializeAudioSource()
     {
@@ -73,12 +79,5 @@ public class Gun : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-    }
-
-    /// \brief Initializes the volume of projectile sound
-    private void Start()
-    {
-        InitializeAudioSource();
-        if(pewpewVolume == 0) pewpewVolume = 1;
     }
 }

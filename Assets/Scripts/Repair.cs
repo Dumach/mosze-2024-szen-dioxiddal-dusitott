@@ -5,19 +5,15 @@
 public class Repair : MonoBehaviour
 {
     /// \brief Initial speed that the Repair-kit is falling towards bottom of the screen
-    [SerializeField] private float speedHeal = 1f;
-
-    public AudioClip healSound;
-    public float healVolume = 1.0f;
-    private AudioSource audioSource;
-
+    [Header("Movement and sound")]
+    [SerializeField] private float speed = 1f;
+    [SerializeField] private AudioClip sound;
+    [SerializeField] private float volume = 1.0f;
 
     private void Start()
     {
         var rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.down * speedHeal;
-
-        InitializeAudioSource();
+        rb.velocity = Vector3.down * speed;
     }
 
     /// \brief Detects collisions with player or boundry.
@@ -27,16 +23,16 @@ public class Repair : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             GameManager.Instance.HealPlayer();
-
-
             // Play the heal sound if it's assigned
-            if (healSound != null)
+            if (sound != null)
             {
-                audioSource.PlayOneShot(healSound, healVolume);
+                GameObject sfxPlayer = GameObject.Find("SFXPlayer");
+                AudioSource aud = sfxPlayer.GetComponent<AudioSource>();
+                aud.PlayOneShot(sound, volume);
             }
             Destroy(this.gameObject);
-
         }
+
         // If bottom boundry reached, destroy item
         if (other.gameObject.layer == LayerMask.NameToLayer("Boundry") && 
             other.gameObject.name == "BoundaryDown")
@@ -44,16 +40,4 @@ public class Repair : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    /// \brief Initializes the audio source of projectile
-    private void InitializeAudioSource()
-    {
-        // Get or add an AudioSource component
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-    }
-
-
 }
