@@ -139,4 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   sound: {fileID: 8300000, guid: 85b7c33f119f7e7408f66ccc0ad5d81c, type: 3}
-  volume: 5
+  volume: 0.4

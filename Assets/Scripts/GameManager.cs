@@ -38,10 +38,17 @@ public class GameManager : MonoBehaviour
 
     /// \brief Mission time in seconds.
     public float missionTime;
+
+
+    /// \brief Explosions
     public GameObject invaderExplosion;
     public GameObject playerExplosion;
-    public AudioClip gameOverSound;
-    public float gameOverVolume = 1.0f; 
+
+    /// \brief Sounds
+    [SerializeField] private AudioClip gameOverSound;
+    [SerializeField] private float gameOverVolume = 1.0f;
+    [SerializeField] private AudioClip enemyDeathSound;
+    [SerializeField] private float enemyDeathVolume = 1.0f;
 
     /// \brief UI element for the progress bar fill.
     [SerializeField] private Image progressBarFill;
@@ -292,13 +299,22 @@ public class GameManager : MonoBehaviour
             {
                 Instantiate(playerExplosion, player.transform.position, Quaternion.identity);
             }
-            if (gameOverSound != null)
+            // Play the gameover sound if it's assigned
+
+            /* if (gameOverSound != null)
             {
-                AudioSource.PlayClipAtPoint(gameOverSound, player.transform.position, gameOverVolume);
+                GameObject sfxPlayer = GameObject.Find("SFXPlayer");
+                AudioSource aud = sfxPlayer.GetComponent<AudioSource>();
+                aud.PlayOneShot(gameOverSound, gameOverVolume);
             }
+            */
+
+            OnGameOverSounds();
+
             // If the player has no health, trigger game over
             GameOver();
         }
+            
     }
 
     /// \brief Called when player picked up a repair kit. It heals the player.
@@ -366,6 +382,14 @@ public class GameManager : MonoBehaviour
                 Instantiate(invaderExplosion, invader.transform.position, Quaternion.identity);
             }
 
+            // Play the death sound if it's assigned
+            if (enemyDeathSound != null)
+            {
+                GameObject sfxPlayer = GameObject.Find("SFXPlayer");
+                AudioSource aud = sfxPlayer.GetComponent<AudioSource>();
+                aud.PlayOneShot(enemyDeathSound, enemyDeathVolume);
+            }
+
             // Upon invader die, there is a chance of dropping an upgraded weapon
             int spawnUpgrade = Random.Range(0, upgradeDropRate);
             if (spawnUpgrade == 0 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)
@@ -431,4 +455,21 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(tmp);
         }
     }
+
+    public void OnGameOverSounds()
+    { 
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            if (audioSource.clip != gameOverSound)
+            {
+                audioSource.Stop();
+            }
+        }
+
+        AudioSource.PlayClipAtPoint(gameOverSound, Camera.main.transform.position, gameOverVolume);
+
+    }
+
 }
