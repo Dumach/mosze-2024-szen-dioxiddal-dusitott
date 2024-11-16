@@ -229,7 +229,9 @@ public class GameManager : MonoBehaviour
 
         GameObject.Find("levelText").GetComponent<Text>().text = "Level " + sceneIndex + " failed!";
         GameObject.Find("scoresText").GetComponent<Text>().text = "Scores: " + score;
-        GameObject.Find("NextButton").SetActive(false);
+        GameObject.Find("pauseUI").SetActive(false);
+        var nextbtn = GameObject.Find("NextButton");
+        if(nextbtn) nextbtn.SetActive(false);
     }
 
     /// \brief Sets the player's score and updates the score UI.
