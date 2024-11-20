@@ -3916,6 +3916,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: level_Progress_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 784392775601126112, guid: f326f1b7b4f85774db463601e0b35c64, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3536251699389944735, guid: f326f1b7b4f85774db463601e0b35c64, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
