@@ -585,14 +585,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 936413981}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
-      propertyPath: hasEndBoss
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
-      propertyPath: gameOverSound
-      value: 
-      objectReference: {fileID: 8300000, guid: fddc77d65752ae642935cca983be06d2, type: 3}
-    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: highScoreText
       value: 
       objectReference: {fileID: 936413979}
@@ -601,25 +593,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 936413982}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
-      propertyPath: enemyDeathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2f3071ed1dccfaa45a478f013c19dd57, type: 3}
-    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
-      propertyPath: playerExplosion
-      value: 
-      objectReference: {fileID: 8114913898548559900, guid: d28a1700f37e29349aa5455ea04b5f8b, type: 3}
-    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: progressBarFill
       value: 
       objectReference: {fileID: 1183659033}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: upgradeDropRate
-      value: 60
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
-      propertyPath: invaderExplosion
-      value: 
-      objectReference: {fileID: 6942465851498309563, guid: 7a1ad6f7a37867d47b9fc79b274ed886, type: 3}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: highScoreIndicator
       value: 
@@ -2048,11 +2028,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3536251699389944735, guid: f326f1b7b4f85774db463601e0b35c64, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 78475.24
+      value: 925
       objectReference: {fileID: 0}
     - target: {fileID: 3536251699389944735, guid: f326f1b7b4f85774db463601e0b35c64, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1164152.9
+      value: -29
       objectReference: {fileID: 0}
     - target: {fileID: 3536251699389944735, guid: f326f1b7b4f85774db463601e0b35c64, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

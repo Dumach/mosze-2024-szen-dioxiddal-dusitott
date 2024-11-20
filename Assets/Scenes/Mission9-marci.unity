@@ -5174,6 +5174,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 936413981}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
+      propertyPath: isLastMission
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: scoreIndicator
       value: 
       objectReference: {fileID: 936413982}

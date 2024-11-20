@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.583
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.073
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2233217220603611506, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: pewpewVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2233217220603611506, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: timeBetweenShoots
@@ -255,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4891217191459414049, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: pewpewVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4891217191459414049, guid: 9140069168171234a85ec77b313903fd, type: 3}
       propertyPath: timeBetweenShoots
@@ -367,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -460,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -509,11 +509,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.582
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.073
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 221928938999654363, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -553,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab

@@ -52,7 +52,7 @@ MonoBehaviour:
   gameOverSound: {fileID: 8300000, guid: fddc77d65752ae642935cca983be06d2, type: 3}
   gameOverVolume: 1
   enemyDeathSound: {fileID: 8300000, guid: 2f3071ed1dccfaa45a478f013c19dd57, type: 3}
-  enemyDeathVolume: 0.25
+  enemyDeathVolume: 0.1
   upgradePrefab: {fileID: 2193623743651769516, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
   upgradeDropRate: 60
   repairkitPrefab: {fileID: 9196887192766727644, guid: ab0f7198e9b06324480aa132e2d9274f, type: 3}

@@ -100,11 +100,11 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
+            PlayerPrefs.SetInt("HighScore", 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
-        }*/
+        }
     }
 
     /// \brief Updates the progress bar UI element based on elapsed time.

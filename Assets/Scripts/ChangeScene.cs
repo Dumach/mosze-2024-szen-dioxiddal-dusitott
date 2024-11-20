@@ -9,6 +9,7 @@ public class ChangeScene : MonoBehaviour
 
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject NameMenu;
+    [SerializeField] private GameObject LeaderBoard;
 
     /// \brief Handle's the logic of ContinueGame button
     public void ContinueGame()
@@ -19,6 +20,16 @@ public class ChangeScene : MonoBehaviour
             int index = PlayerPrefs.GetInt("CurrentMission");
             if (index > 0) SceneManager.LoadScene(index);
         }
+    }
+
+    public void ShowLeaderboard()
+    {
+        LeaderBoard.SetActive(true);
+    }
+
+    public void HideLeaderboard()
+    {
+        LeaderBoard.SetActive(false);
     }
 
     /// \brief Handle's the logic of NewGame button

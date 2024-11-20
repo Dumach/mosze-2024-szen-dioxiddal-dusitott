@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 /// \class GameManager
 /// \brief This class is responsible for controlling and managing activities in the game
@@ -12,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     /// \brief Singleton instance of the GameManager.
     public static GameManager Instance { get; private set; }
-    
+
     /// \brief Flag to determine if there's an end boss in the mission.
     [SerializeField] private bool hasEndBoss;
     [SerializeField] private bool isLastMission = false;
@@ -42,6 +44,9 @@ public class GameManager : MonoBehaviour
     /// \brief Frequency at which repair kits are dropped.
     [SerializeField] private int repairkitDropRate;
 
+
+    [SerializeField] private int maxCount = 7;
+
     /// \brief Reference to the Player object in the game.
     private Player player;
 
@@ -55,7 +60,7 @@ public class GameManager : MonoBehaviour
     private string playerName;
 
     /// \brief The current score of the player.
-    public int score { get; private set; } = 0;    
+    public int score { get; private set; } = 0;
 
     /// \brief The current scene index.
     private int sceneIndex;
@@ -88,7 +93,9 @@ public class GameManager : MonoBehaviour
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         uiManager = FindObjectOfType<UiManager>().GetComponent<UiManager>();
         player = FindObjectOfType<Player>();
-        maxHealth = player.health;        
+        maxHealth = player.health;
+        if (PlayerPrefs.HasKey("Score"))
+            score = PlayerPrefs.GetInt("Score");
 
         InvokeRepeating("SpawnRepairKit", 0f, 1f);
 
@@ -104,7 +111,7 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
-    }    
+    }
 
     /// \brief Coroutine to count down mission time and end the mission if time expires.
     private IEnumerator MissionTimeCountdown()
@@ -172,7 +179,7 @@ public class GameManager : MonoBehaviour
         uiManager.HandleGameOverUI(score);
 
         var nextbtn = GameObject.Find("NextButton");
-        if(nextbtn) nextbtn.SetActive(false);
+        if (nextbtn) nextbtn.SetActive(false);
     }
 
     /// \brief Sets the player's score and updates the score UI.
@@ -201,14 +208,14 @@ public class GameManager : MonoBehaviour
             {
                 Instantiate(playerExplosion, player.transform.position, Quaternion.identity);
             }
-            
+
             // Play the gameover sound if it's assigned
             OnGameOverSounds();
 
             // If the player has no health, trigger game over
             GameOver();
         }
-            
+
     }
 
     /// \brief Called when player picked up a repair kit. It heals the player.
@@ -218,7 +225,7 @@ public class GameManager : MonoBehaviour
         if (player.health < maxHealth)
         {
             player.health++;
-            if(uiManager != null) uiManager.UpdatePlayerHealthUI(player.health);
+            if (uiManager != null) uiManager.UpdatePlayerHealthUI(player.health);
         }
     }
 
@@ -287,13 +294,13 @@ public class GameManager : MonoBehaviour
             int spawnUpgrade = Random.Range(0, upgradeDropRate);
             if (spawnUpgrade == 0 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)
             {
-                if(upgradePrefab != null)
+                if (upgradePrefab != null)
                     Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
             }
 
             // Destroy the invader and update the player's score
             Destroy(invader.gameObject);
-    
+
             SetScore(score + invader.score);
 
             // If a boss destroyed than end the mission
@@ -314,7 +321,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Score", score);
 
         // Ha utolso mission volt
-        if (sceneIndex >= SceneManager.sceneCountInBuildSettings - 1)
+        if (isLastMission)
         {
             // Calculate total score
             /*int totalScore = 0;
@@ -322,25 +329,24 @@ public class GameManager : MonoBehaviour
             {
                 totalScore += PlayerPrefs.GetInt("Mission" + i);
             }*/
-            uiManager.HandleEndOfMissionUI(true, score);            
+            uiManager.HandleEndOfMissionUI(true, score);
         }
-        else 
+        else
             uiManager.HandleEndOfMissionUI(false, score);
     }
 
     /// \brief Handle's the Exit button event
     public void ExitMission()
     {
+        HandleHighScore();
         SceneManager.LoadScene(0);
-
-
     }
 
     /// \brief Handle's the Next mission button event
     public void NextMission()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        
+        HandleHighScore();
         if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings && !isLastMission)
         {
             // Van meg mission hatra
@@ -349,8 +355,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void HandleHighScore()
+    {
+        HighscoreElement element = new HighscoreElement(name, score);
+        List<HighscoreElement> highscoreList = new List<HighscoreElement>();
+        highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>("scores.json");
+
+        while (highscoreList.Count > maxCount)
+        {
+            highscoreList.RemoveAt(maxCount);
+        }
+
+        for (int i = 0; i < maxCount; i++)
+        {
+            if (i >= highscoreList.Count || element.points > highscoreList[i].points)
+            {
+                // add new high score
+                highscoreList.Insert(i, element);
+
+                while (highscoreList.Count > maxCount)
+                {
+                    highscoreList.RemoveAt(maxCount);
+                }
+
+                FileHandler.SaveToJSON<HighscoreElement>(highscoreList, "scores.json");
+
+                break;
+            }
+        }
+    }
+
     public void OnGameOverSounds()
-    { 
+    {
         AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
 
         foreach (AudioSource audioSource in allAudioSources)

@@ -4106,6 +4106,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1636914314801495588}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
+      propertyPath: hasEndBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: gameOverSound
       value: 
       objectReference: {fileID: 8300000, guid: fddc77d65752ae642935cca983be06d2, type: 3}
@@ -4115,7 +4119,7 @@ PrefabInstance:
       objectReference: {fileID: 4869345092587945494}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: isLastMission
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5583691739549085367, guid: a213bed2bce0a614eb9a6d4cf31393f7, type: 3}
       propertyPath: scoreIndicator
