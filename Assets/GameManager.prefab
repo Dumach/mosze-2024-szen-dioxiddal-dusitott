@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 183349289567269198}
   - component: {fileID: 5583691739549085367}
-  - component: {fileID: 8561451374954139007}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,31 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459f605e13eced949a32904be2fa0a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreIndicator: {fileID: 0}
-  scoreText: {fileID: 0}
-  highScoreIndicator: {fileID: 0}
-  highScoreText: {fileID: 0}
-  livesText: {fileID: 0}
-  infoUI: {fileID: 0}
-  pauseUI: {fileID: 0}
-  endUI: {fileID: 0}
-  hasEndBoss: 1
+  hasEndBoss: 0
+  isLastMission: 0
   missionTime: 150
+  invaderExplosion: {fileID: 6942465851498309563, guid: 7a1ad6f7a37867d47b9fc79b274ed886, type: 3}
+  playerExplosion: {fileID: 8114913898548559900, guid: d28a1700f37e29349aa5455ea04b5f8b, type: 3}
+  gameOverSound: {fileID: 8300000, guid: fddc77d65752ae642935cca983be06d2, type: 3}
+  gameOverVolume: 1
+  enemyDeathSound: {fileID: 8300000, guid: 2f3071ed1dccfaa45a478f013c19dd57, type: 3}
+  enemyDeathVolume: 0.25
   upgradePrefab: {fileID: 2193623743651769516, guid: dfc85c412a5b80b45b2da9a506a796ff, type: 3}
-  upgradeDropRate: 30
+  upgradeDropRate: 60
   repairkitPrefab: {fileID: 9196887192766727644, guid: ab0f7198e9b06324480aa132e2d9274f, type: 3}
   repairkitDropRate: 60
---- !u!114 &8561451374954139007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8779134894007603556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4a15d84c49399459eb775c62546582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
-  backgroundMusic: {fileID: 0}

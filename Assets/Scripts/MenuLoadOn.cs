@@ -19,9 +19,8 @@ public class MenuLoadOn : MonoBehaviour
                 continueTxt.GetComponent<Text>().color = lightColor;                
             }
         }
-        float volume = 0f;
+        float volume = 1f;
         if (PlayerPrefs.HasKey("Volume")) volume = PlayerPrefs.GetFloat("Volume");
-        else volume = 0.25f;
         gameObject.GetComponent<AudioSource>().volume = volume;
     }
 

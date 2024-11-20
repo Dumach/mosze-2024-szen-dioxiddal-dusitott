@@ -15,9 +15,8 @@ public class SettingsMenu : MonoBehaviour
        
         if (backgroundMusic != null)
         {
-            float volume = 0f;
+            float volume = 1f;
             if(PlayerPrefs.HasKey("Volume")) volume = PlayerPrefs.GetFloat("Volume");
-            else volume = 0.5f;
             backgroundMusic.volume = volume;
             volumeSlider.value = backgroundMusic.volume;
         }
