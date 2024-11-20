@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class UiManager : MonoBehaviour
 {
@@ -85,10 +84,15 @@ public class UiManager : MonoBehaviour
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         PlayerPrefs.SetInt("CurrentMission", sceneIndex);
-        if (PlayerPrefs.HasKey("HighScore" + sceneIndex))
+        if (PlayerPrefs.HasKey("HighScore"))
         {
-            highScore = PlayerPrefs.GetInt("HighScore" + sceneIndex);
+            highScore = PlayerPrefs.GetInt("HighScore");
             highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
+        }
+        if (PlayerPrefs.HasKey("Score"))
+        {
+            int score = PlayerPrefs.GetInt("Score");
+            scoreIndicator.text = score.ToString().PadLeft(4, '0');
         }
 
         InvokeRepeating("UpdateProgressBar", 0f, 0.5f);
@@ -96,11 +100,11 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
             highScoreIndicator.text = "".PadLeft(4, '0');
-        }
+        }*/
     }
 
     /// \brief Updates the progress bar UI element based on elapsed time.
@@ -114,7 +118,7 @@ public class UiManager : MonoBehaviour
         progressBarFill.fillAmount = progress;
     }
 
-    public void StartGameUI()
+    public void StopGameUI()
     {
         CancelInvoke("UpdateProgressBar");
         infoUI.SetActive(false);
@@ -133,7 +137,7 @@ public class UiManager : MonoBehaviour
         if (score > highScore)
         {
             highScore = score;
-            PlayerPrefs.SetInt("HighScore" + sceneIndex, highScore);
+            PlayerPrefs.SetInt("HighScore", highScore);
             if (highScoreIndicator != null) highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
             NewRecord();
         }
@@ -180,13 +184,13 @@ public class UiManager : MonoBehaviour
         if (livesText != null) livesText.text = health.ToString();
     }
 
-    public void HandleEndOfMissionUI(bool isLastMission, int totalScore = 0, int score = 0)
+    public void HandleEndOfMissionUI(bool isLastMission, int score)
     {
         if (isLastMission)
         {
             GameObject.Find("NextButton").SetActive(false);
             GameObject.Find("levelText").GetComponent<Text>().text = "You win the game!";
-            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + totalScore;
+            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + score;
         }
         else
         {

@@ -1,10 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// \class ChangeScene
 /// \brief This class is responsible for loading the missions
 public class ChangeScene : MonoBehaviour
 {
+
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject NameMenu;
+
     /// \brief Handle's the logic of ContinueGame button
     public void ContinueGame()
     {
@@ -19,7 +24,31 @@ public class ChangeScene : MonoBehaviour
     /// \brief Handle's the logic of NewGame button
     public void NewGame()
     {
+        MainMenu.SetActive(false);
+        NameMenu.SetActive(true);
+    }
+
+    /// \brief Handle's the logic of submitting the players name
+    public void SubmitName()
+    {
+        var inputField = GameObject.Find("NameInputField");
+        var name = inputField.GetComponent<InputField>().text;
+        
+        if (name == null || name == "") return;
+
+        PlayerPrefs.SetString("Name", name);
+        PlayerPrefs.SetInt("Score", 0);
+
         SceneManager.LoadScene(1);
+    }
+
+    /// \brief Handle's the logic of Cancel button
+    public void Cancel()
+    {
+        var inputField = GameObject.Find("NameInputField");
+        inputField.GetComponent<InputField>().text = "";
+        MainMenu.SetActive(true);
+        NameMenu.SetActive(false);
     }
 
     /// \brief Handle's the logic of Exit button

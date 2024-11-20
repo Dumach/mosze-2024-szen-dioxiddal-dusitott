@@ -49,7 +49,10 @@ public class GameManager : MonoBehaviour
     private UiManager uiManager;
 
     /// \brief The maximum health of the player.
-    private int maxHealth;    
+    private int maxHealth;
+
+    /// \brief Name of the player.
+    private string playerName;
 
     /// \brief The current score of the player.
     public int score { get; private set; } = 0;    
@@ -154,7 +157,7 @@ public class GameManager : MonoBehaviour
             spawnp.GetComponent<SpawnPoint>().turnOff();
         }
 
-        uiManager.StartGameUI();
+        uiManager.StopGameUI();
 
         CancelInvoke("SpawnRepairKit");
         player.gameObject.SetActive(false);
@@ -165,6 +168,7 @@ public class GameManager : MonoBehaviour
     {
         StopGame();
 
+        // score
         uiManager.HandleGameOverUI(score);
 
         var nextbtn = GameObject.Find("NextButton");
@@ -178,8 +182,6 @@ public class GameManager : MonoBehaviour
         this.score = score;
         uiManager.UpdateScoreUI(score);
     }
-
-    
 
     /// \brief Called when the player is killed. Decreases health and handles game over if necessary.
     public void OnPlayerKilled()
@@ -291,8 +293,7 @@ public class GameManager : MonoBehaviour
 
             // Destroy the invader and update the player's score
             Destroy(invader.gameObject);
-
-            // IDE anim?ci?
+    
             SetScore(score + invader.score);
 
             // If a boss destroyed than end the mission
@@ -309,27 +310,30 @@ public class GameManager : MonoBehaviour
     {
         StopGame();
 
-        PlayerPrefs.SetInt("Mission" + sceneIndex, score);
+        //PlayerPrefs.SetInt("Mission" + sceneIndex, score);
+        PlayerPrefs.SetInt("Score", score);
 
         // Ha utolso mission volt
         if (sceneIndex >= SceneManager.sceneCountInBuildSettings - 1)
         {
             // Calculate total score
-            int totalScore = 0;
+            /*int totalScore = 0;
             for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
             {
                 totalScore += PlayerPrefs.GetInt("Mission" + i);
-            }
-            uiManager.HandleEndOfMissionUI(true);            
+            }*/
+            uiManager.HandleEndOfMissionUI(true, score);            
         }
         else 
-            uiManager.HandleEndOfMissionUI(false);
+            uiManager.HandleEndOfMissionUI(false, score);
     }
 
     /// \brief Handle's the Exit button event
     public void ExitMission()
     {
         SceneManager.LoadScene(0);
+
+
     }
 
     /// \brief Handle's the Next mission button event
@@ -339,7 +343,7 @@ public class GameManager : MonoBehaviour
         
         if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings && !isLastMission)
         {
-            // Van m?g mission h?tra
+            // Van meg mission hatra
             currentSceneIndex += 1;
             SceneManager.LoadScene(currentSceneIndex);
         }
