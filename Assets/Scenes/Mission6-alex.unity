@@ -4281,7 +4281,7 @@ PrefabInstance:
     - target: {fileID: 6015574293252379527, guid: 2d7b1d14606f8084285fc041767142d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1570457795909192014, guid: fb00b62a8d624b94aa588bce332465e0, type: 3}
+      objectReference: {fileID: 1367492913}
     - target: {fileID: 6015574293252379527, guid: 2d7b1d14606f8084285fc041767142d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GoToMainMenu
