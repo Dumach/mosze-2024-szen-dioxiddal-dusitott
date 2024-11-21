@@ -8,6 +8,7 @@ public class MenuLoadOn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Decides if player can continue a game
         if (PlayerPrefs.HasKey("CurrentMission"))
         {
             if(PlayerPrefs.GetInt("CurrentMission") > 0)
@@ -19,9 +20,16 @@ public class MenuLoadOn : MonoBehaviour
                 continueTxt.GetComponent<Text>().color = lightColor;                
             }
         }
+
+        // Setting the already saved volume to audiosource
         float volume = 1f;
         if (PlayerPrefs.HasKey("Volume")) volume = PlayerPrefs.GetFloat("Volume");
         gameObject.GetComponent<AudioSource>().volume = volume;
+
+        // Setting the highest score from persistent storage
+        List<HighscoreElement> highscoreList = new List<HighscoreElement>();
+        highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>("scores.json");
+        PlayerPrefs.SetInt("HighScore", highscoreList[0].points);
     }
 
     // Update is called once per frame

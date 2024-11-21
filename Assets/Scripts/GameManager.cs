@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
         maxHealth = player.health;
         if (PlayerPrefs.HasKey("Score"))
             score = PlayerPrefs.GetInt("Score");
+        if (PlayerPrefs.HasKey("Name"))
+            playerName = PlayerPrefs.GetString("Name");
 
         InvokeRepeating("SpawnRepairKit", 0f, 1f);
 
@@ -357,7 +359,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleHighScore()
     {
-        HighscoreElement element = new HighscoreElement(name, score);
+        HighscoreElement element = new HighscoreElement(playerName, score);
         List<HighscoreElement> highscoreList = new List<HighscoreElement>();
         highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>("scores.json");
 
