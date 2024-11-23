@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['upgrade_0',['Upgrade',['../class_upgrade.html',1,'']]]
+  ['settingsmenu_0',['SettingsMenu',['../class_settings_menu.html',1,'']]],
+  ['spawnpoint_1',['SpawnPoint',['../class_spawn_point.html',1,'']]]
 ];

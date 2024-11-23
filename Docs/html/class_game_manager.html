@@ -93,14 +93,14 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>This class is responsible for controlling and managing activities in the game such as: updating UI elements, handling killing enemies.  
+<p>This class is responsible for controlling and managing activities in the game.  
  <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2959177ee51ac31badbf8b1bc8f7f637" id="r_a2959177ee51ac31badbf8b1bc8f7f637"><td class="memItemLeft" align="right" valign="top"><a id="a2959177ee51ac31badbf8b1bc8f7f637" name="a2959177ee51ac31badbf8b1bc8f7f637"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Awake</b> ()</td></tr>
-<tr class="memdesc:a2959177ee51ac31badbf8b1bc8f7f637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game such as: updating UI el...">GameManager</a> as a singleton and ensures only one instance exists. <br /></td></tr>
+<tr class="memdesc:a2959177ee51ac31badbf8b1bc8f7f637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game.">GameManager</a> as a singleton and ensures only one instance exists. <br /></td></tr>
 <tr class="separator:a2959177ee51ac31badbf8b1bc8f7f637"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e43f6cee132b2730741c9bd7575cb01" id="r_a9e43f6cee132b2730741c9bd7575cb01"><td class="memItemLeft" align="right" valign="top"><a id="a9e43f6cee132b2730741c9bd7575cb01" name="a9e43f6cee132b2730741c9bd7575cb01"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>RestartMission</b> ()</td></tr>
@@ -132,6 +132,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ExitMission</b> ()</t
 void&#160;</td><td class="memItemRight" valign="bottom"><b>NextMission</b> ()</td></tr>
 <tr class="memdesc:a393c2c983336ae3c49204decf09de3c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle's the Next mission button event. <br /></td></tr>
 <tr class="separator:a393c2c983336ae3c49204decf09de3c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05bda79592120abe79a9f944c3e051df" id="r_a05bda79592120abe79a9f944c3e051df"><td class="memItemLeft" align="right" valign="top"><a id="a05bda79592120abe79a9f944c3e051df" name="a05bda79592120abe79a9f944c3e051df"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OnGameOverSounds</b> ()</td></tr>
+<tr class="separator:a05bda79592120abe79a9f944c3e051df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -139,12 +142,19 @@ Public Attributes</h2></td></tr>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>missionTime</b></td></tr>
 <tr class="memdesc:a3222a347c0c8297b739de5c283bb5a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mission time in seconds. <br /></td></tr>
 <tr class="separator:a3222a347c0c8297b739de5c283bb5a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d6931196b2a2941eb715cf2714a140" id="r_ae8d6931196b2a2941eb715cf2714a140"><td class="memItemLeft" align="right" valign="top"><a id="ae8d6931196b2a2941eb715cf2714a140" name="ae8d6931196b2a2941eb715cf2714a140"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>invaderExplosion</b></td></tr>
+<tr class="memdesc:ae8d6931196b2a2941eb715cf2714a140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explosions. <br /></td></tr>
+<tr class="separator:ae8d6931196b2a2941eb715cf2714a140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2164c98900601c8462cb5e40212e19" id="r_a3f2164c98900601c8462cb5e40212e19"><td class="memItemLeft" align="right" valign="top"><a id="a3f2164c98900601c8462cb5e40212e19" name="a3f2164c98900601c8462cb5e40212e19"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>playerExplosion</b></td></tr>
+<tr class="separator:a3f2164c98900601c8462cb5e40212e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ad3e717f4fb0f378b969f4457de81f23e" id="r_ad3e717f4fb0f378b969f4457de81f23e"><td class="memItemLeft" align="right" valign="top"><a id="ad3e717f4fb0f378b969f4457de81f23e" name="ad3e717f4fb0f378b969f4457de81f23e"></a>
 static <a class="el" href="class_game_manager.html">GameManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b><code> [get]</code></td></tr>
-<tr class="memdesc:ad3e717f4fb0f378b969f4457de81f23e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton instance of the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game such as: updating UI el...">GameManager</a>. <br /></td></tr>
+<tr class="memdesc:ad3e717f4fb0f378b969f4457de81f23e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton instance of the <a class="el" href="class_game_manager.html" title="This class is responsible for controlling and managing activities in the game.">GameManager</a>. <br /></td></tr>
 <tr class="separator:ad3e717f4fb0f378b969f4457de81f23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9711122c3e5251d8f9ff4e02283af09" id="r_ae9711122c3e5251d8f9ff4e02283af09"><td class="memItemLeft" align="right" valign="top"><a id="ae9711122c3e5251d8f9ff4e02283af09" name="ae9711122c3e5251d8f9ff4e02283af09"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> = 0<code> [get]</code></td></tr>
@@ -152,7 +162,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> = 0<code> [g
 <tr class="separator:ae9711122c3e5251d8f9ff4e02283af09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class is responsible for controlling and managing activities in the game such as: updating UI elements, handling killing enemies. </p>
+<div class="textblock"><p>This class is responsible for controlling and managing activities in the game. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ada207438f3bb567d248454420e85522e" name="ada207438f3bb567d248454420e85522e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada207438f3bb567d248454420e85522e">&#9670;&#160;</a></span>OnInvaderKilled()</h2>
