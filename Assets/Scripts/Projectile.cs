@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -13,13 +13,13 @@ public class Projectile : MonoBehaviour
 
     /// \brief The speed of the projectile.
     public float speed = 5f;
+    public GameObject explosionPrefab;
 
     /// \brief Reference to the Rigidbody2D component for physics-based movement.
     private Rigidbody2D rb; 
+
     /// \brief Reference to the BoxCollider2D component for collision detection.
     private BoxCollider2D boxCollider;
-
-    
 
     /// \brief Called once when the projectile is instantiated. Initializes components and sets velocity.
     private void Start()
@@ -30,7 +30,6 @@ public class Projectile : MonoBehaviour
         // Set the sorting layer of the projectile's sprite to ensure visibility.
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingLayerName = "4Player";
-        //this.gameObject.layer = layer;
 
         // Set the projectile's velocity to move in the assigned direction at the assigned speed.
         rb.velocity = direction * speed;
@@ -64,11 +63,6 @@ public class Projectile : MonoBehaviour
         this.speed = speed;
     }
 
-    private void Update()
-    {
-
-    }
-
     /// \brief Called when the projectile collides with another object.
     /// \param other The Collider2D of the object the projectile collided with.
     private void OnTriggerEnter2D(Collider2D other)
@@ -94,7 +88,7 @@ public class Projectile : MonoBehaviour
         {
             /// \brief Destroy the projectile upon collision.
             /// \param gameObject It destroys the projectile gameobject
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 }

@@ -62,7 +62,7 @@ public class EnemyPatrol : MonoBehaviour
             invader.RotateTo(currentPoint);
         }
 
-        // Check if the enemy has reached the current patrol point.
+        // Check if reached the current patrol point.
         if (Vector2.Distance(transform.position, currentPoint) < 0.5f)
         {
             // Enable automatic shooting and rotation while waiting at the patrol point.
@@ -83,7 +83,7 @@ public class EnemyPatrol : MonoBehaviour
                 }
                 else
                 {
-                    /// \brief Destroy the invader after reaching the last patrol point.
+                    // Destroy the invader after reaching the last patrol point.
                     Destroy(gameObject); 
                 }
 

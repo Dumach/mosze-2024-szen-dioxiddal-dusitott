@@ -1,3 +1,4 @@
+using Codice.Client.Common.GameUI;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,19 +6,23 @@ using UnityEngine.UI;
 public class MainBoss : MonoBehaviour
 {
     [Header("Boss stats")]
-    public float speed = 4f;               // Speed of movement across the screen
-    public float cycleTime = 5f;          // Interval between direction changes
-    public float startSpawningTime = 5f;   // Countdown before initial entry from top
+    public float speed = 4f;             
+    public float cycleTime = 5f;          
+    public float startSpawningTime = 5f;  
+    public bool secondPhase = false;
+    public GameObject healthBar;
 
     [SerializeField] private Text BossWarning;
 
     private Vector2 centerRightDestination;
     private Vector2 centerLeftDestination;
-    private Vector2 centerScreen;          // Center point on the screen
-    private bool movingRight = true;       // Direction control
+    private Vector2 centerScreen;          
+    private bool movingRight = true;      
 
     private Invader invaderComponent;
     private int healthStart;
+    private bool isInSecondPhase = false;
+    private Slider healthSlider;
 
     private void Start()
     {
@@ -25,7 +30,10 @@ public class MainBoss : MonoBehaviour
         invaderComponent.autoAim = false;
         invaderComponent.autoShoot = false;
         invaderComponent.GetComponent<BoxCollider2D>().enabled = false;
-        //healthStart = invaderComponent.health;
+        healthSlider = healthBar.GetComponent<Slider>();
+        healthStart = invaderComponent.health;
+        healthSlider.maxValue = healthStart;
+
 
         // Convert viewport edges to world coordinates to set destination points
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
@@ -37,6 +45,7 @@ public class MainBoss : MonoBehaviour
         centerScreen = new Vector2(centerScreenPoint.x, centerScreenPoint.y);
         centerRightDestination = new Vector2((centerScreenPoint.x + rightEdge.x) / 2, centerScreenPoint.y);
         centerLeftDestination = new Vector2((centerScreenPoint.x + leftEdge.x) / 2, centerScreenPoint.y);
+
 
         // Start the countdown for the initial spawn
         StartCoroutine(StartSpawnCountdown());
@@ -62,11 +71,22 @@ public class MainBoss : MonoBehaviour
         }
 
         BossWarning.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(true);
+
         //invaderComponent.health = healthStart;
         invaderComponent.GetComponent<BoxCollider2D>().enabled = true;
 
+        // Start monitoring health for phase change
+        StartCoroutine(CheckHealthForSecondPhase());
+
         // Start alternating movement once in the center
         StartCoroutine(AlternateMovement());
+    }
+
+    private void Update()
+    {
+        healthSlider.value = invaderComponent.health;
+
     }
 
     private IEnumerator AlternateMovement()
@@ -93,4 +113,30 @@ public class MainBoss : MonoBehaviour
             yield return new WaitForSeconds(cycleTime);
         }
     }
+    private IEnumerator CheckHealthForSecondPhase()
+    {
+        while (secondPhase && !isInSecondPhase)
+        {
+            if (invaderComponent.health <= healthStart * 0.5f)
+            {
+                ActivateSecondPhase();
+            }
+            yield return null;
+        }
+    }
+    private void ActivateSecondPhase()
+    {
+        isInSecondPhase = true;
+
+        // Adjust boss behavior for second phase
+        speed *= 1.5f; // Increase speed
+        cycleTime /= 1.5f; // Reduce time between movement cycles
+
+
+
+        Debug.Log("Second phase activated!");
+    }
 }
+
+
+

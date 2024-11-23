@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 /// \class SpawnPoint
@@ -56,7 +53,6 @@ public class SpawnPoint : MonoBehaviour
     /// \brief Handles the countdown to start spawning invaders and manages the spawning process.
     private void SpawnInvaders()
     {
-        // Deactivate the spawn point if no more invaders are left to spawn
         if (numberOf <= 0)
         {
             turnOff();
@@ -66,6 +62,7 @@ public class SpawnPoint : MonoBehaviour
         CreateInvader();
     }
 
+    /// \brief Deactivate the spawn point if no more invaders are left to spawn
     public void turnOff()
     {
         this.gameObject.SetActive(false);

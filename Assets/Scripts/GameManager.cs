@@ -3,53 +3,66 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 /// \class GameManager
 /// \brief This class is responsible for controlling and managing activities in the game
-/// such as: updating UI elements, handling killing enemies.
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
+
     /// \brief Singleton instance of the GameManager.
     public static GameManager Instance { get; private set; }
 
-    /// \brief UI text for displaying the player's score.
-    [SerializeField] private Text scoreIndicator;
-    [SerializeField] private Text scoreText;
-
-    [SerializeField] private Text highScoreIndicator;
-    [SerializeField] private Text highScoreText;
-    /// \brief UI text for displaying the player's remaining lives.
-    [SerializeField] private Text livesText;
-
-    [SerializeField] private GameObject infoUI;
-    [SerializeField] private GameObject pauseUI;
-    [SerializeField] private GameObject endUI;
-
+    /// \brief Flag to determine if there's an end boss in the mission.
     [SerializeField] private bool hasEndBoss;
-    //[SerializeField] private UI UI;
+    [SerializeField] private bool isLastMission = false;
 
     /// \brief Mission time in seconds.
     public float missionTime;
 
-    [SerializeField] private Image progressBarFill;
-    private float elapsedTime = 0f;
+    /// \brief Explosions
+    public GameObject invaderExplosion;
+    public GameObject playerExplosion;
 
+    /// \brief Sounds
+    [SerializeField] private AudioClip gameOverSound;
+    [SerializeField] private float gameOverVolume = 1.0f;
+    [SerializeField] private AudioClip enemyDeathSound;
+    [SerializeField] private float enemyDeathVolume = 1.0f;
+
+    /// \brief Prefab for upgrade items dropped by enemies.
     [SerializeField] private Upgrade upgradePrefab;
+
+    /// \brief Frequency at which upgrade items are dropped.
     [SerializeField] private int upgradeDropRate;
+
+    /// \brief Prefab for repair kits dropped by enemies.
     [SerializeField] private Repair repairkitPrefab;
+
+    /// \brief Frequency at which repair kits are dropped.
     [SerializeField] private int repairkitDropRate;
+
+
+    [SerializeField] private int maxCount = 7;
 
     /// \brief Reference to the Player object in the game.
     private Player player;
+
+    /// \brief Reference to the UI manager object that controls the UI.
+    private UiManager uiManager;
+
+    /// \brief The maximum health of the player.
     private int maxHealth;
 
-    private int flashCount = 0;             // A villanások számolása
-    private bool isFlashing = false;        // Villogás folyamatban van-e
+    /// \brief Name of the player.
+    private string playerName;
 
     /// \brief The current score of the player.
     public int score { get; private set; } = 0;
-    private int highScore = 0;
+
+    /// \brief The current scene index.
     private int sceneIndex;
 
     /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
@@ -74,21 +87,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// \brief Finds the Player object at the start of the game.
+    /// \brief Finds the Player object and initializes game variables at the start of the game.
     private void Start()
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        uiManager = FindObjectOfType<UiManager>().GetComponent<UiManager>();
         player = FindObjectOfType<Player>();
         maxHealth = player.health;
-        livesText.text = maxHealth.ToString();
-        if (PlayerPrefs.HasKey("HighScore" + sceneIndex))
-        {
-            highScore = PlayerPrefs.GetInt("HighScore" + sceneIndex);
-            highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
-        }
+        if (PlayerPrefs.HasKey("Score"))
+            score = PlayerPrefs.GetInt("Score");
+        if (PlayerPrefs.HasKey("Name"))
+            playerName = PlayerPrefs.GetString("Name");
 
         InvokeRepeating("SpawnRepairKit", 0f, 1f);
-        InvokeRepeating("UpdateProgressBar", 0f, 0.5f);
 
         // Starts mission countdown timer if no boss in the end
         if (!hasEndBoss)
@@ -98,39 +109,13 @@ public class GameManager : MonoBehaviour
     /// \brief Monitors the player's health and restarts the scene if necessary.
     private void Update()
     {
-        // Restart the scene if the player has no health or if the Enter key is pressed
         if (Input.GetKeyDown(KeyCode.Return))
         {
             GameOver();
         }
-        // Reset highScore
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            //score = 0;
-            PlayerPrefs.SetInt("HighScore" + sceneIndex, 0);
-            highScoreIndicator.text = "".PadLeft(4, '0');
-        }
-        //UpdateProgressBar();
     }
 
-
-
-    private void UpdateProgressBar()
-    {
-        if (progressBarFill == null) return;
-
-        //elapsedTime += Time.deltaTime;
-        elapsedTime += 0.5f;
-        float progress = Mathf.Clamp01(elapsedTime / missionTime);
-
-        progressBarFill.fillAmount = progress;
-
-        if (elapsedTime >= missionTime && !hasEndBoss)
-        {
-            EndOfMission();
-        }
-    }
-
+    /// \brief Coroutine to count down mission time and end the mission if time expires.
     private IEnumerator MissionTimeCountdown()
     {
         yield return new WaitForSeconds(missionTime);
@@ -138,21 +123,19 @@ public class GameManager : MonoBehaviour
         if (!this.hasEndBoss) EndOfMission();
     }
 
-    /// \brief Spawns a repair kit from the upper edge of screen
+    /// \brief Spawns a repair kit from the upper edge of the screen.
     private void SpawnRepairKit()
     {
-        // Random chance to spawn
         int spawnRepairkit = Random.Range(0, repairkitDropRate);
-        if (spawnRepairkit == 1)
+        if (spawnRepairkit == 0)
         {
-            if(GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
+            if (GameObject.FindGameObjectsWithTag("RepairKit").Length < 1)
             {
-            Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-            Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-            Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
-            // Random location to spawn
-            Vector3 where = new Vector3(Random.Range(leftEdge.x + 2, rightEdge.x - 2), upperEdge.y);
-            Instantiate(repairkitPrefab, where, Quaternion.identity);
+                Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+                Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+                Vector3 upperEdge = Camera.main.ViewportToWorldPoint(Vector3.up);
+                Vector3 where = new Vector3(Random.Range(leftEdge.x + 2, rightEdge.x - 2), upperEdge.y);
+                Instantiate(repairkitPrefab, where, Quaternion.identity);
             }
         }
     }
@@ -163,6 +146,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    /// \brief Stops all active game elements, such as background scrolling and enemy spawning.
     private void StopGame()
     {
         foreach (var backg in GameObject.FindGameObjectsWithTag("Background"))
@@ -182,11 +166,10 @@ public class GameManager : MonoBehaviour
             spawnp.GetComponent<SpawnPoint>().turnOff();
         }
 
-        CancelInvoke("UpdateProgressBar");
+        uiManager.StopGameUI();
+
         CancelInvoke("SpawnRepairKit");
         player.gameObject.SetActive(false);
-        infoUI.SetActive(false);
-        endUI.SetActive(true);
     }
 
     /// \brief Triggers the game over state and restarts the scene.
@@ -194,10 +177,11 @@ public class GameManager : MonoBehaviour
     {
         StopGame();
 
-        GameObject.Find("levelText").GetComponent<Text>().text = "Level " + sceneIndex + " failed!";
-        GameObject.Find("scoresText").GetComponent<Text>().text = "Scores: " + score;
-        GameObject.Find("NextButton").SetActive(false);
-        //RestartMission();
+        // score
+        uiManager.HandleGameOverUI(score);
+
+        var nextbtn = GameObject.Find("NextButton");
+        if (nextbtn) nextbtn.SetActive(false);
     }
 
     /// \brief Sets the player's score and updates the score UI.
@@ -205,68 +189,35 @@ public class GameManager : MonoBehaviour
     private void SetScore(int score)
     {
         this.score = score;
-        if (score > highScore)
-        {
-            highScore = score;
-            PlayerPrefs.SetInt("HighScore" + sceneIndex, highScore);
-            highScoreIndicator.text = highScore.ToString().PadLeft(4, '0');
-            NewRecord();
-            //UI.startFlashing(highScoreText, 3, "#0A940F", "#C57C04");
-        }
-        scoreIndicator.text = score.ToString().PadLeft(4, '0');
-    }
-
-    private void NewRecord()
-    {
-        if (!isFlashing)
-        {
-            StartCoroutine(BlinkHighScoreText());
-        }
-    }
-
-    private IEnumerator BlinkHighScoreText()
-    {
-        isFlashing = true;
-
-        while (flashCount < 3)
-        {
-            ColorUtility.TryParseHtmlString("#0A940F", out Color highlightColor);
-            highScoreText.color = highlightColor;
-            highScoreText.text = "New Record";
-
-            yield return new WaitForSeconds(1);
-
-            ColorUtility.TryParseHtmlString("#C57C04", out Color normalColor);
-            highScoreText.color = normalColor;
-            highScoreText.text = "High Score";
-
-            yield return new WaitForSeconds(1);
-
-            flashCount++;
-        }
-
-        flashCount = 0;
-        isFlashing = false;
+        uiManager.UpdateScoreUI(score);
     }
 
     /// \brief Called when the player is killed. Decreases health and handles game over if necessary.
     public void OnPlayerKilled()
     {
-        // Decrease player's health and update the lives UI
-        player.health = Mathf.Max(player.health - 1, 0);
-        livesText.text = player.health.ToString();
+        int health = Mathf.Max(player.health - 1, 0);
+        player.health = health;
+        uiManager.UpdatePlayerHealthUI(health);
 
-        if (player.health > 0)
+        if (health > 0)
         {
-            // Make player temporarily unkillable
             player.beUnkillable(1.0f);
             player.ActivateShieldBubble();
         }
         else
         {
+            if (playerExplosion != null)
+            {
+                Instantiate(playerExplosion, player.transform.position, Quaternion.identity);
+            }
+
+            // Play the gameover sound if it's assigned
+            OnGameOverSounds();
+
             // If the player has no health, trigger game over
             GameOver();
         }
+
     }
 
     /// \brief Called when player picked up a repair kit. It heals the player.
@@ -276,7 +227,7 @@ public class GameManager : MonoBehaviour
         if (player.health < maxHealth)
         {
             player.health++;
-            livesText.text = player.health.ToString();
+            if (uiManager != null) uiManager.UpdatePlayerHealthUI(player.health);
         }
     }
 
@@ -291,12 +242,11 @@ public class GameManager : MonoBehaviour
             // Increase speed
             player.speed += 1;
             currentWpnIndex++;
+
             // Deactivate old weapons
             foreach (var gun in player.guns)
             {
                 gun.gameObject.SetActive(false);
-                //Destroy(gun);
-
             }
             player.guns.Clear();
 
@@ -326,22 +276,36 @@ public class GameManager : MonoBehaviour
     {
         // Reduce invader's health and check if it should be destroyed
         invader.health = Mathf.Max(invader.health - 1, 0);
+
         if (invader.health <= 0)
         {
+            if (invaderExplosion != null)
+            {
+                Instantiate(invaderExplosion, invader.transform.position, Quaternion.identity);
+            }
+
+            // Play the death sound if it's assigned
+            if (enemyDeathSound != null)
+            {
+                GameObject sfxPlayer = GameObject.Find("SFXPlayer");
+                AudioSource aud = sfxPlayer.GetComponent<AudioSource>();
+                aud.PlayOneShot(enemyDeathSound, enemyDeathVolume);
+            }
+
             // Upon invader die, there is a chance of dropping an upgraded weapon
             int spawnUpgrade = Random.Range(0, upgradeDropRate);
-            if (spawnUpgrade == 1 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)
+            if (spawnUpgrade == 0 && GameObject.FindGameObjectsWithTag("Upgrade").Length < 1)
             {
-                Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
+                if (upgradePrefab != null)
+                    Instantiate(upgradePrefab, invader.transform.position, Quaternion.identity);
             }
 
             // Destroy the invader and update the player's score
             Destroy(invader.gameObject);
 
-            // IDE animáció
             SetScore(score + invader.score);
 
-            // ha boss tag-je van, akkor fõellenség és megjelenít victory panel
+            // If a boss destroyed than end the mission
             if (invader.gameObject.tag == "Boss")
             {
                 // GAME END UI
@@ -350,44 +314,93 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// \brief Handle's the event when a mission end, such as: stopping spawnpoints, background scroll, etc.
     public void EndOfMission()
     {
         StopGame();
 
-        PlayerPrefs.SetInt("Mission" + sceneIndex, score);
+        //PlayerPrefs.SetInt("Mission" + sceneIndex, score);
+        PlayerPrefs.SetInt("Score", score);
 
-        if (sceneIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        // Ha utolso mission volt
+        if (isLastMission)
         {
-            // Ha utolso mission volt
-            GameObject.Find("NextButton").SetActive(false);
-            GameObject.Find("levelText").GetComponent<Text>().text = "You win the game!";
-            int totalScore = 0;
+            // Calculate total score
+            /*int totalScore = 0;
             for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
             {
                 totalScore += PlayerPrefs.GetInt("Mission" + i);
-            }
-            GameObject.Find("scoresText").GetComponent<Text>().text = "Total score: " + totalScore;
+            }*/
+            uiManager.HandleEndOfMissionUI(true, score);
         }
         else
-        {
-            GameObject.Find("levelText").GetComponent<Text>().text = "Level " + sceneIndex + " completed!";
-            GameObject.Find("scoresText").GetComponent<Text>().text = "Scores: " + score;
-        }
+            uiManager.HandleEndOfMissionUI(false, score);
     }
 
+    /// \brief Handle's the Exit button event
     public void ExitMission()
     {
+        HandleHighScore();
         SceneManager.LoadScene(0);
     }
 
+    /// \brief Handle's the Next mission button event
     public void NextMission()
     {
-        int tmp = SceneManager.GetActiveScene().buildIndex;
-        if (tmp + 1 < SceneManager.sceneCountInBuildSettings)
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        HandleHighScore();
+        if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings && !isLastMission)
         {
-            // Van még mission hátra
-            tmp += 1;
-            SceneManager.LoadScene(tmp);
+            // Van meg mission hatra
+            currentSceneIndex += 1;
+            SceneManager.LoadScene(currentSceneIndex);
         }
     }
+
+    private void HandleHighScore()
+    {
+        HighscoreElement element = new HighscoreElement(playerName, score);
+        List<HighscoreElement> highscoreList = new List<HighscoreElement>();
+        highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>("scores.json");
+
+        while (highscoreList.Count > maxCount)
+        {
+            highscoreList.RemoveAt(maxCount);
+        }
+
+        for (int i = 0; i < maxCount; i++)
+        {
+            if (i >= highscoreList.Count || element.points > highscoreList[i].points)
+            {
+                // add new high score
+                highscoreList.Insert(i, element);
+
+                while (highscoreList.Count > maxCount)
+                {
+                    highscoreList.RemoveAt(maxCount);
+                }
+
+                FileHandler.SaveToJSON<HighscoreElement>(highscoreList, "scores.json");
+
+                break;
+            }
+        }
+    }
+
+    public void OnGameOverSounds()
+    {
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            if (audioSource.clip != gameOverSound)
+            {
+                audioSource.Stop();
+            }
+        }
+
+        AudioSource.PlayClipAtPoint(gameOverSound, Camera.main.transform.position, gameOverVolume);
+
+    }
+
 }

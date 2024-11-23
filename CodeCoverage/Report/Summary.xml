@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>2024. 11. 13. - 14:14:17</Generatedon>
+    <Parser>MultiReportParser (4x OpenCoverParser)</Parser>
+    <Assemblies>1</Assemblies>
+    <Classes>17</Classes>
+    <Files>17</Files>
+    <Coveredlines>131</Coveredlines>
+    <Uncoveredlines>634</Uncoveredlines>
+    <Coverablelines>765</Coverablelines>
+    <Totallines>1606</Totallines>
+    <Linecoverage>17.1</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+    <Coveredmethods>28</Coveredmethods>
+    <Totalmethods>99</Totalmethods>
+    <Methodcoverage>28.2</Methodcoverage>
+  </Summary>
+  <Coverage>
+    <Assembly name="Scripts" classes="17" coverage="17.1" coveredlines="131" coverablelines="765" totallines="1606" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="28" totalmethods="99" methodcoverage="28.2">
+      <Class name="BackgroundScroll" coverage="18.1" coveredlines="2" coverablelines="11" totallines="40" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="5" methodcoverage="60" />
+      <Class name="BossHealthBar" coverage="0" coveredlines="0" coverablelines="7" totallines="20" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="ChangeScene" coverage="0" coveredlines="0" coverablelines="13" totallines="30" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="EnemyPatrol" coverage="0" coveredlines="0" coverablelines="45" totallines="102" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="GameManager" coverage="32.2" coveredlines="76" coverablelines="236" totallines="416" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="14" totalmethods="25" methodcoverage="56" />
+      <Class name="Gun" coverage="8.8" coveredlines="3" coverablelines="34" totallines="84" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="5" methodcoverage="20" />
+      <Class name="Invader" coverage="26.6" coveredlines="16" coverablelines="60" totallines="143" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="8" methodcoverage="37.5" />
+      <Class name="LevelProgress" coverage="0" coveredlines="0" coverablelines="17" totallines="51" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="MainBoss" coverage="9.3" coveredlines="6" coverablelines="64" totallines="131" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="6" methodcoverage="16.6" />
+      <Class name="MenuLoadOn" coverage="0" coveredlines="0" coverablelines="17" totallines="33" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="PauseMenu" coverage="0" coveredlines="0" coverablelines="40" totallines="70" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="5" methodcoverage="0" />
+      <Class name="Player" coverage="13.8" coveredlines="13" coverablelines="94" totallines="181" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="9" methodcoverage="33.3" />
+      <Class name="Projectile" coverage="38.8" coveredlines="14" coverablelines="36" totallines="93" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="7" methodcoverage="28.5" />
+      <Class name="Repair" coverage="0" coveredlines="0" coverablelines="16" totallines="33" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="SettingsMenu" coverage="0" coveredlines="0" coverablelines="25" totallines="49" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="SpawnPoint" coverage="2.9" coveredlines="1" coverablelines="34" totallines="98" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="6" methodcoverage="16.6" />
+      <Class name="Upgrade" coverage="0" coveredlines="0" coverablelines="16" totallines="32" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>
