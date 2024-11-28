@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
     /// \brief Restarts the current active scene.
     public void RestartMission()
     {
+        HandleHighScore();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -318,19 +319,11 @@ public class GameManager : MonoBehaviour
     public void EndOfMission()
     {
         StopGame();
-
-        //PlayerPrefs.SetInt("Mission" + sceneIndex, score);
         PlayerPrefs.SetInt("Score", score);
 
         // Ha utolso mission volt
         if (isLastMission)
         {
-            // Calculate total score
-            /*int totalScore = 0;
-            for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
-            {
-                totalScore += PlayerPrefs.GetInt("Mission" + i);
-            }*/
             uiManager.HandleEndOfMissionUI(true, score);
         }
         else
