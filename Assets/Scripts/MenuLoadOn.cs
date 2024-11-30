@@ -29,7 +29,7 @@ public class MenuLoadOn : MonoBehaviour
         // Setting the highest score from persistent storage
         List<HighscoreElement> highscoreList = new List<HighscoreElement>();
         highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>("scores.json");
-        PlayerPrefs.SetInt("HighScore", highscoreList[0].points);
+        if (highscoreList.Count > 0) PlayerPrefs.SetInt("HighScore", highscoreList[0].points);
     }
 
     // Update is called once per frame

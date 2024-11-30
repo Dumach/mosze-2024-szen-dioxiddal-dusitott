@@ -15,6 +15,7 @@ public class ChangeScene : MonoBehaviour
     [SerializeField] private GameObject HighScoreElementPrefab;
 
     List<GameObject> uiElements = new List<GameObject>();
+    List<HighscoreElement> highscoreList = new List<HighscoreElement>();
 
     /// \brief Handle's the logic of ContinueGame button
     public void ContinueGame()
@@ -30,8 +31,6 @@ public class ChangeScene : MonoBehaviour
     /// \brief Upon pressing the leaderboard button, it shows the top 7 highest scores with names
     public void ShowLeaderboard()
     {
-        List<HighscoreElement> highscoreList = new List<HighscoreElement>();
-        highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>("scores.json");        
 
         for (int i = 0; i < highscoreList.Count; i++)
         {
@@ -55,6 +54,13 @@ public class ChangeScene : MonoBehaviour
             }
         }
         LeaderBoard.SetActive(true);
+    }
+
+    private void Start()
+    {
+        highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>("scores.json");
+        if(highscoreList.Count > 0) PlayerPrefs.SetInt("HighScore", highscoreList[0].points);
+        else PlayerPrefs.SetInt("HighScore", 0);
     }
 
     public void HideLeaderboard()
