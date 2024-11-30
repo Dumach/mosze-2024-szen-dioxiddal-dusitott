@@ -14,6 +14,21 @@ Az energiaforrások lassan kimerülnek, és az emberiség fennmaradása veszély
 A bolygók közötti kereskedelmi útvonalak összeomlásával és a gyarmatok függetlenedési háborúival egyre súlyosabb energiaválság alakult ki.
 Az egyetlen remény egy titokzatos energiaforrás, amelyről egy elhagyatott, távoli galaxisban, a M-92 Nebula közelében érkeztek hírek.
 
+## Fordítás és futtatás:
+
+### Fordítás:
+1. Klónozd le a repo-t vagy töltsd le a zip fájlt: 
+```bash
+git clone https://github.com/Dumach/mosze-2024-szen-dioxiddal-dusitott.git
+```
+2. Nyisd meg Unity Hub-ot és importáld a letöltött mappát (válaszd ki)
+3. Várj, hogy Unity összekészítse a projektek (első indításra lassú lehet)
+4. File menüpontban -> Build Settings -> Build gomb
+5. Add meg célpontot hova fordítsa le a fájlokat, nevezed el pl: "Csillagkozi-Expedicio"-nak
+
+### Futtatás:
+1. Menj bele az előbb létrehozott mappába és indítsd el a "__mosze-2024-szen-dioxiddal-dusitott.exe__"-t
+
 ## Résztvevők:
  - Szabó Marcell
  - Tóth Barnabás
