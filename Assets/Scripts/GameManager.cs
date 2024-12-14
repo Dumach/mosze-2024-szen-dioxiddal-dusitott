@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     /// \brief The current scene index.
     private int sceneIndex;
 
+
     /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
     public void Awake()
     {
@@ -324,6 +325,7 @@ public class GameManager : MonoBehaviour
         // Ha utolso mission volt
         if (isLastMission)
         {
+            LoadEndScene();
             uiManager.HandleEndOfMissionUI(true, score);
         }
         else
@@ -394,6 +396,10 @@ public class GameManager : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(gameOverSound, Camera.main.transform.position, gameOverVolume);
 
+    }
+    private void LoadEndScene()
+    {
+        SceneManager.LoadScene("EndCredit");
     }
 
 }

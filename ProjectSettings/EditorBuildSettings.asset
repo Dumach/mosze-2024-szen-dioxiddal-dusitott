@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Mission9-marci.unity
     guid: b3e73f6ae7ea1f049bee8b01d48df889
   - enabled: 1
+    path: Assets/Scenes/Credit/EndCredit.unity
+    guid: 2704042ef44bc0942b3808486fc8c9dd
+  - enabled: 1
     path: Assets/Scenes/test.unity
     guid: 8623cec9f14f6384582913ec6bdea622
   m_configObjects: {}
