@@ -1,33 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    private const int totalLevels = 9;
-    void Start()
+    public Button[] buttons;
+
+    public Image Lock;
+
+    private void Awake()
     {
-        if (!PlayerPrefs.HasKey("Level1"))
+        int unlockLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
+        for (int i = 0; i < buttons.Length; i++)
         {
-            // Az 1. szint elérhető
-            PlayerPrefs.SetInt("Level1", 1);
-            for (int i = 2; i <= totalLevels; i++)
-            {
-                // Többi szint zárolva
-                PlayerPrefs.SetInt("Level" + i, 0);
-            }
+            buttons[i].interactable = false;
+            buttons[i].GetComponent<Image>().sprite = Lock.sprite;
+            buttons[i].GetComponentInChildren<Text>().text = "";
+        }
+        for (int i = 0; i < unlockLevel; i++)
+        {
+            buttons[i].interactable = true;
+            buttons[i].GetComponent<Image>().sprite = null;
+            buttons[i].GetComponentInChildren<Text>().text = (i + 1).ToString();
+
         }
     }
-
-    // Ellenőrizzük, hogy a szint elérhető-e
-    public bool IsLevelUnlocked(int level)
+    public void OpenLevel(int levelId)
     {
-        return PlayerPrefs.GetInt("Level" + level) == 1;
+        SceneManager.LoadScene(levelId);
     }
 
-    // Szint feloldása
-    public void UnlockLevel(int level)
-    {
-        PlayerPrefs.SetInt("Level" + level, 1);
-    }
 }

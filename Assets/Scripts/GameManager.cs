@@ -121,7 +121,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(missionTime);
 
-        if (!this.hasEndBoss) EndOfMission();
+        if (!this.hasEndBoss)
+        {
+            EndOfMission();
+        }
     }
 
     /// \brief Spawns a repair kit from the upper edge of the screen.
@@ -310,6 +313,7 @@ public class GameManager : MonoBehaviour
             // If a boss destroyed than end the mission
             if (invader.gameObject.tag == "Boss")
             {
+
                 // GAME END UI
                 EndOfMission();
             }
@@ -401,5 +405,4 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("EndCredit");
     }
-
 }
