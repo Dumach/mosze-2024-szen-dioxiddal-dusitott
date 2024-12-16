@@ -6652,9 +6652,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1436969722}
+      - m_Target: {fileID: 1436969726}
         m_TargetAssemblyTypeName: ChangeScene, Scripts
-        m_MethodName: 
+        m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

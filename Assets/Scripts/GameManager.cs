@@ -330,23 +330,28 @@ public class GameManager : MonoBehaviour
         if (isLastMission)
         {
             LoadEndScene();
+            PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
             uiManager.HandleEndOfMissionUI(true, score);
         }
         else
+        {
+            PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 1);
             uiManager.HandleEndOfMissionUI(false, score);
+        }
     }
 
     /// \brief Handle's the Exit button event
     public void ExitMission()
     {
         HandleHighScore();
+        PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(0);
     }
 
     /// \brief Handle's the Next mission button event
     public void NextMission()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;        
         HandleHighScore();
         if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings && !isLastMission)
         {

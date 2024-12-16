@@ -85,6 +85,7 @@ public class ChangeScene : MonoBehaviour
 
         PlayerPrefs.SetString("Name", name);
         PlayerPrefs.SetInt("Score", 0);
+        PlayerPrefs.SetInt("Level", 1);
 
         SceneManager.LoadScene(1);
     }
