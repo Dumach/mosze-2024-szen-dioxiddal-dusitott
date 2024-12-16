@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     /// \brief The current scene index.
     private int sceneIndex;
 
+
     /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
     public void Awake()
     {
@@ -120,7 +121,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(missionTime);
 
-        if (!this.hasEndBoss) EndOfMission();
+        if (!this.hasEndBoss)
+        {
+            EndOfMission();
+        }
     }
 
     /// \brief Spawns a repair kit from the upper edge of the screen.
@@ -309,6 +313,7 @@ public class GameManager : MonoBehaviour
             // If a boss destroyed than end the mission
             if (invader.gameObject.tag == "Boss")
             {
+
                 // GAME END UI
                 EndOfMission();
             }
@@ -324,6 +329,7 @@ public class GameManager : MonoBehaviour
         // Ha utolso mission volt
         if (isLastMission)
         {
+            LoadEndScene();
             uiManager.HandleEndOfMissionUI(true, score);
         }
         else
@@ -395,5 +401,8 @@ public class GameManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(gameOverSound, Camera.main.transform.position, gameOverVolume);
 
     }
-
+    private void LoadEndScene()
+    {
+        SceneManager.LoadScene("EndCredit");
+    }
 }
