@@ -1423,7 +1423,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 700470876990422343, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.67
+      value: -29.54
       objectReference: {fileID: 0}
     - target: {fileID: 700470876990422343, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1601,6 +1601,100 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ea8380ffa083b4ea9f07c927d380be, type: 3}
+--- !u!1 &803779600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803779601}
+  - component: {fileID: 803779603}
+  - component: {fileID: 803779602}
+  - component: {fileID: 803779604}
+  m_Layer: 5
+  m_Name: Leveltext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &803779601
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803779600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1742669758}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 871, y: -505}
+  m_SizeDelta: {x: 205.22, y: 48.63}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &803779602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803779600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7377358, g: 0.93633616, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 4c77404ae40f93949b31b28958d18e0e, type: 3}
+    m_FontSize: 45
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 50
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Level
+--- !u!222 &803779603
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803779600}
+  m_CullTransparentMesh: 1
+--- !u!114 &803779604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803779600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41d1b6b58cdb094eb343b8433effc6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 803779602}
+  levelNumber: 1
 --- !u!1 &853017812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8071870158339282540, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
@@ -1761,6 +1855,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2200802817568278339, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1183659034}
+    - targetCorrespondingSourceObject: {fileID: 2200802817568278339, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 803779601}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98c4d5f275ff0474f9fcb921a2f625db, type: 3}
 --- !u!114 &936413978 stripped
@@ -2307,7 +2404,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 700470876990422343, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.67
+      value: -29.61
       objectReference: {fileID: 0}
     - target: {fileID: 700470876990422343, guid: 47548dcb6fb76574289f444478fb88dc, type: 3}
       propertyPath: m_LocalPosition.y
