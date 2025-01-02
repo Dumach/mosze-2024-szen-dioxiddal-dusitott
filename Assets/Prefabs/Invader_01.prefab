@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: projectilePrefab
@@ -118,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 6161936928069685931, guid: 3c328e673b90a7f418f1f1e66f83522b, type: 3}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1.5
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 7504607567036450824, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_Name

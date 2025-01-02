@@ -281,12 +281,13 @@ public class GameManager : MonoBehaviour
     {
         // Reduce invader's health and check if it should be destroyed
         invader.health = Mathf.Max(invader.health - 1, 0);
+        GameObject explosion = null;
 
         if (invader.health <= 0)
         {
             if (invaderExplosion != null)
             {
-                Instantiate(invaderExplosion, invader.transform.position, Quaternion.identity);
+                explosion = Instantiate(invaderExplosion, invader.transform.position, Quaternion.identity);
             }
 
             // Play the death sound if it's assigned
@@ -309,6 +310,7 @@ public class GameManager : MonoBehaviour
             Destroy(invader.gameObject);
 
             SetScore(score + invader.score);
+            if(explosion) Destroy(explosion, 3);
 
             // If a boss destroyed than end the mission
             if (invader.gameObject.tag == "Boss")

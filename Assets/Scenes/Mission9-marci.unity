@@ -11002,7 +11002,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Drakonex, a Csillagok Puszt\xEDt\xF3ja"
+  m_Text: Xaroth The Endbringer
 --- !u!222 &1137997652
 CanvasRenderer:
   m_ObjectHideFlags: 0

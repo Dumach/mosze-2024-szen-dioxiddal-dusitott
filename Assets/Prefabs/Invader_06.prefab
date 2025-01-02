@@ -54,12 +54,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 33052392596605686, guid: 4ddcf0e174488eb40b0b51851b85004b, type: 3}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: timeBetweenShoots
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
       value: Invader1gun (1)
@@ -143,7 +147,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: timeBetweenShoots
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -296,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: projectilePrefab
@@ -304,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 33052392596605686, guid: 4ddcf0e174488eb40b0b51851b85004b, type: 3}
     - target: {fileID: 5065213681342384469, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1.5
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 7504607567036450824, guid: 92725eb3a0283d641835e37afa65bda1, type: 3}
       propertyPath: m_Name
