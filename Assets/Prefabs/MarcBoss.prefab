@@ -206,6 +206,8 @@ MonoBehaviour:
   speed: 6
   cycleTime: 2.5
   startSpawningTime: 30
+  secondPhase: 0
+  healthBar: {fileID: 0}
   BossWarning: {fileID: 0}
 --- !u!1001 &1248153308822674136
 PrefabInstance:
@@ -265,7 +267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -354,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -443,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -532,7 +534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -621,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab

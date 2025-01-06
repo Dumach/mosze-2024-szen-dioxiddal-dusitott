@@ -206,6 +206,8 @@ MonoBehaviour:
   speed: 6
   cycleTime: 2.5
   startSpawningTime: 160
+  secondPhase: 0
+  healthBar: {fileID: 0}
   BossWarning: {fileID: 0}
 --- !u!1001 &198459305647928189
 PrefabInstance:
@@ -256,12 +258,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
+      propertyPath: pewPewSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ff78925fa765a7647bdc35f59b02b222, type: 3}
+    - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: missileSpeed
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -269,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -350,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -358,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1.25
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -439,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -447,7 +453,7 @@ PrefabInstance:
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1.25
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -532,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -540,7 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 6161936928069685931, guid: 3c328e673b90a7f418f1f1e66f83522b, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 3
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name
@@ -621,7 +627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: pewpewVolume
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: projectilePrefab
@@ -629,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 33052392596605686, guid: 8cca1da190961a842b34231aade647ef, type: 3}
     - target: {fileID: 6885414115159766499, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: timeBetweenShoots
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8206436463281763518, guid: c5d7a10a0ddaf9749ac48c11b66b0cc7, type: 3}
       propertyPath: m_Name

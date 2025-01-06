@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     /// \brief The current scene index.
     private int sceneIndex;
 
+
     /// \brief Initializes the GameManager as a singleton and ensures only one instance exists.
     public void Awake()
     {
@@ -120,7 +121,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(missionTime);
 
-        if (!this.hasEndBoss) EndOfMission();
+        if (!this.hasEndBoss)
+        {
+            EndOfMission();
+        }
     }
 
     /// \brief Spawns a repair kit from the upper edge of the screen.
@@ -277,12 +281,13 @@ public class GameManager : MonoBehaviour
     {
         // Reduce invader's health and check if it should be destroyed
         invader.health = Mathf.Max(invader.health - 1, 0);
+        GameObject explosion = null;
 
         if (invader.health <= 0)
         {
             if (invaderExplosion != null)
             {
-                Instantiate(invaderExplosion, invader.transform.position, Quaternion.identity);
+                explosion = Instantiate(invaderExplosion, invader.transform.position, Quaternion.identity);
             }
 
             // Play the death sound if it's assigned
@@ -305,10 +310,12 @@ public class GameManager : MonoBehaviour
             Destroy(invader.gameObject);
 
             SetScore(score + invader.score);
+            if(explosion) Destroy(explosion, 3);
 
             // If a boss destroyed than end the mission
             if (invader.gameObject.tag == "Boss")
             {
+
                 // GAME END UI
                 EndOfMission();
             }
@@ -324,23 +331,29 @@ public class GameManager : MonoBehaviour
         // Ha utolso mission volt
         if (isLastMission)
         {
+            LoadEndScene();
+            PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
             uiManager.HandleEndOfMissionUI(true, score);
         }
         else
+        {
+            PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 1);
             uiManager.HandleEndOfMissionUI(false, score);
+        }
     }
 
     /// \brief Handle's the Exit button event
     public void ExitMission()
     {
         HandleHighScore();
+        PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(0);
     }
 
     /// \brief Handle's the Next mission button event
     public void NextMission()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;        
         HandleHighScore();
         if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings && !isLastMission)
         {
@@ -395,5 +408,8 @@ public class GameManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(gameOverSound, Camera.main.transform.position, gameOverVolume);
 
     }
-
+    private void LoadEndScene()
+    {
+        SceneManager.LoadScene("EndCredit");
+    }
 }
